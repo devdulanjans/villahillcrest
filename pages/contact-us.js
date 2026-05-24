@@ -67,9 +67,30 @@ export default function ContactUs() {
         <title>Villa Hillcrest | Contact Us</title>
         <meta name="description" content="Contact Villa Hillcrest for bookings, availability, and guest inquiries about your luxury villa stay in Sri Lanka." />
         <meta name="theme-color" content="#2d7a3e" />
-        <link rel="canonical" href="https://yourdomain.com/contact-us" />
+        <link rel="canonical" href="https://villahillcrest.com/contact-us" />
         <meta name="robots" content="index, follow" />
+        {/* Open Graph tags */}
+        <meta property="og:title" content="Villa Hillcrest | Contact Us" />
+        <meta property="og:description" content="Contact Villa Hillcrest for bookings, availability, and guest inquiries about your luxury villa stay in Sri Lanka." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://villahillcrest.com/contact-us" />
+        <meta property="og:image" content="https://villahillcrest.com/images/logo/logo-og.jpg" />
         <meta property="og:site_name" content="Villa Hillcrest" />
+        {/* Twitter Card tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Villa Hillcrest | Contact Us" />
+        <meta name="twitter:description" content="Contact Villa Hillcrest for bookings, availability, and guest inquiries about your luxury villa stay in Sri Lanka." />
+        <meta name="twitter:image" content="https://villahillcrest.com/images/logo/logo-og.jpg" />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "ContactPage",
+          "name": "Contact Villa Hillcrest",
+          "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://villahillcrest.com/contact-us"
+          },
+          "url": "https://villahillcrest.com/contact-us"
+        }) }} />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
         <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500&family=Montserrat:wght@300;400;500&family=Cormorant+Garamond:wght@300;400;500&display=swap" rel="stylesheet" />

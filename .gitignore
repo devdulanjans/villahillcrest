@@ -1,5 +1,6 @@
 node_modules
 .next/
+out/
 
 # Environment variables
 .env
@@ -21,3 +22,18 @@ yarn-error.log*
 
 # Coverage directory
 coverage/
+
+# Build and deploy artifacts
+dist/
+build/
+*.zip
+*.tar
+*.tar.gz
+
+# Dependency and package manager artifacts
+npm-cache/
+
+# Local editor and OS artifacts
+Thumbs.db
+*.swp
+*.swo

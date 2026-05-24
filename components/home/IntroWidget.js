@@ -3,7 +3,7 @@ export default function IntroWidget() {
     <section className="hc-intro hc-reveal" aria-labelledby="intro-heading">
       <div className="container">
         <h2 id="intro-heading">Escape in style</h2>
-        <p className="hc-intro-copy">
+        <p>
           Villa Hillcrest blends tropical modern design with curated island
           experiences. From private wellness to surf-ready adventures,
           every detail is composed for a slower, richer way of traveling.

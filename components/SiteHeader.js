@@ -9,6 +9,24 @@ export default function SiteHeader() {
   useEffect(() => {
     if (router.pathname === '/about-us') {
       setActiveItem('about')
+    } else if (router.pathname === '/villa') {
+      setActiveItem('villa')
+    } else if (router.pathname === '/dining') {
+      setActiveItem('dining')
+    } else if (router.pathname === '/yoga') {
+      setActiveItem('yoga')
+    } else if (router.pathname === '/foods') {
+      setActiveItem('foods')
+    } else if (router.pathname === '/explore') {
+      setActiveItem('explore')
+    } else if (router.pathname === '/cycling') {
+      setActiveItem('cycling')
+    } else if (router.pathname === '/gallery') {
+      setActiveItem('gallery')
+    } else if (router.pathname === '/offers') {
+      setActiveItem('offers')
+    } else {
+      setActiveItem('')
     }
   }, [router.pathname])
 
@@ -34,18 +52,18 @@ export default function SiteHeader() {
 
           <div className="nav-right">
             <div className="nav-item has-dropdown">
-              <a href="#" className="nav-link">Surf</a>
+              <Link href="/villa" className={getLinkClass('villa', 'nav-link')} onClick={handleMenuClick('villa')}>Surf</Link>
               <ul className="dropdown" aria-label="Surf submenu">
-                <li><a href="#" className="nav-link dropdown-link">Villa</a></li>
-                <li><a href="#" className="nav-link dropdown-link">Dining</a></li>
-                <li><a href="#" className="nav-link dropdown-link">Yoga</a></li>
-                <li><a href="#" className="nav-link dropdown-link">Food</a></li>
-                <li><a href="#" className="nav-link dropdown-link">Explore</a></li>
-                <li><a href="#" className="nav-link dropdown-link">Cycling</a></li>
+                <li><Link href="/villa" className={getLinkClass('villa', 'nav-link dropdown-link')} onClick={handleMenuClick('villa')}>Villa</Link></li>
+                <li><Link href="/dining" className={getLinkClass('dining', 'nav-link dropdown-link')} onClick={handleMenuClick('dining')}>Dining</Link></li>
+                <li><Link href="/yoga" className={getLinkClass('yoga', 'nav-link dropdown-link')} onClick={handleMenuClick('yoga')}>Yoga</Link></li>
+                <li><Link href="/foods" className={getLinkClass('foods', 'nav-link dropdown-link')} onClick={handleMenuClick('foods')}>Food</Link></li>
+                <li><Link href="/explore" className={getLinkClass('explore', 'nav-link dropdown-link')} onClick={handleMenuClick('explore')}>Explore</Link></li>
+                <li><Link href="/cycling" className={getLinkClass('cycling', 'nav-link dropdown-link')} onClick={handleMenuClick('cycling')}>Cycling</Link></li>
               </ul>
             </div>
-            <a href="#" className="nav-link">Gallery</a>
-            <a href="#" className="nav-link">Offers</a>
+            <Link href="/gallery" className={getLinkClass('gallery', 'nav-link')} onClick={handleMenuClick('gallery')}>Gallery</Link>
+            <Link href="/offers" className={getLinkClass('offers', 'nav-link')} onClick={handleMenuClick('offers')}>Offers</Link>
             <a href="/contact-us" className="nav-link">Contact Us</a>
           </div>
 
@@ -66,16 +84,16 @@ export default function SiteHeader() {
               <span className="submenu-arrow">▾</span>
             </button>
             <div className="mobile-submenu" id="mobileSurfSubmenu" aria-hidden="true">
-              <a href="#" className="mobile-nav-link mobile-nav-subitem">Villa</a>
-              <a href="#" className="mobile-nav-link mobile-nav-subitem">Dining</a>
-              <a href="#" className="mobile-nav-link mobile-nav-subitem">Yoga</a>
-              <a href="#" className="mobile-nav-link mobile-nav-subitem">Food</a>
-              <a href="#" className="mobile-nav-link mobile-nav-subitem">Explore</a>
-              <a href="#" className="mobile-nav-link mobile-nav-subitem">Cycling</a>
+              <Link href="/villa" className={getLinkClass('villa', 'mobile-nav-link mobile-nav-subitem')} onClick={handleMenuClick('villa')}>Villa</Link>
+              <Link href="/dining" className={getLinkClass('dining', 'mobile-nav-link mobile-nav-subitem')} onClick={handleMenuClick('dining')}>Dining</Link>
+              <Link href="/yoga" className={getLinkClass('yoga', 'mobile-nav-link mobile-nav-subitem')} onClick={handleMenuClick('yoga')}>Yoga</Link>
+              <Link href="/foods" className={getLinkClass('foods', 'mobile-nav-link mobile-nav-subitem')} onClick={handleMenuClick('foods')}>Food</Link>
+              <Link href="/explore" className={getLinkClass('explore', 'mobile-nav-link mobile-nav-subitem')} onClick={handleMenuClick('explore')}>Explore</Link>
+              <Link href="/cycling" className={getLinkClass('cycling', 'mobile-nav-link mobile-nav-subitem')} onClick={handleMenuClick('cycling')}>Cycling</Link>
             </div>
             <a href="#" className="mobile-nav-link">Event</a>
-            <a href="#" className="mobile-nav-link">Offers</a>
-            <a href="#" className="mobile-nav-link">Gallery</a>
+            <Link href="/offers" className={getLinkClass('offers', 'mobile-nav-link')} onClick={handleMenuClick('offers')}>Offers</Link>
+            <Link href="/gallery" className={getLinkClass('gallery', 'mobile-nav-link')} onClick={handleMenuClick('gallery')}>Gallery</Link>
             <a href="#" className="mobile-nav-link">Media</a>
           </nav>
         </nav>

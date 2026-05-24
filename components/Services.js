@@ -33,7 +33,7 @@ const services = [
 
 export default function Services() {
   return (
-    <section className="services-section fade-in" id="services" aria-labelledby="services-heading">
+    <section className="services-section hc-reveal" id="services" aria-labelledby="services-heading">
       <div className="container">
         <div className="services-header">
           <p className="section-label">Our Services</p>
@@ -45,8 +45,8 @@ export default function Services() {
           {services.map(service => (
             <article className="service-card" key={service.title}>
               <div className="service-card-icon">{service.icon}</div>
-              <h3 className="feature-title">{service.title}</h3>
-              <p className="feature-text">{service.description}</p>
+              <h3>{service.title}</h3>
+              <p>{service.description}</p>
             </article>
           ))}
         </div>

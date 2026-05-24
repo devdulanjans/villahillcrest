@@ -67,12 +67,33 @@ export default function AboutUs() {
   return (
     <Layout>
       <Head>
-        <title>Villa Hillcrest | About Us</title>
-        <meta name="description" content="Learn about Villa Hillcrest, our luxury boutique villa in Sri Lanka and the experiences we offer for an unforgettable tropical escape." />
+        <title>Villa Hillcrest | Availability</title>
+        <meta name="description" content="Check room availability and book your stay at Villa Hillcrest, Sri Lanka." />
         <meta name="theme-color" content="#2d7a3e" />
-        <link rel="canonical" href="https://yourdomain.com/about-us" />
+        <link rel="canonical" href="https://villahillcrest.com/availability" />
         <meta name="robots" content="index, follow" />
+        {/* Open Graph tags */}
+        <meta property="og:title" content="Villa Hillcrest | Availability" />
+        <meta property="og:description" content="Check room availability and book your stay at Villa Hillcrest, Sri Lanka." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://villahillcrest.com/availability" />
+        <meta property="og:image" content="https://villahillcrest.com/images/logo/logo-og.jpg" />
         <meta property="og:site_name" content="Villa Hillcrest" />
+        {/* Twitter Card tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Villa Hillcrest | Availability" />
+        <meta name="twitter:description" content="Check room availability and book your stay at Villa Hillcrest, Sri Lanka." />
+        <meta name="twitter:image" content="https://villahillcrest.com/images/logo/logo-og.jpg" />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          "name": "Availability - Villa Hillcrest",
+          "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://villahillcrest.com/availability"
+          },
+          "url": "https://villahillcrest.com/availability"
+        }) }} />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
         <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500&family=Montserrat:wght@300;400;500&family=Cormorant+Garamond:wght@300;400;500&display=swap" rel="stylesheet" />

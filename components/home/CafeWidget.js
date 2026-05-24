@@ -6,7 +6,7 @@ export default function CafeWidget() {
         alt="Colorful dishes on a dark table"
       />
       <div className="hc-cafe-content">
-        <h2 id="cafe-heading">Cafe & kitchen</h2>
+        <h2 id="cafe-heading" className="hc-cafe-heading">Cafe & kitchen</h2>
         <p>
           Seasonal menus, tropical produce, and fresh seafood curated with
           local flavors. Enjoy all-day dining from healthy breakfasts to
