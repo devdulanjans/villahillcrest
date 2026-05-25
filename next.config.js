@@ -3,7 +3,6 @@ const nextConfig = {
   turbopack: {
     root: __dirname,
   },
-  output: 'export',
   images: {
     unoptimized: true,
   },

@@ -3,25 +3,25 @@ import { useRef, useState } from 'react'
 const experiences = [
   {
     title: 'Sleep',
-    image: 'https://images.unsplash.com/photo-1473116763249-2faaef81ccda?q=80&w=1200&auto=format&fit=crop',
+    image: 'https://villahillcrest.com/wp-content/uploads/2024/07/IMG_1695-scaled.jpg',
     alt: 'Tranquil beach morning',
     detail: 'Calm rooms with natural light, linen textures, and handcrafted details.'
   },
   {
     title: 'Swim Club',
-    image: 'https://images.unsplash.com/photo-1473116763249-2faaef81ccda?q=80&w=1200&auto=format&fit=crop',
+    image: 'https://villahillcrest.com/wp-content/uploads/2024/08/Airbnb_OphelieJammaers-7-scaled.jpg',
     alt: 'Resort pool in tropical setting',
     detail: 'Refresh in our poolside lounge framed by gardens and shaded palms.'
   },
   {
     title: 'Surf',
-    image: 'https://images.unsplash.com/photo-1530878902700-5ad4f9e4c318?q=80&w=1200&auto=format&fit=crop',
+    image: 'https://www.lovesrilanka.org/wp-content/uploads/2020/06/LSL_B2_Blog_1920x700.jpg',
     alt: 'Surfer riding a wave',
     detail: 'Guided sessions for all levels with access to the best southern breaks.'
   },
   {
     title: 'Yoga',
-    image: 'https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?q=80&w=1200&auto=format&fit=crop',
+    image: 'https://static.wixstatic.com/media/65f045_7db1a922a19a44d9a909b92104daaf64~mv2.jpg/v1/fill/w_640,h_402,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/65f045_7db1a922a19a44d9a909b92104daaf64~mv2.jpg',
     alt: 'Yoga session at sunrise',
     detail: 'Find your inner peace with our guided yoga sessions.'
   },

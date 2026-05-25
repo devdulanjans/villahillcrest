@@ -78,7 +78,7 @@ export default function PhilosophyWidget() {
   ]
 
   return (
-    <section className="hc-philosophy hc-reveal" aria-labelledby="philosophy-heading">
+    <section className="hc-philosophy hc-reveal" id="philosophy" aria-labelledby="philosophy-heading">
       <div className="container">
         <h2 id="philosophy-heading">Our philosophy</h2>
         <div className="hc-philosophy-grid" role="list">

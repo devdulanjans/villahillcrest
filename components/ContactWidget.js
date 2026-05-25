@@ -1,4 +1,67 @@
+import { useState } from 'react'
+
 export default function ContactWidget() {
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitMessage, setSubmitMessage] = useState('')
+  const [submitStatus, setSubmitStatus] = useState('idle')
+
+  const contactFormEndpoint = process.env.NEXT_PUBLIC_CONTACT_FORM_ENDPOINT || ''
+
+  const handleSubmit = async event => {
+    event.preventDefault()
+    setSubmitMessage('')
+
+    if (!contactFormEndpoint) {
+      setSubmitStatus('error')
+      setSubmitMessage('Form is not configured yet. Please set NEXT_PUBLIC_CONTACT_FORM_ENDPOINT and rebuild.')
+      return
+    }
+
+    const form = event.currentTarget
+    const formData = new FormData(form)
+    const isFormSubmit = /formsubmit\.co/i.test(contactFormEndpoint)
+
+    try {
+      setIsSubmitting(true)
+
+      const payload = Object.fromEntries(formData.entries())
+      const requestOptions = {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json'
+        }
+      }
+
+      if (isFormSubmit) {
+        requestOptions.headers['Content-Type'] = 'application/json'
+        requestOptions.body = JSON.stringify({
+          ...payload,
+          name: `${payload.firstName || ''} ${payload.lastName || ''}`.trim(),
+          _subject: 'New Contact Form Submission - Villa Hillcrest',
+          _template: 'table',
+          _captcha: 'false'
+        })
+      } else {
+        requestOptions.body = formData
+      }
+
+      const response = await fetch(contactFormEndpoint, requestOptions)
+
+      if (!response.ok) {
+        throw new Error('Failed to submit form')
+      }
+
+      form.reset()
+      setSubmitStatus('success')
+      setSubmitMessage('Thank you. Your message has been sent successfully.')
+    } catch (error) {
+      setSubmitStatus('error')
+      setSubmitMessage('Sorry, we could not send your message. Please try again.')
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
+
   return (
     <section className="contact-widget fade-in" aria-labelledby="contact-widget-heading">
       <div className="container contact-widget-grid">
@@ -26,7 +89,7 @@ export default function ContactWidget() {
         </div>
 
         <div className="contact-widget-form">
-          <form className="contact-form">
+          <form className="contact-form" onSubmit={handleSubmit}>
             <div className="contact-row">
               <label>
                 First Name (required)
@@ -60,7 +123,18 @@ export default function ContactWidget() {
               Message (required)
               <textarea name="message" rows="6" required></textarea>
             </label>
-            <button type="submit" className="contact-submit-btn">Submit</button>
+            <button type="submit" className="contact-submit-btn" disabled={isSubmitting}>
+              {isSubmitting ? 'Sending...' : 'Submit'}
+            </button>
+            {submitMessage && (
+              <p
+                className={`contact-submit-feedback ${submitStatus === 'success' ? 'is-success' : 'is-error'}`}
+                role="status"
+                aria-live="polite"
+              >
+                {submitMessage}
+              </p>
+            )}
           </form>
         </div>
       </div>

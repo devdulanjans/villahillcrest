@@ -7,8 +7,14 @@ export default function SiteHeader() {
   const [activeItem, setActiveItem] = useState('')
 
   useEffect(() => {
-    if (router.pathname === '/about-us') {
+    if (router.pathname === '/') {
+      setActiveItem('experience')
+    } else if (router.pathname === '/about-us') {
       setActiveItem('about')
+    } else if (router.pathname === '/bookings') {
+      setActiveItem('bookings')
+    } else if (router.pathname === '/availability') {
+      setActiveItem('availability')
     } else if (router.pathname === '/villa') {
       setActiveItem('villa')
     } else if (router.pathname === '/dining') {

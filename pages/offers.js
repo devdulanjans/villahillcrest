@@ -1,46 +1,61 @@
 import Head from 'next/head'
+import { useEffect, useMemo, useState } from 'react'
 import Layout from '../components/Layout'
 
-const offerItems = [
-  {
-    title: 'Surf & Stay Saver',
-    price: 'From USD 329',
-    detail: '3 nights stay, daily surf coaching, and breakfast included.',
-    image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1400&auto=format&fit=crop'
-  },
-  {
-    title: 'Yoga Week Escape',
-    price: 'From USD 389',
-    detail: '5 nights villa stay with daily yoga classes and wellness meals.',
-    image: 'https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=1400&auto=format&fit=crop'
-  },
-  {
-    title: 'Cycling Adventure Deal',
-    price: 'From USD 279',
-    detail: '2 nights plus guided cycling route, hydration, and recovery meal.',
-    image: 'https://images.unsplash.com/photo-1493589976221-c2357c31ad77?q=80&w=1400&auto=format&fit=crop'
-  },
-  {
-    title: 'Family Villa Offer',
-    price: 'From USD 459',
-    detail: 'Spacious family suite, activity credits, and complimentary kids meal plan.',
-    image: 'https://images.unsplash.com/photo-1498503182468-3b51cbb6cb24?q=80&w=1400&auto=format&fit=crop'
-  },
-  {
-    title: 'Honeymoon Retreat',
-    price: 'From USD 499',
-    detail: 'Private dinner, sunset transfer, and room decor package included.',
-    image: 'https://images.unsplash.com/photo-1517586979036-b7d1e86b3345?q=80&w=1400&auto=format&fit=crop'
-  },
-  {
-    title: 'Long Stay 7+ Nights',
-    price: 'Save 20%',
-    detail: 'Extended stay discount with weekly laundry and airport transfer support.',
-    image: 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?q=80&w=1400&auto=format&fit=crop'
-  }
-]
-
 export default function OffersPage() {
+  const [offers, setOffers] = useState([])
+  const [offersLoading, setOffersLoading] = useState(true)
+  const [offersError, setOffersError] = useState('')
+
+  useEffect(() => {
+    let isMounted = true
+
+    const loadOffers = async () => {
+      setOffersLoading(true)
+      setOffersError('')
+
+      try {
+        const res = await fetch('/api/offers')
+        const data = await res.json()
+
+        if (!isMounted) return
+
+        if (!res.ok) {
+          setOffersError(data.message || 'Failed to load offers')
+          setOffers([])
+          return
+        }
+
+        setOffers(Array.isArray(data.items) ? data.items : [])
+      } catch {
+        if (!isMounted) return
+        setOffersError('Failed to load offers')
+        setOffers([])
+      } finally {
+        if (isMounted) {
+          setOffersLoading(false)
+        }
+      }
+    }
+
+    loadOffers()
+
+    return () => {
+      isMounted = false
+    }
+  }, [])
+
+  const offerItems = useMemo(
+    () =>
+      offers.map(offer => ({
+        id: offer.id,
+        title: offer.title,
+        image: offer.imageUrl,
+        detailHtml: offer.descriptionHtml
+      })),
+    [offers]
+  )
+
   return (
     <Layout>
       <Head>
@@ -104,14 +119,16 @@ export default function OffersPage() {
 
         <section className="offers-menu" aria-label="All available offers">
           <div className="container">
+            {offersLoading && <p>Loading offers...</p>}
+            {!offersLoading && offersError && <p>{offersError}</p>}
+            {!offersLoading && !offersError && offerItems.length === 0 && <p>No offers available right now.</p>}
             <div className="offers-grid">
               {offerItems.map(offer => (
-                <article className="offers-card" key={offer.title}>
+                <article className="offers-card" key={offer.id || offer.title}>
                   <img src={offer.image} alt={offer.title} loading="lazy" />
                   <div className="offers-card-copy">
                     <h3>{offer.title}</h3>
-                    <p className="offers-price">{offer.price}</p>
-                    <p>{offer.detail}</p>
+                    <div dangerouslySetInnerHTML={{ __html: offer.detailHtml }} />
                     <a href="/bookings" className="offers-card-btn" aria-label={`Book ${offer.title}`}>
                       Book this offer
                     </a>

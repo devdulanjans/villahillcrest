@@ -8,7 +8,7 @@ export default function HeroWidget() {
           aria-label="Aerial view of the beach and ocean"
           style={{
             backgroundImage:
-              "url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=2000&auto=format&fit=crop')"
+              "url('https://villahillcrest.com/wp-content/uploads/2024/06/Tangalle-Sri-Lanka-Aerial.webp')"
           }}
         ></div>
         <div className="hc-hero-content">

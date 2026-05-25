@@ -10,15 +10,15 @@ export default function GalleryIntroWidget() {
         </p>
         <div className="hc-strip-grid">
           <img
-            src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?q=80&w=1200&auto=format&fit=crop"
+            src="https://villahillcrest.com/wp-content/uploads/2024/08/Airbnb_OphelieJammaers-14-scaled.jpg"
             alt="Open tropical walkway with palms"
           />
           <img
-            src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=80&w=1200&auto=format&fit=crop"
+            src="https://villahillcrest.com/wp-content/uploads/2024/08/Airbnb_OphelieJammaers-17-scaled.jpg"
             alt="Natural wood and linen bedroom interior"
           />
           <img
-            src="https://images.unsplash.com/photo-1590490360182-c33d57733427?q=80&w=1200&auto=format&fit=crop"
+            src="https://villahillcrest.com/wp-content/uploads/2024/08/Airbnb_OphelieJammaers-20-scaled.jpg"
             alt="Classic tuk tuk by the road"
           />
         </div>

@@ -2,68 +2,61 @@ import Head from 'next/head'
 import { useEffect, useMemo, useState } from 'react'
 import Layout from '../components/Layout'
 
-const galleryAlbums = [
-  {
-    id: 'cycling-routes',
-    title: 'Cycling Routes',
-    subtitle: 'Coastal roads, tea trails, and sunrise rides',
-    cover: 'https://images.unsplash.com/photo-1511994298241-608e28f14fde?q=80&w=1400&auto=format&fit=crop',
-    images: [
-      'https://images.unsplash.com/photo-1493589976221-c2357c31ad77?q=80&w=1400&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?q=80&w=1400&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1517654443271-10d4f2f6f6f0?q=80&w=1400&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1517940310602-26535839fe84?q=80&w=1400&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1514481538271-cf9f99627ab4?q=80&w=1400&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1533560904424-a0c61f41a52f?q=80&w=1400&auto=format&fit=crop'
-    ]
-  },
-  {
-    id: 'villa-stays',
-    title: 'Villa Stays',
-    subtitle: 'Rooms, poolside moments, and design details',
-    cover: 'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?q=80&w=1400&auto=format&fit=crop',
-    images: [
-      'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?q=80&w=1400&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=80&w=1400&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1464207687429-7505649dae38?q=80&w=1400&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1505691938895-1758d7feb511?q=80&w=1400&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1498503182468-3b51cbb6cb24?q=80&w=1400&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?q=80&w=1400&auto=format&fit=crop'
-    ]
-  },
-  {
-    id: 'dining-food',
-    title: 'Dining & Food',
-    subtitle: 'Island flavors, colorful plates, and cafe vibes',
-    cover: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=1400&auto=format&fit=crop',
-    images: [
-      'https://images.unsplash.com/photo-1544148103-0773bf10d330?q=80&w=1400&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1525351484163-7529414344d8?q=80&w=1400&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?q=80&w=1400&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=1400&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1528715471579-d1bcf0ba5e83?q=80&w=1400&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1543353071-10c8ba85a904?q=80&w=1400&auto=format&fit=crop'
-    ]
-  },
-  {
-    id: 'explore-south-coast',
-    title: 'Explore South Coast',
-    subtitle: 'Temples, beaches, villages, and local culture',
-    cover: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1400&auto=format&fit=crop',
-    images: [
-      'https://images.unsplash.com/photo-1509233725247-49e657c54213?q=80&w=1400&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1534237710431-e2fc698436d0?q=80&w=1400&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?q=80&w=1400&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1549366021-9f761d450615?q=80&w=1400&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1556911220-bff31c812dba?q=80&w=1400&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1530878902700-5ad4f9e4c318?q=80&w=1400&auto=format&fit=crop'
-    ]
-  }
-]
-
 export default function GalleryPage() {
+  const [galleryAlbums, setGalleryAlbums] = useState([])
   const [selectedAlbumId, setSelectedAlbumId] = useState(null)
   const [lightboxIndex, setLightboxIndex] = useState(null)
+  const [loadingAlbums, setLoadingAlbums] = useState(true)
+  const [albumsError, setAlbumsError] = useState('')
+
+  useEffect(() => {
+    let isMounted = true
+
+    const loadAlbums = async () => {
+      setLoadingAlbums(true)
+      setAlbumsError('')
+
+      try {
+        const res = await fetch('/api/gallery')
+        const data = await res.json()
+
+        if (!isMounted) return
+
+        if (!res.ok) {
+          setAlbumsError(data.message || 'Failed to load gallery albums')
+          setGalleryAlbums([])
+          return
+        }
+
+        const nextAlbums = Array.isArray(data.albums) ? data.albums : []
+        setGalleryAlbums(nextAlbums)
+
+        setSelectedAlbumId(prev => {
+          if (!prev) return prev
+          const stillExists = nextAlbums.some(album => album.id === prev)
+          if (!stillExists) {
+            setLightboxIndex(null)
+            return null
+          }
+          return prev
+        })
+      } catch {
+        if (!isMounted) return
+        setAlbumsError('Failed to load gallery albums')
+        setGalleryAlbums([])
+      } finally {
+        if (isMounted) {
+          setLoadingAlbums(false)
+        }
+      }
+    }
+
+    loadAlbums()
+
+    return () => {
+      isMounted = false
+    }
+  }, [])
 
   const selectedAlbum = useMemo(
     () => galleryAlbums.find(album => album.id === selectedAlbumId) || null,
@@ -162,6 +155,9 @@ export default function GalleryPage() {
         <section className="gallery-albums" aria-labelledby="albums-heading">
           <div className="container">
             <h2 id="albums-heading">Albums</h2>
+            {loadingAlbums && <p>Loading albums...</p>}
+            {!loadingAlbums && albumsError && <p>{albumsError}</p>}
+            {!loadingAlbums && !albumsError && galleryAlbums.length === 0 && <p>No gallery albums available right now.</p>}
             <div className="gallery-albums-grid">
               {galleryAlbums.map(album => (
                 <button
