@@ -1,3 +1,5 @@
+import Link from 'next/link'
+
 export default function Hero() {
   return (
     <section className="hero" id="hero">
@@ -10,7 +12,7 @@ export default function Hero() {
       <div className="hero-content">
         <h1 className="hero-title">Villa Hillcrest</h1>
         <p className="hero-subtitle">Experience luxury, comfort, and breathtaking views at Villa Hillcrest in the heart of Sri Lanka.</p>
-        <a href="#" className="hero-btn">Book Your Stay</a>
+        <Link href="/booking" className="hero-btn">Book Your Stay</Link>
       </div>
     </section>
   )

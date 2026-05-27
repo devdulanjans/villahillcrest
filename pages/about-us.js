@@ -6,6 +6,7 @@ import Intro from '../components/Intro'
 import Availability from '../components/Availability'
 import Services from '../components/Services'
 import FeatureSections from '../components/FeatureSections'
+import BeSearchForm from '../components/be-forms/BeSearchForm'
 
 export default function AboutUs() {
   useEffect(() => {
@@ -53,7 +54,7 @@ export default function AboutUs() {
           <a href="/yoga" aria-label="Yoga retreats" style={{ margin: '0 10px', color: '#2d7a3e', textDecoration: 'underline' }}>Yoga</a>
           <a href="/foods" aria-label="Foods and menu" style={{ margin: '0 10px', color: '#2d7a3e', textDecoration: 'underline' }}>Foods</a>
           <a href="/explore" aria-label="Explore local experiences" style={{ margin: '0 10px', color: '#2d7a3e', textDecoration: 'underline' }}>Explore</a>
-          <a href="/bookings" aria-label="Book your stay" style={{ margin: '0 10px', color: '#2d7a3e', textDecoration: 'underline' }}>Bookings</a>
+          <a href="/packages" aria-label="Packages" style={{ margin: '0 10px', color: '#2d7a3e', textDecoration: 'underline' }}>Packages</a>
           <a href="/contact-us" aria-label="Contact us" style={{ margin: '0 10px', color: '#2d7a3e', textDecoration: 'underline' }}>Contact Us</a>
         </nav>
     document.querySelectorAll('.mobile-nav-link:not(.mobile-nav-parent)').forEach(link => {
@@ -110,6 +111,7 @@ export default function AboutUs() {
 
       <main>
         <Hero />
+        <BeSearchForm />
         <Intro />
         {/* <Availability />
         <Services />

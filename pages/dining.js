@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import Layout from '../components/Layout'
+import BeSearchForm from '../components/be-forms/BeSearchForm'
 
 const diningGallery = [
   {
@@ -100,6 +101,8 @@ export default function DiningPage() {
             <h1>Our Cafe in Weligama</h1>
           </div>
         </section>
+
+        <BeSearchForm />
 
         <section className="intro dining-intro" aria-labelledby="dining-heading">
           <div className="container">

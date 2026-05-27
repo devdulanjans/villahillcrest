@@ -1,11 +1,4 @@
-import { useEffect, useState } from 'react';
-
-const defaultSlides = [
-  {
-    imageUrl: 'https://villahillcrest.com/wp-content/uploads/2024/06/Tangalle-Sri-Lanka-Aerial.webp',
-    wording: 'Coastal Boutique Escape',
-  },
-];
+import Link from 'next/link'
 
 export default function HeroWidget() {
   const [sliders, setSliders] = useState(defaultSlides);
@@ -67,7 +60,7 @@ export default function HeroWidget() {
             Crafted for soulful stays with ocean mornings, tropical gardens,
             and serene island living.
           </p>
-          <a href="/bookings" className="hc-btn hc-btn-light">Book Your Stay</a>
+          <Link href="/booking" className="hc-btn hc-btn-light">Book Your Stay</Link>
         </div>
       </div>
       {sliders.length > 1 && (

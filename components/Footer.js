@@ -8,7 +8,7 @@ import {
   SiTripadvisor
 } from 'react-icons/si'
 import { FaHotel, FaRoute } from 'react-icons/fa'
-import { useEffect, useState } from 'react'
+import { usePathname } from 'next/navigation'
 
 const iconMap = {
   facebook: SiFacebook,
@@ -23,31 +23,7 @@ const iconMap = {
 }
 
 export default function Footer() {
-  const [socialLinks, setSocialLinks] = useState([])
-
-  useEffect(() => {
-    let isMounted = true
-
-    const loadSocialLinks = async () => {
-      try {
-        const res = await fetch('/api/social-links')
-        const data = await res.json()
-
-        if (!isMounted) return
-        if (!res.ok) return
-
-        setSocialLinks(Array.isArray(data.items) ? data.items : [])
-      } catch {
-        // Keep footer without social links if endpoint fails.
-      }
-    }
-
-    loadSocialLinks()
-
-    return () => {
-      isMounted = false
-    }
-  }, [])
+  const pathname = usePathname();
 
   return (
     <footer className="site-footer">
@@ -57,24 +33,21 @@ export default function Footer() {
           Sri Lanka
         </h2>
 
+        {pathname !== '/booking' &&
         <div className="socials">
-          {socialLinks.map(({ id, label, url, iconKey }) => {
-            const Icon = iconMap[String(iconKey || '').toLowerCase()] || SiFacebook
-
-            return (
-              <a
-                key={id || label}
-                href={url}
-                aria-label={label}
-                title={label}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Icon aria-hidden="true" focusable="false" />
-              </a>
-            )
-          })}
-        </div>
+          {socialLinks.map(({ label, href, Icon }) => (
+            <a
+              key={label}
+              href={href}
+              aria-label={label}
+              title={label}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Icon aria-hidden="true" focusable="false" />
+            </a>
+          ))}
+        </div>}
 
         <div className="footer-links">
           <a href="/#philosophy">Our Philosophy</a>

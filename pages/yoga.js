@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import Layout from '../components/Layout'
+import BeSearchForm from "../components/be-forms/BeSearchForm";
 
 export default function YogaPage() {
   return (
@@ -45,6 +46,9 @@ export default function YogaPage() {
 
       <main className="yoga-page">
         <section className="yoga-hero" aria-label="Yoga retreat hero" />
+
+        <BeSearchForm />
+
           {/* Internal links for SEO and navigation */}
           <nav aria-label="Related links" style={{ margin: '32px 0', textAlign: 'center' }}>
             <span style={{ fontWeight: 600, marginRight: 8 }}>Explore more:</span>
@@ -52,7 +56,7 @@ export default function YogaPage() {
             <a href="/dining" aria-label="Dining experiences" style={{ margin: '0 10px', color: '#2d7a3e', textDecoration: 'underline' }}>Dining</a>
             <a href="/foods" aria-label="Foods and menu" style={{ margin: '0 10px', color: '#2d7a3e', textDecoration: 'underline' }}>Foods</a>
             <a href="/explore" aria-label="Explore local experiences" style={{ margin: '0 10px', color: '#2d7a3e', textDecoration: 'underline' }}>Explore</a>
-            <a href="/bookings" aria-label="Book your stay" style={{ margin: '0 10px', color: '#2d7a3e', textDecoration: 'underline' }}>Bookings</a>
+            <a href="/packages" aria-label="Packages" style={{ margin: '0 10px', color: '#2d7a3e', textDecoration: 'underline' }}>Packages</a>
             <a href="/contact-us" aria-label="Contact us" style={{ margin: '0 10px', color: '#2d7a3e', textDecoration: 'underline' }}>Contact Us</a>
           </nav>
 
@@ -81,7 +85,7 @@ export default function YogaPage() {
         <section className="yoga-package" aria-label="Surf and yoga package">
           <div className="yoga-package-overlay">
             <h3>Surf & yoga packages starting from €349</h3>
-            <a href="/bookings" className="yoga-package-btn">Take me to surf camp</a>
+            <a href="/packages" className="yoga-package-btn">Take me to surf camp</a>
           </div>
         </section>
       </main>

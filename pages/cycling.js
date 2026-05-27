@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import Layout from '../components/Layout'
+import BeSearchForm from '../components/be-forms/BeSearchForm'
 
 const cyclingFuelSections = [
   {
@@ -154,6 +155,8 @@ export default function CyclingPage() {
             <h1>Cycling in Weligama</h1>
           </div>
         </section>
+
+        <BeSearchForm />
 
         <section className="intro cycling-intro" aria-labelledby="cycling-heading">
           <div className="container">

@@ -1,18 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
-
-const fallbackPackages = []
-
-function formatRoomPrice(room) {
-  if (room?.priceUsd) {
-    return `USD ${Number(room.priceUsd).toLocaleString()}`
-  }
-
-  if (room?.priceLkr) {
-    return `LKR ${Number(room.priceLkr).toLocaleString()}`
-  }
-
-  return 'On Request'
-}
+import Link from "next/link";
 
 export default function PackageList() {
   const [rooms, setRooms] = useState([])
@@ -103,32 +89,24 @@ export default function PackageList() {
   return (
     <section className="package-list-section fade-in" aria-labelledby="package-list-heading">
       <div className="container">
-        <h2 id="package-list-heading">Book Your Room</h2>
-        {packages.length === 0 ? (
-          <p className="package-empty">No rooms are available right now. Please check again soon.</p>
-        ) : (
-          <div className="package-cards">
-            {packages.map(pkg => (
-              <article key={pkg.id || pkg.title} className="package-card">
-                <img src={pkg.image} alt={`${pkg.title} package`} className="package-card-image" />
-                <div className="package-card-content">
-                  <h3 className="package-title">{pkg.title}</h3>
-                  <p className="package-price">From {pkg.price} / night</p>
-                  <p>{pkg.description}</p>
-                  <ul className="package-features">
-                    {pkg.features.map((feature, idx) => (
-                      <li key={idx}>{feature}</li>
-                    ))}
-                  </ul>
-                </div>
-                <div className="package-card-actions">
-                  <a className="show-details-btn" href="/availability">Show Availability</a>
-                  <a className="book-now-btn" href="/contact-us">Book This Room</a>
-                </div>
-              </article>
-            ))}
-          </div>
-        )}
+        <h2 id="package-list-heading">Our Packages</h2>
+        <div className="package-cards">
+          {packages.map(pkg => (
+            <article key={pkg.title} className="package-card">
+              <img src={pkg.image} alt={`${pkg.title} package`} className="package-card-image" />
+              <h3 className="package-title">{pkg.title}</h3>
+              <p className="package-price">From {pkg.price} p.p/n</p>
+              <ul className="package-features">
+                {pkg.features.map((feature, idx) => (
+                  <li key={idx}>{feature}</li>
+                ))}
+              </ul>
+              <button className="show-details-btn">Show More Details</button>
+              <Link href="/booking" className="book-now-btn">Book This Package</Link>
+              {/*<button className="book-now-btn">Book This Package</button>*/}
+            </article>
+          ))}
+        </div>
       </div>
     </section>
   )
