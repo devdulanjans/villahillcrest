@@ -1,10 +1,9 @@
+import Image from 'next/image';
+
 export default function CafeWidget() {
   return (
     <section className="hc-cafe hc-reveal" aria-labelledby="cafe-heading">
-      <img
-        src="https://villahillcrest.com/wp-content/uploads/2024/07/3-2.jpg"
-        alt="Colorful dishes on a dark table"
-      />
+      <img src="/images/uploads/villa-lunch-table.jpeg" alt="Villa Hillcrest Lunch Table" />
       <div className="hc-cafe-content">
         <h2 id="cafe-heading" className="hc-cafe-heading">Cafe & kitchen</h2>
         <p>

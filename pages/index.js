@@ -59,7 +59,7 @@ export default function Home() {
         {/* <IntroWidget /> */}
         <Services/>
         <GalleryIntroWidget />
-        <AwardsWidget />
+        {/* <AwardsWidget /> */}
         <StoryWidget />
         <ExperiencesWidget />
         <CafeWidget />

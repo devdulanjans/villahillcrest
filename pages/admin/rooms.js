@@ -38,6 +38,7 @@ export default function AdminRoomsPage() {
   const [rooms, setRooms] = useState([]);
   const [loading, setLoading] = useState(true);
   const [busy, setBusy] = useState(false);
+  const [isImageUploading, setIsImageUploading] = useState(false);
   const [error, setError] = useState('');
   const [message, setMessage] = useState('');
   const [form, setForm] = useState(defaultForm);
@@ -107,7 +108,7 @@ export default function AdminRoomsPage() {
       return;
     }
 
-    setBusy(true);
+    setIsImageUploading(true);
     setError('');
     setMessage('');
 
@@ -128,7 +129,7 @@ export default function AdminRoomsPage() {
     } catch (uploadError) {
       setError(uploadError.message || 'Image upload failed');
     } finally {
-      setBusy(false);
+      setIsImageUploading(false);
       event.target.value = '';
     }
   };
@@ -373,7 +374,7 @@ export default function AdminRoomsPage() {
               <div className={styles.uploadRow}>
                 <label className={styles.uploadBtn}>
                   Upload Multiple Images
-                  <input type="file" accept="image/*" multiple onChange={handleImageFiles} />
+                  <input type="file" accept="image/*" multiple onChange={handleImageFiles} disabled={isImageUploading} />
                 </label>
 
                 <label className={styles.toggleWrap}>
@@ -385,6 +386,8 @@ export default function AdminRoomsPage() {
                   <span>Show this room on home page</span>
                 </label>
               </div>
+
+              {isImageUploading && <p className={styles.uploadLoader}>Uploading room images...</p>}
 
               {form.images.length > 0 && (
                 <div className={styles.imageGrid}>

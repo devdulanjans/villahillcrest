@@ -1,4 +1,16 @@
-import { deleteGalleryImage, updateGalleryImage } from '../../../../lib/mysql';
+import fs from 'fs/promises';
+import path from 'path';
+import { deleteGalleryImage, listGalleryImages, updateGalleryImage } from '../../../../lib/mysql';
+
+function toAbsoluteGalleryFilePath(imageUrl) {
+  const normalized = String(imageUrl || '').trim();
+  if (!normalized.startsWith('/images/gallery/')) {
+    return null;
+  }
+
+  const relativePath = normalized.replace(/^\/+/, '');
+  return path.join(process.cwd(), 'public', relativePath.replace(/^images\//, 'images/'));
+}
 
 function isAdminAuthenticated(req) {
   const cookie = req.headers.cookie || '';
@@ -49,10 +61,18 @@ export default async function handler(req, res) {
 
   if (req.method === 'DELETE') {
     try {
+      const allImages = await listGalleryImages();
+      const target = allImages.find((item) => Number(item.id) === numericId);
+
       const deleted = await deleteGalleryImage(numericId);
 
       if (!deleted) {
         return res.status(404).json({ success: false, message: 'Gallery image not found' });
+      }
+
+      const absolutePath = toAbsoluteGalleryFilePath(target?.imageUrl);
+      if (absolutePath) {
+        await fs.unlink(absolutePath).catch(() => {});
       }
 
       return res.status(200).json({ success: true });

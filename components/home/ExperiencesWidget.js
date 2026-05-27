@@ -3,13 +3,13 @@ import { useRef, useState } from 'react'
 const experiences = [
   {
     title: 'Sleep',
-    image: 'https://villahillcrest.com/wp-content/uploads/2024/07/IMG_1695-scaled.jpg',
+    image: '/images/uploads/sleep-villa-hilcrest.jpg',
     alt: 'Tranquil beach morning',
     detail: 'Calm rooms with natural light, linen textures, and handcrafted details.'
   },
   {
     title: 'Swim Club',
-    image: 'https://villahillcrest.com/wp-content/uploads/2024/08/Airbnb_OphelieJammaers-7-scaled.jpg',
+    image: '/images/uploads/swiming-club-villa-hilcrest.jpg',
     alt: 'Resort pool in tropical setting',
     detail: 'Refresh in our poolside lounge framed by gardens and shaded palms.'
   },

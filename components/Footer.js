@@ -82,7 +82,8 @@ export default function Footer() {
           <a href="#">Privacy Policy</a>
         </div>
 
-        <p className="copyright">Copyright © 2026 Villa Hillcrest. All rights reserved.</p>
+        <p className="copyright">Copyright © 2026 Villa Hillcrest. All rights reserved. </p>
+        <p>Design and Developed By <a href="https://orangehil.com/" target="_blank" rel="noopener noreferrer"><span style={{ fontWeight: 'bold', color: '#f38d21' }}>OrangeHill</span></a></p>
       </div>
     </footer>
   )

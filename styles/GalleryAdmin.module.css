@@ -167,6 +167,13 @@
   color: #2e7d32;
 }
 
+.uploadLoader {
+  margin-top: 8px;
+  color: #4f66f5;
+  font-weight: 600;
+  font-size: 13px;
+}
+
 .albumGrid {
   display: grid;
   gap: 12px;
@@ -175,6 +182,31 @@
 .albumCard h4 {
   margin: 0 0 10px;
   color: #3a4266;
+}
+
+.albumHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.albumHeader h4 {
+  margin: 0;
+}
+
+.albumDeleteBtn {
+  border: none;
+  border-radius: 6px;
+  min-height: 34px;
+  padding: 0 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #fff;
+  background: #d64462;
+  cursor: pointer;
 }
 
 .imageGrid {

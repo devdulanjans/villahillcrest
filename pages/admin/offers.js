@@ -11,6 +11,7 @@ export default function AdminOffersPage() {
   const [offers, setOffers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [busy, setBusy] = useState(false);
+  const [isImageUploading, setIsImageUploading] = useState(false);
   const [error, setError] = useState('');
   const [message, setMessage] = useState('');
   const [form, setForm] = useState({ id: null, title: '', imageUrl: '', descriptionHtml: '' });
@@ -76,7 +77,7 @@ export default function AdminOffersPage() {
     const file = e.target.files?.[0];
     if (!file) return;
 
-    setBusy(true);
+    setIsImageUploading(true);
     setError('');
     setMessage('');
 
@@ -87,7 +88,7 @@ export default function AdminOffersPage() {
     } catch (uploadError) {
       setError(uploadError.message || 'Image upload failed');
     } finally {
-      setBusy(false);
+      setIsImageUploading(false);
       e.target.value = '';
     }
   };
@@ -225,9 +226,11 @@ export default function AdminOffersPage() {
                 />
                 <label className={styles.uploadBtn}>
                   Upload Image
-                  <input type="file" accept="image/*" onChange={handleImageFile} />
+                  <input type="file" accept="image/*" onChange={handleImageFile} disabled={isImageUploading} />
                 </label>
               </div>
+
+              {isImageUploading && <p className={styles.uploadLoader}>Uploading image...</p>}
 
               <div className={styles.toolbar}>
                 <button type="button" onClick={() => applyFormat('bold')}><b>B</b></button>

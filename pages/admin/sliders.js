@@ -8,6 +8,7 @@ export default function AdminSlidersPage() {
   const [form, setForm] = useState({ imageUrl: '', wording: '', sortOrder: 0, enabled: 1 });
   const [editingId, setEditingId] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [isImageUploading, setIsImageUploading] = useState(false);
   const [error, setError] = useState('');
 
   useEffect(() => {
@@ -82,7 +83,7 @@ export default function AdminSlidersPage() {
     if (!file) return;
     const formData = new FormData();
     formData.append('file', file);
-    setLoading(true);
+    setIsImageUploading(true);
     setError('');
     try {
       const res = await fetch('/api/admin/upload', {
@@ -95,7 +96,7 @@ export default function AdminSlidersPage() {
     } catch (err) {
       setError(err.message);
     } finally {
-      setLoading(false);
+      setIsImageUploading(false);
     }
   };
 
@@ -133,8 +134,9 @@ export default function AdminSlidersPage() {
                 />
                 <label className={styles.uploadBtn}>
                   Upload Image
-                  <input type="file" accept="image/*" onChange={handleImageUpload} />
+                  <input type="file" accept="image/*" onChange={handleImageUpload} disabled={isImageUploading} />
                 </label>
+                {isImageUploading && <span className={styles.uploadLoader}>Uploading image...</span>}
                 {form.imageUrl && (
                   <img
                     src={form.imageUrl}
