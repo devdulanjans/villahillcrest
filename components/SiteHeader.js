@@ -11,8 +11,8 @@ export default function SiteHeader() {
       setActiveItem('experience')
     } else if (router.pathname === '/about-us') {
       setActiveItem('about')
-    } else if (router.pathname === '/bookings') {
-      setActiveItem('bookings')
+    } else if (router.pathname === '/packages') {
+      setActiveItem('packages')
     } else if (router.pathname === '/availability') {
       setActiveItem('availability')
     } else if (router.pathname === '/villa') {
@@ -31,6 +31,8 @@ export default function SiteHeader() {
       setActiveItem('gallery')
     } else if (router.pathname === '/offers') {
       setActiveItem('offers')
+    } else if (router.pathname === '/contact-us') {
+      setActiveItem('contact-us')
     } else {
       setActiveItem('')
     }
@@ -46,8 +48,9 @@ export default function SiteHeader() {
           <div className="nav-left">
             <Link href="/" className={getLinkClass('experience', 'nav-link')} onClick={handleMenuClick('experience')}>Home</Link>
             <Link href="/about-us" className={getLinkClass('about', 'nav-link')} onClick={handleMenuClick('about')}>About</Link>
-            <Link href="/bookings" className={getLinkClass('bookings', 'nav-link')} onClick={handleMenuClick('bookings')}>Booking</Link>
+            <Link href="/packages" className={getLinkClass('packages', 'nav-link')} onClick={handleMenuClick('packages')}>Packages</Link>
             <Link href="/availability" className={getLinkClass('availability', 'nav-link')} onClick={handleMenuClick('availability')}>Availability</Link>
+            <Link href="/offers" className={getLinkClass('offers', 'nav-link')} onClick={handleMenuClick('offers')}>Offers</Link>
           </div>
 
           <div className="logo">
@@ -69,8 +72,8 @@ export default function SiteHeader() {
               </ul>
             </div>
             <Link href="/gallery" className={getLinkClass('gallery', 'nav-link')} onClick={handleMenuClick('gallery')}>Gallery</Link>
-            <Link href="/offers" className={getLinkClass('offers', 'nav-link')} onClick={handleMenuClick('offers')}>Offers</Link>
-            <a href="/contact-us" className="nav-link">Contact Us</a>
+            <Link href="/contact-us" className={getLinkClass('contact-us', 'nav-link')} onClick={handleMenuClick('contact-us')}>Contact Us</Link>
+            <Link href="/booking" className={getLinkClass('booking', 'nav-link')} onClick={handleMenuClick('booking')}>Booking</Link>
           </div>
 
           <button className="menu-btn" id="menuBtn" aria-label="Open Menu" aria-controls="mobileMenu" aria-expanded="false" type="button">
@@ -82,7 +85,7 @@ export default function SiteHeader() {
           <nav className="mobile-menu" id="mobileMenu" aria-label="Mobile navigation">
             <button className="close-mobile-menu" id="closeMobileMenu" aria-label="Close Menu">&times;</button>
             <Link href="/about-us" className={getLinkClass('about', 'mobile-nav-link')} onClick={handleMenuClick('about')}>About</Link>
-            <a href="#hero" className={getLinkClass('booking', 'mobile-nav-link')} onClick={handleMenuClick('booking')}>Booking</a>
+            <a href="/packages" className={getLinkClass('packages', 'mobile-nav-link')} onClick={handleMenuClick('packages')}>Packages</a>
             <a href="#availability" className={getLinkClass('availability', 'mobile-nav-link')} onClick={handleMenuClick('availability')}>Availability</a>
             <a href="#services" className={getLinkClass('experience', 'mobile-nav-link')} onClick={handleMenuClick('experience')}>Experience</a>
             <button className="mobile-nav-link mobile-nav-parent" id="mobileSurfToggle" aria-expanded="false" type="button">
@@ -100,6 +103,7 @@ export default function SiteHeader() {
             <a href="#" className="mobile-nav-link">Event</a>
             <Link href="/offers" className={getLinkClass('offers', 'mobile-nav-link')} onClick={handleMenuClick('offers')}>Offers</Link>
             <Link href="/gallery" className={getLinkClass('gallery', 'mobile-nav-link')} onClick={handleMenuClick('gallery')}>Gallery</Link>
+            <Link href="/booking" className={getLinkClass('booking', 'mobile-nav-link')} onClick={handleMenuClick('booking')}>Booking</Link>
             <a href="#" className="mobile-nav-link">Media</a>
           </nav>
         </nav>

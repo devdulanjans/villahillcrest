@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import { useEffect, useMemo, useState } from 'react'
 import Layout from '../components/Layout'
+import BeSearchForm from '../components/be-forms/BeSearchForm'
 
 export default function OffersPage() {
   const [offers, setOffers] = useState([])
@@ -103,6 +104,8 @@ export default function OffersPage() {
       <main className="offers-page">
         <section className="offers-hero" aria-label="Offers hero" />
 
+        <BeSearchForm />
+
         <section className="intro offers-intro" aria-labelledby="offers-heading">
           <div className="container offers-intro-container">
             <h2 id="offers-heading">Exclusive offers at Villa Hillcrest</h2>
@@ -129,7 +132,7 @@ export default function OffersPage() {
                   <div className="offers-card-copy">
                     <h3>{offer.title}</h3>
                     <div dangerouslySetInnerHTML={{ __html: offer.detailHtml }} />
-                    <a href="/bookings" className="offers-card-btn" aria-label={`Book ${offer.title}`}>
+                    <a href="/booking" className="offers-card-btn" aria-label={`Book ${offer.title}`}>
                       Book this offer
                     </a>
                   </div>

@@ -8,6 +8,7 @@ import {
   SiTripadvisor
 } from 'react-icons/si'
 import { FaHotel, FaRoute } from 'react-icons/fa'
+import { usePathname } from 'next/navigation'
 
 const socialLinks = [
   {
@@ -58,6 +59,8 @@ const socialLinks = [
 ]
 
 export default function Footer() {
+  const pathname = usePathname();
+
   return (
     <footer className="site-footer">
       <div className="container site-footer-inner">
@@ -66,6 +69,7 @@ export default function Footer() {
           Sri Lanka
         </h2>
 
+        {pathname !== '/booking' &&
         <div className="socials">
           {socialLinks.map(({ label, href, Icon }) => (
             <a
@@ -79,7 +83,7 @@ export default function Footer() {
               <Icon aria-hidden="true" focusable="false" />
             </a>
           ))}
-        </div>
+        </div>}
 
         <div className="footer-links">
           <a href="/#philosophy">Our Philosophy</a>

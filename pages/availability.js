@@ -8,6 +8,7 @@ import AvailabilityWidget from '../components/AvailabilityWidget'
 import Services from '../components/Services'
 import FeatureSections from '../components/FeatureSections'
 import PackageList from '../components/PackageList'
+import BeSearchForm from '../components/be-forms/BeSearchForm'
 
 export default function AboutUs() {
   useEffect(() => {
@@ -101,6 +102,7 @@ export default function AboutUs() {
 
       <main>
         <Hero />
+        <BeSearchForm />
         {/* <Intro /> */}
         {/* <PackageList /> */}
         <Availability />

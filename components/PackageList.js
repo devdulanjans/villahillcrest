@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function PackageList() {
   const packages = [
     {
@@ -73,7 +75,8 @@ export default function PackageList() {
                 ))}
               </ul>
               <button className="show-details-btn">Show More Details</button>
-              <button className="book-now-btn">Book This Package</button>
+              <Link href="/booking" className="book-now-btn">Book This Package</Link>
+              {/*<button className="book-now-btn">Book This Package</button>*/}
             </article>
           ))}
         </div>

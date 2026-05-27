@@ -1,0 +1,80 @@
+#block-search,
+#block-search * {
+    box-sizing: border-box;
+}
+
+#block-search {
+    background: #f8faf7;
+    border-bottom: 1px solid #dfebe1;
+}
+
+.be-container {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 30px;
+}
+
+#tl-booking-cart {
+    z-index: 1 !important;
+}
+
+@media screen and (min-width: 991px) and (max-width: 1200px) {
+    header .container {
+        width: 95%;
+    }
+
+    .nav-left, .nav-right {
+        gap: 20px;
+    }
+
+    .nav-link {
+        font-size: 14px;
+        letter-spacing: .5px;
+    }
+
+    .logo-img {
+        margin-left: 30px;
+    }
+}
+
+.hero {
+    height: 650px;
+}
+
+@media(max-width: 991px) {
+    .hero {
+        height: 400px;
+    }
+}
+
+@media(max-width: 600px) {
+    .hero {
+        height: 450px;
+    }
+}
+
+.hc-home section {
+    margin-bottom: 0;
+}
+
+.booking-hero {
+    min-height: 150px;
+    background-image: linear-gradient(rgba(26, 31, 36, 0.16), rgba(26, 31, 36, 0.16)), url('https://images.unsplash.com/photo-1519046904884-53103b34b206?q=80&w=1800&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+}
+
+@media screen and (min-width: 991px) {
+    .booking-hero {
+        min-height: 300px;
+    }
+}
+
+.booking-intro {
+    padding: 30px 0;
+}
+
+.book-now-btn {
+    display: inline-block;
+    text-align: center;
+}
