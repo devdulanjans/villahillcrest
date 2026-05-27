@@ -1,0 +1,122 @@
+.container {
+  max-width: 700px;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  padding: 32px 32px 24px 32px;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+
+.form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: flex-end;
+  margin-bottom: 32px;
+}
+
+.formGroup {
+  flex: 1 1 200px;
+  display: flex;
+  flex-direction: column;
+}
+
+.formGroup label {
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.formGroup input[type="text"],
+.formGroup input[type="number"] {
+  padding: 6px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.formGroup input[type="file"] {
+  font-size: 1rem;
+}
+
+.formGroup input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+}
+
+.formActions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.sliderImagePreview {
+  max-height: 60px;
+  border-radius: 6px;
+  margin-left: 8px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 12px;
+  background: #fafbfc;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.table th, .table td {
+  padding: 10px 12px;
+  text-align: left;
+}
+
+.table th {
+  background: #f3f4f6;
+  font-weight: 600;
+}
+
+.table tr:not(:last-child) {
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.table img {
+  max-height: 40px;
+  border-radius: 4px;
+}
+
+.actions button {
+  background: #1e293b;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 5px 12px;
+  margin-right: 6px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: background 0.2s;
+}
+
+.actions button:last-child {
+  margin-right: 0;
+  background: #e11d48;
+}
+
+.actions button:hover {
+  background: #334155;
+}
+
+.actions button:last-child:hover {
+  background: #be123c;
+}
+
+.error {
+  color: #e11d48;
+  margin-top: 8px;
+  font-size: 1rem;
+}

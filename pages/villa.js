@@ -48,6 +48,23 @@ const villaRooms = [
 ]
 
 export default function VillaPage() {
+  const [rooms, setRooms] = useState([]);
+
+  useEffect(() => {
+    const fetchRooms = async () => {
+      try {
+        const res = await fetch('/api/rooms');
+        const data = await res.json();
+        if (res.ok && Array.isArray(data?.items)) {
+          setRooms(data.items.map(normalizeVillaRoom));
+        }
+      } catch {
+        // Fallback list will be used if API is unavailable.
+      }
+    };
+    fetchRooms();
+  }, []);
+
   return (
     <Layout>
       <Head>
@@ -129,14 +146,14 @@ export default function VillaPage() {
             </p>
 
             <div className="villa-room-grid">
-              {villaRooms.map(room => (
-                <article key={room.title} className="villa-room-card">
+              {(rooms.length > 0 ? rooms : villaRooms).map(room => (
+                <article key={room.id || room.title} className="villa-room-card">
                   <img src={room.image} alt={room.title} loading="lazy" />
                   <div className="villa-room-body">
                     <h3>{room.title}</h3>
                     <p className="villa-price">{room.price}</p>
                     <ul>
-                      {room.features.map(item => (
+                      {(Array.isArray(room.features) ? room.features : []).map(item => (
                         <li key={item}>{item}</li>
                       ))}
                     </ul>

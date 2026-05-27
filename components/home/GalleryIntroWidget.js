@@ -10,16 +10,16 @@ export default function GalleryIntroWidget() {
         </p>
         <div className="hc-strip-grid">
           <img
-            src="https://villahillcrest.com/wp-content/uploads/2024/08/Airbnb_OphelieJammaers-14-scaled.jpg"
+            src="/images/uploads/villa-hilcrest-beach-view.jpg"
             alt="Open tropical walkway with palms"
           />
           <img
-            src="https://villahillcrest.com/wp-content/uploads/2024/08/Airbnb_OphelieJammaers-17-scaled.jpg"
+            src="/images/uploads/natural-linen-bedroom.jpg"
             alt="Natural wood and linen bedroom interior"
           />
           <img
-            src="https://villahillcrest.com/wp-content/uploads/2024/08/Airbnb_OphelieJammaers-20-scaled.jpg"
-            alt="Classic tuk tuk by the road"
+            src="/images/uploads/clasic-view.jpg"
+            alt="Classic View of the beach with palms and ocean"
           />
         </div>
       </div>

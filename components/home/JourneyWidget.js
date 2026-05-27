@@ -5,12 +5,12 @@ export default function JourneyWidget() {
         <h2 id="journey-heading">Join us in Sri Lanka</h2>
         <div className="hc-card-grid hc-two">
           <img
-            src="https://images.unsplash.com/photo-1448375240586-882707db888b?q=80&w=1400&auto=format&fit=crop"
-            alt="Aerial tropical garden"
+            src="https://t4.ftcdn.net/jpg/03/22/53/53/360_F_322535378_f2I0DBWZpMIUz6DQdFGzBgasc9uE3CKY.jpg"
+            alt="Sigiriya Rock Fortress, Sri Lanka"
           />
           <img
-            src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?q=80&w=1400&auto=format&fit=crop"
-            alt="Elegant villa courtyard"
+            src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/19/f9/69/28/stilt-fishing.jpg?w=1200&h=-1&s=1"
+            alt="Traditional stilt fishermen in Sri Lanka"
           />
         </div>
       </div>

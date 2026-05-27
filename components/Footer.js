@@ -10,53 +10,17 @@ import {
 import { FaHotel, FaRoute } from 'react-icons/fa'
 import { usePathname } from 'next/navigation'
 
-const socialLinks = [
-  {
-    label: 'Facebook',
-    href: 'https://www.facebook.com/villahillcrestweligama/',
-    Icon: SiFacebook
-  },
-  {
-    label: 'Instagram',
-    href: 'https://www.instagram.com/villahillcrest/',
-    Icon: SiInstagram
-  },
-  {
-    label: 'TikTok',
-    href: '#',
-    Icon: SiTiktok
-  },
-  {
-    label: 'YouTube',
-    href: '#',
-    Icon: SiYoutube
-  },
-  {
-    label: 'Booking.com',
-    href: '#',
-    Icon: SiBookingdotcom
-  },
-  {
-    label: 'Airbnb',
-    href: '#',
-    Icon: SiAirbnb
-  },
-  {
-    label: 'Agoda',
-    href: '#',
-    Icon: FaHotel
-  },
-  {
-    label: 'Tripadvisor',
-    href: '#',
-    Icon: SiTripadvisor
-  },
-  {
-    label: 'Viator',
-    href: '#',
-    Icon: FaRoute
-  }
-]
+const iconMap = {
+  facebook: SiFacebook,
+  instagram: SiInstagram,
+  tiktok: SiTiktok,
+  youtube: SiYoutube,
+  booking: SiBookingdotcom,
+  airbnb: SiAirbnb,
+  agoda: FaHotel,
+  tripadvisor: SiTripadvisor,
+  viator: FaRoute
+}
 
 export default function Footer() {
   const pathname = usePathname();
@@ -91,7 +55,8 @@ export default function Footer() {
           <a href="#">Privacy Policy</a>
         </div>
 
-        <p className="copyright">Copyright © 2026 Villa Hillcrest. All rights reserved.</p>
+        <p className="copyright">Copyright © 2026 Villa Hillcrest. All rights reserved. </p>
+        <p>Design and Developed By <a href="https://orangehil.com/" target="_blank" rel="noopener noreferrer"><span style={{ fontWeight: 'bold', color: '#f38d21' }}>OrangeHill</span></a></p>
       </div>
     </footer>
   )

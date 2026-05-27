@@ -76,6 +76,120 @@
   padding: 14px;
 }
 
+.adminSummarySection,
+.adminWidgetsSection,
+.adminWelcomeNote {
+  margin-top: 12px;
+  background: #fff;
+  border: 1px solid #dfe3f1;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.adminSummarySection h2,
+.adminWidgetsSection h3 {
+  margin: 0;
+  color: #2f3552;
+}
+
+.adminSummarySection p {
+  margin-top: 6px;
+  color: #717ba2;
+}
+
+.adminSummaryGrid {
+  margin-top: 14px;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.adminSummaryCard {
+  border: 1px solid #e3e7f4;
+  border-radius: 8px;
+  padding: 14px;
+  display: grid;
+  gap: 8px;
+}
+
+.adminSummaryCard span {
+  color: #6f789e;
+  font-size: 13px;
+}
+
+.adminSummaryCard strong {
+  color: #303651;
+  font-size: 28px;
+  line-height: 1;
+  font-family: 'Bebas Neue', 'Montserrat', sans-serif;
+}
+
+.adminWidgetGrid {
+  margin-top: 12px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.adminWidgetCard {
+  border: 1px solid #e3e7f4;
+  border-radius: 8px;
+  padding: 12px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 12px;
+  align-items: center;
+}
+
+.adminWidgetIcon {
+  width: 34px;
+  height: 34px;
+  border-radius: 7px;
+  display: grid;
+  place-items: center;
+  background: #eef2ff;
+  color: #4e5bd8;
+}
+
+.adminWidgetCard h4 {
+  margin: 0;
+  color: #2f3552;
+  font-size: 16px;
+}
+
+.adminWidgetCard p {
+  margin: 4px 0 0;
+  color: #7780a6;
+  font-size: 13px;
+}
+
+.adminWidgetLink,
+.adminWidgetDisabled {
+  min-width: 74px;
+  min-height: 34px;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.adminWidgetLink {
+  text-decoration: none;
+  color: #fff;
+  background: #4f66f5;
+}
+
+.adminWidgetDisabled {
+  color: #7a83a9;
+  background: #eef1fb;
+}
+
+.adminWelcomeNote {
+  color: #5f6893;
+}
+
 .topBar {
   background: rgba(255, 255, 255, 0.92);
   border: 1px solid #dfe3f1;
@@ -613,6 +727,14 @@
   .statGrid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+
+  .adminSummaryGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .adminWidgetGrid {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 680px) {
@@ -626,6 +748,10 @@
   }
 
   .statGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .adminSummaryGrid {
     grid-template-columns: 1fr;
   }
 

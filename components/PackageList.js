@@ -1,63 +1,90 @@
 import Link from "next/link";
 
 export default function PackageList() {
-  const packages = [
-    {
-      title: 'Sunset Retreat',
-      price: 'USD 399',
-      description: '3 nights in a luxury villa with private dinner and beach transfer.',
-      image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80',
-      features: [
-        'Private beach access',
-        'Gourmet dinner included',
-        'Sunset views from terrace'
-      ]
-    },
-    {
-      title: 'Wellness Escape',
-      price: 'USD 549',
-      description: '4 days of yoga, spa treatments, and wellness-focused dining.',
-      image: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=800&q=80',
-      features: [
-        'Daily yoga sessions',
-        'Full spa access',
-        'Healthy meal plans'
-      ]
-    },
-    {
-      title: 'Adventure Package',
-      price: 'USD 299',
-      description: '2 nights with guided hikes, snorkeling, and local exploration.',
-      image: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80',
-      features: [
-        'Guided hiking tours',
-        'Snorkeling equipment',
-        'Local experience guide'
-      ]
-    },
-    {
-      title: 'Adventure Package',
-      price: 'USD 299',
-      description: '2 nights with guided hikes, snorkeling, and local exploration.',
-      image: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80',
-      features: [
-        'Guided hiking tours',
-        'Snorkeling equipment',
-        'Local experience guide'
-      ]
-    },
-    {
-      title: 'Adventure Package',
-      price: 'USD 299',
-      description: '2 nights with guided hikes, snorkeling, and local exploration.',
-      image: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80',
-      features: [
-        'Guided hiking tours',
-        'Snorkeling equipment',
-        'Local experience guide'
-      ]
+  const [rooms, setRooms] = useState([])
+  const [didLoadRooms, setDidLoadRooms] = useState(false)
+  const [loadFailed, setLoadFailed] = useState(false)
+
+  useEffect(() => {
+    let active = true
+
+    const loadRooms = async () => {
+      try {
+        const res = await fetch('/api/rooms')
+        const data = await res.json()
+
+        if (!active) {
+          return
+        }
+
+        if (res.ok) {
+          const items = Array.isArray(data?.items)
+            ? data.items
+            : Array.isArray(data)
+              ? data
+              : []
+
+          setRooms(items)
+          setLoadFailed(false)
+          return
+        }
+
+        setLoadFailed(true)
+      } catch {
+        if (!active) {
+          return
+        }
+
+        setLoadFailed(true)
+      } finally {
+        if (active) {
+          setDidLoadRooms(true)
+        }
+      }
     }
-  ]
+
+    loadRooms()
+
+    return () => {
+      active = false
+    }
+  }, [])
+
+  const packages = useMemo(() => {
+    if (Array.isArray(rooms) && rooms.length > 0) {
+      return rooms.map((room) => {
+        const primaryImage = Array.isArray(room.images)
+          ? room.images.find((item) => String(item || '').trim().length > 0)
+          : ''
+
+        const image = primaryImage
+          ? (/^https?:\/\//i.test(primaryImage) || primaryImage.startsWith('/')
+            ? primaryImage
+            : `/images/rooms/${primaryImage}`)
+          : 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=800&q=80'
+
+        return {
+          title: room.name,
+          price: formatRoomPrice(room),
+          description: room.shortDescription || room.descriptionText || 'Luxury room at Villa Hillcrest.',
+          image,
+          features: [
+            `${room.maxGuests || 2} Guests`,
+            room.bedSize || 'Standard Bed',
+            `${room.roomSizeSqft || 0} sqft`,
+            ...(Array.isArray(room.amenities) ? room.amenities.slice(0, 2) : []),
+          ].filter(Boolean),
+          id: room.id,
+        }
+      })
+    }
+
+    if (loadFailed || !didLoadRooms) {
+      return fallbackPackages
+    }
+
+    return []
+  }, [didLoadRooms, loadFailed, rooms])
 
   return (
     <section className="package-list-section fade-in" aria-labelledby="package-list-heading">

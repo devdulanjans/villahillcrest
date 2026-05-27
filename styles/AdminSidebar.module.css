@@ -1,0 +1,51 @@
+.sidebar {
+  background: linear-gradient(180deg, #0f1340 0%, #080a24 100%);
+  color: #c8cee6;
+  padding: 24px 16px;
+}
+
+.brand {
+  font-size: 32px;
+  color: #48a5ff;
+  margin: 0 0 18px;
+}
+
+.menuTitle {
+  font-size: 12px;
+  text-transform: uppercase;
+  color: #8992bc;
+  margin: 0 0 10px;
+}
+
+.menuList {
+  list-style: none;
+  display: grid;
+  gap: 8px;
+  padding: 0;
+  margin: 0;
+}
+
+.menuItem,
+.menuItemActive {
+  border-radius: 7px;
+}
+
+.menuItemActive {
+  background: linear-gradient(90deg, rgba(83, 111, 255, 0.35), rgba(135, 150, 255, 0.15));
+}
+
+.menuLink,
+.menuStatic {
+  color: #c8cee6;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 12px;
+}
+
+.menuIcon {
+  width: 16px;
+  display: inline-flex;
+  justify-content: center;
+}

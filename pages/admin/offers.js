@@ -1,35 +1,9 @@
 import Head from 'next/head';
-import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/router';
-import {
-  FaBell,
-  FaChartPie,
-  FaFile,
-  FaFolder,
-  FaMapMarkerAlt,
-  FaMoneyBillWave,
-  FaTable,
-  FaTrash,
-  FaWpforms,
-} from 'react-icons/fa';
-import { IoMdApps } from 'react-icons/io';
-import { MdSpaceDashboard } from 'react-icons/md';
+import { FaTrash } from 'react-icons/fa';
+import AdminSidebar from '../../components/admin/AdminSidebar';
 import styles from '../../styles/AdminOffers.module.css';
-
-const menuItems = [
-  { icon: <MdSpaceDashboard />, label: 'Dashnoard', href: '/admin/dashboard' },
-  { icon: <FaFile />, label: 'Home' },
-  { icon: <FaFile />, label: 'About' },
-  { icon: <FaWpforms />, label: 'Booking' },
-  { icon: <FaTable />, label: 'Availability' },
-  { icon: <FaChartPie />, label: 'Surf' },
-  { icon: <FaFolder />, label: 'Gallery', href: '/admin/gallery' },
-  { icon: <FaMoneyBillWave />, label: 'Offers', href: '/admin/offers' },
-  { icon: <FaMapMarkerAlt />, label: 'Contact Us' },
-  { icon: <FaBell />, label: 'Popup Message' },
-  { icon: <IoMdApps />, label: 'Social Media' },
-];
 
 export default function AdminOffersPage() {
   const router = useRouter();
@@ -37,6 +11,7 @@ export default function AdminOffersPage() {
   const [offers, setOffers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [busy, setBusy] = useState(false);
+  const [isImageUploading, setIsImageUploading] = useState(false);
   const [error, setError] = useState('');
   const [message, setMessage] = useState('');
   const [form, setForm] = useState({ id: null, title: '', imageUrl: '', descriptionHtml: '' });
@@ -102,7 +77,7 @@ export default function AdminOffersPage() {
     const file = e.target.files?.[0];
     if (!file) return;
 
-    setBusy(true);
+    setIsImageUploading(true);
     setError('');
     setMessage('');
 
@@ -113,7 +88,7 @@ export default function AdminOffersPage() {
     } catch (uploadError) {
       setError(uploadError.message || 'Image upload failed');
     } finally {
-      setBusy(false);
+      setIsImageUploading(false);
       e.target.value = '';
     }
   };
@@ -223,27 +198,7 @@ export default function AdminOffersPage() {
       </Head>
 
       <div className={styles.page}>
-        <aside className={styles.sidebar}>
-          <h1 className={styles.brand}>Avlis</h1>
-          <h2 className={styles.menuTitle}>Site Menu</h2>
-          <ul className={styles.menuList}>
-            {menuItems.map((item) => (
-              <li key={item.label} className={item.label === 'Offers' ? styles.menuItemActive : styles.menuItem}>
-                {item.href ? (
-                  <Link href={item.href} className={styles.menuLink}>
-                    <span className={styles.menuIcon}>{item.icon}</span>
-                    <span>{item.label}</span>
-                  </Link>
-                ) : (
-                  <span className={styles.menuStatic}>
-                    <span className={styles.menuIcon}>{item.icon}</span>
-                    <span>{item.label}</span>
-                  </span>
-                )}
-              </li>
-            ))}
-          </ul>
-        </aside>
+        <AdminSidebar activeLabel="Offers" />
 
         <main className={styles.main}>
           <header className={styles.topBar}>
@@ -271,9 +226,11 @@ export default function AdminOffersPage() {
                 />
                 <label className={styles.uploadBtn}>
                   Upload Image
-                  <input type="file" accept="image/*" onChange={handleImageFile} />
+                  <input type="file" accept="image/*" onChange={handleImageFile} disabled={isImageUploading} />
                 </label>
               </div>
+
+              {isImageUploading && <p className={styles.uploadLoader}>Uploading image...</p>}
 
               <div className={styles.toolbar}>
                 <button type="button" onClick={() => applyFormat('bold')}><b>B</b></button>

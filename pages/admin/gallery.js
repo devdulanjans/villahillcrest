@@ -1,35 +1,9 @@
 import { useEffect, useMemo, useState } from 'react';
 import Head from 'next/head';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
-import {
-  FaBell,
-  FaChartPie,
-  FaFile,
-  FaFolder,
-  FaMapMarkerAlt,
-  FaMoneyBillWave,
-  FaTable,
-  FaTrash,
-  FaWpforms,
-} from 'react-icons/fa';
-import { IoMdApps } from 'react-icons/io';
-import { MdSpaceDashboard } from 'react-icons/md';
+import { FaTrash } from 'react-icons/fa';
+import AdminSidebar from '../../components/admin/AdminSidebar';
 import styles from '../../styles/GalleryAdmin.module.css';
-
-const menuItems = [
-  { icon: <MdSpaceDashboard />, label: 'Dashnoard', href: '/admin/dashboard' },
-  { icon: <FaFile />, label: 'Home' },
-  { icon: <FaFile />, label: 'About' },
-  { icon: <FaWpforms />, label: 'Booking' },
-  { icon: <FaTable />, label: 'Availability' },
-  { icon: <FaChartPie />, label: 'Surf' },
-  { icon: <FaFolder />, label: 'Gallery', href: '/admin/gallery' },
-  { icon: <FaMoneyBillWave />, label: 'Offers' },
-  { icon: <FaMapMarkerAlt />, label: 'Contact Us' },
-  { icon: <FaBell />, label: 'Popup Message' },
-  { icon: <IoMdApps />, label: 'Social Media' },
-];
 
 export default function GalleryAdminPage() {
   const router = useRouter();
@@ -46,6 +20,8 @@ export default function GalleryAdminPage() {
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
   const [busy, setBusy] = useState(false);
+  const [isMainUploading, setIsMainUploading] = useState(false);
+  const [isAppendUploading, setIsAppendUploading] = useState(false);
 
   const loadGallery = async (album = '') => {
     setLoading(true);
@@ -145,6 +121,7 @@ export default function GalleryAdminPage() {
     });
 
     setBusy(true);
+    setIsMainUploading(true);
 
     try {
       const res = await fetch('/api/admin/gallery/upload', {
@@ -166,6 +143,7 @@ export default function GalleryAdminPage() {
       setError('Upload failed');
     } finally {
       setBusy(false);
+      setIsMainUploading(false);
     }
   };
 
@@ -193,6 +171,7 @@ export default function GalleryAdminPage() {
     });
 
     setBusy(true);
+    setIsAppendUploading(true);
 
     try {
       const res = await fetch('/api/admin/gallery/upload', {
@@ -217,6 +196,7 @@ export default function GalleryAdminPage() {
       setError('Failed to add images to album');
     } finally {
       setBusy(false);
+      setIsAppendUploading(false);
     }
   };
 
@@ -337,6 +317,42 @@ export default function GalleryAdminPage() {
     }
   };
 
+  const removeAlbum = async (albumName) => {
+    const targetAlbum = String(albumName || '').trim();
+    if (!targetAlbum) return;
+
+    const confirmed = window.confirm(`Delete album "${targetAlbum}" and all its images? This cannot be undone.`);
+    if (!confirmed) return;
+
+    setError('');
+    setMessage('');
+    setBusy(true);
+
+    try {
+      const res = await fetch('/api/admin/gallery/album', {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ albumName: targetAlbum }),
+      });
+      const data = await res.json();
+
+      if (!res.ok) {
+        setError(data.message || 'Failed to delete album');
+        return;
+      }
+
+      setMessage(`Album deleted successfully (${data.deletedCount || 0} images removed)`);
+      if (selectedAlbum === targetAlbum) {
+        setSelectedAlbum('');
+      }
+      await loadGallery(selectedAlbum === targetAlbum ? '' : selectedAlbum);
+    } catch {
+      setError('Failed to delete album');
+    } finally {
+      setBusy(false);
+    }
+  };
+
   return (
     <>
       <Head>
@@ -344,27 +360,7 @@ export default function GalleryAdminPage() {
       </Head>
 
       <div className={styles.page}>
-        <aside className={styles.sidebar}>
-          <h1 className={styles.brand}>Avlis</h1>
-          <h2 className={styles.menuTitle}>Site Menu</h2>
-          <ul className={styles.menuList}>
-            {menuItems.map((item) => (
-              <li key={item.label} className={item.label === 'Gallery' ? styles.menuItemActive : styles.menuItem}>
-                {item.href ? (
-                  <Link href={item.href} className={styles.menuLink}>
-                    <span className={styles.menuIcon}>{item.icon}</span>
-                    <span>{item.label}</span>
-                  </Link>
-                ) : (
-                  <span className={styles.menuStatic}>
-                    <span className={styles.menuIcon}>{item.icon}</span>
-                    <span>{item.label}</span>
-                  </span>
-                )}
-              </li>
-            ))}
-          </ul>
-        </aside>
+        <AdminSidebar activeLabel="Gallery" />
 
         <main className={styles.main}>
           <header className={styles.topBar}>
@@ -420,10 +416,12 @@ export default function GalleryAdminPage() {
                 accept="image/*"
                 multiple
                 onChange={(e) => setFiles(Array.from(e.target.files || []))}
+                disabled={isMainUploading}
                 required
               />
-              <button type="submit" disabled={busy}>{busy ? 'Uploading...' : 'Upload Images'}</button>
+              <button type="submit" disabled={busy}>{isMainUploading ? 'Uploading...' : 'Upload Images'}</button>
             </form>
+            {isMainUploading && <p className={styles.uploadLoader}>Uploading album images...</p>}
           </section>
 
           <section className={styles.panel}>
@@ -453,10 +451,12 @@ export default function GalleryAdminPage() {
                 accept="image/*"
                 multiple
                 onChange={(e) => setAppendFiles(Array.from(e.target.files || []))}
+                disabled={isAppendUploading}
                 required
               />
-              <button type="submit" disabled={busy}>{busy ? 'Adding...' : 'Add Images'}</button>
+              <button type="submit" disabled={busy}>{isAppendUploading ? 'Adding...' : 'Add Images'}</button>
             </form>
+            {isAppendUploading && <p className={styles.uploadLoader}>Uploading images to selected album...</p>}
           </section>
 
           <section className={styles.panel}>
@@ -538,7 +538,17 @@ export default function GalleryAdminPage() {
               <div className={styles.albumGrid}>
                 {Object.entries(groupedItems).map(([albumName, albumItems]) => (
                   <div key={albumName} className={styles.albumCard}>
-                    <h4>{albumName}</h4>
+                    <div className={styles.albumHeader}>
+                      <h4>{albumName}</h4>
+                      <button
+                        type="button"
+                        className={styles.albumDeleteBtn}
+                        onClick={() => removeAlbum(albumName)}
+                        disabled={busy}
+                      >
+                        <FaTrash /> Delete Album
+                      </button>
+                    </div>
                     <div className={styles.imageGrid}>
                       {albumItems.map((item) => (
                         <article key={item.id} className={styles.imageCard}>
