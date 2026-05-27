@@ -8,56 +8,47 @@ import {
   SiTripadvisor
 } from 'react-icons/si'
 import { FaHotel, FaRoute } from 'react-icons/fa'
+import { useEffect, useState } from 'react'
 
-const socialLinks = [
-  {
-    label: 'Facebook',
-    href: 'https://www.facebook.com/villahillcrestweligama/',
-    Icon: SiFacebook
-  },
-  {
-    label: 'Instagram',
-    href: 'https://www.instagram.com/villahillcrest/',
-    Icon: SiInstagram
-  },
-  {
-    label: 'TikTok',
-    href: '#',
-    Icon: SiTiktok
-  },
-  {
-    label: 'YouTube',
-    href: '#',
-    Icon: SiYoutube
-  },
-  {
-    label: 'Booking.com',
-    href: '#',
-    Icon: SiBookingdotcom
-  },
-  {
-    label: 'Airbnb',
-    href: '#',
-    Icon: SiAirbnb
-  },
-  {
-    label: 'Agoda',
-    href: '#',
-    Icon: FaHotel
-  },
-  {
-    label: 'Tripadvisor',
-    href: '#',
-    Icon: SiTripadvisor
-  },
-  {
-    label: 'Viator',
-    href: '#',
-    Icon: FaRoute
-  }
-]
+const iconMap = {
+  facebook: SiFacebook,
+  instagram: SiInstagram,
+  tiktok: SiTiktok,
+  youtube: SiYoutube,
+  booking: SiBookingdotcom,
+  airbnb: SiAirbnb,
+  agoda: FaHotel,
+  tripadvisor: SiTripadvisor,
+  viator: FaRoute
+}
 
 export default function Footer() {
+  const [socialLinks, setSocialLinks] = useState([])
+
+  useEffect(() => {
+    let isMounted = true
+
+    const loadSocialLinks = async () => {
+      try {
+        const res = await fetch('/api/social-links')
+        const data = await res.json()
+
+        if (!isMounted) return
+        if (!res.ok) return
+
+        setSocialLinks(Array.isArray(data.items) ? data.items : [])
+      } catch {
+        // Keep footer without social links if endpoint fails.
+      }
+    }
+
+    loadSocialLinks()
+
+    return () => {
+      isMounted = false
+    }
+  }, [])
+
   return (
     <footer className="site-footer">
       <div className="container site-footer-inner">
@@ -67,18 +58,22 @@ export default function Footer() {
         </h2>
 
         <div className="socials">
-          {socialLinks.map(({ label, href, Icon }) => (
-            <a
-              key={label}
-              href={href}
-              aria-label={label}
-              title={label}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Icon aria-hidden="true" focusable="false" />
-            </a>
-          ))}
+          {socialLinks.map(({ id, label, url, iconKey }) => {
+            const Icon = iconMap[String(iconKey || '').toLowerCase()] || SiFacebook
+
+            return (
+              <a
+                key={id || label}
+                href={url}
+                aria-label={label}
+                title={label}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Icon aria-hidden="true" focusable="false" />
+              </a>
+            )
+          })}
         </div>
 
         <div className="footer-links">

@@ -1,47 +1,22 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import {
-  FaBars,
   FaBell,
-  FaChartPie,
   FaFacebookF,
-  FaFile,
-  FaFolder,
   FaInstagram,
   FaMapMarkerAlt,
   FaMoneyBillWave,
   FaPinterestP,
-  FaPuzzlePiece,
   FaSearch,
   FaStar,
-  FaTable,
   FaTwitter,
-  FaWpforms,
   FaYoutube,
 } from 'react-icons/fa';
 import { IoMdApps } from 'react-icons/io';
 import { MdSpaceDashboard } from 'react-icons/md';
 import Head from 'next/head';
+import AdminSidebar from '../../components/admin/AdminSidebar';
 import styles from '../../styles/AdminDashboard.module.css';
-
-const sidebarGroups = [
-  {
-    title: 'Site Menu',
-    items: [
-      { icon: <MdSpaceDashboard />, label: 'Dashnoard', active: true, href: '/admin/dashboard' },
-      { icon: <FaFile />, label: 'Home' },
-      { icon: <FaFile />, label: 'About' },
-      { icon: <FaWpforms />, label: 'Booking' },
-      { icon: <FaTable />, label: 'Availability' },
-      { icon: <FaChartPie />, label: 'Surf' },
-      { icon: <FaFolder />, label: 'Gallery', href: '/admin/gallery' },
-      { icon: <FaMoneyBillWave />, label: 'Offers', href: '/admin/offers' },
-      { icon: <FaMapMarkerAlt />, label: 'Contact Us' },
-      { icon: <FaBell />, label: 'Popup Message' },
-      { icon: <IoMdApps />, label: 'Social Media' },
-    ],
-  },
-];
 
 const statCards = [
   { label: 'Total Views', value: '1,028,056', icon: <FaSearch />, tone: 'cyan' },
@@ -129,37 +104,7 @@ export default function AdminDashboard() {
         <title>Admin Dashboard | Villa Hillcrest</title>
       </Head>
       <div className={styles.dashboardPage}>
-        <aside className={styles.sidebar}>
-          <h1 className={styles.brand}>Avlis</h1>
-          {sidebarGroups.map((group) => (
-            <section key={group.title} className={styles.menuSection}>
-              <h2 className={styles.menuTitle}>{group.title}</h2>
-              <ul className={styles.menuList}>
-                {group.items.map((item) => (
-                  <li
-                    key={item.label}
-                    className={item.active ? styles.menuItemActive : styles.menuItem}
-                    onClick={() => {
-                      if (item.href) {
-                        router.push(item.href);
-                      }
-                    }}
-                    role={item.href ? 'button' : undefined}
-                    tabIndex={item.href ? 0 : undefined}
-                    onKeyDown={(e) => {
-                      if (item.href && (e.key === 'Enter' || e.key === ' ')) {
-                        router.push(item.href);
-                      }
-                    }}
-                  >
-                    <span className={styles.menuIcon}>{item.icon}</span>
-                    <span>{item.label}</span>
-                  </li>
-                ))}
-              </ul>
-            </section>
-          ))}
-        </aside>
+        <AdminSidebar activeLabel="Dashnoard" />
 
         <main className={styles.mainContent}>
         <header className={styles.topBar}>

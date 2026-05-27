@@ -6,7 +6,7 @@ export default function ActivitiesWidget() {
         <div className="hc-card-grid hc-three">
           <article className="hc-activity-item">
             <img
-              src="https://images.unsplash.com/photo-1493558103817-58b2924bce98?q=80&w=1000&auto=format&fit=crop"
+              src="https://i0.wp.com/waywardwayfarer.com/wp-content/uploads/2024/08/Dikwella-Hiriketiya-sri-lanka-south-coast.jpg?resize=800%2C533&ssl=1"
               alt="Sea and coastline viewpoint"
             />
             <h3>Beach escapes</h3>
@@ -14,7 +14,7 @@ export default function ActivitiesWidget() {
           </article>
           <article className="hc-activity-item">
             <img
-              src="https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86?q=80&w=1000&auto=format&fit=crop"
+              src="https://www.lostearthadventures.co.uk/wp-content/uploads/Adventure-through-Laos-in-South-East-Asia-copy2.jpg"
               alt="Temple and palms"
             />
             <h3>Culture trails</h3>
@@ -22,7 +22,7 @@ export default function ActivitiesWidget() {
           </article>
           <article className="hc-activity-item">
             <img
-              src="https://images.unsplash.com/photo-1500375592092-40eb2168fd21?q=80&w=1000&auto=format&fit=crop"
+              src="https://nexttravelsrilanka.com/wp-content/uploads/2021/07/A-foreign-boy-windsurfing-on-the-waves-enjoying-one-of-the-most-exciting-water-sports-in-Sri-Lanka.jpg"
               alt="Ocean horizon at dusk"
             />
             <h3>Water adventures</h3>

@@ -1,11 +1,57 @@
-import { useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
+import { defaultContactDetails, normalizeContactDetails } from '../lib/contact-defaults'
+
+function extractMapSrc(value) {
+  const raw = String(value || '').trim()
+  if (!raw) return ''
+
+  if (raw.startsWith('http://') || raw.startsWith('https://')) {
+    return raw
+  }
+
+  const srcMatch = raw.match(/src=["']([^"']+)["']/i)
+  return srcMatch ? srcMatch[1] : ''
+}
+
+function toWhatsAppHref(number) {
+  const digits = String(number || '').replace(/[^\d]/g, '')
+  return digits ? `https://wa.me/${digits}` : '#'
+}
 
 export default function ContactWidget() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitMessage, setSubmitMessage] = useState('')
   const [submitStatus, setSubmitStatus] = useState('idle')
+  const [contactDetails, setContactDetails] = useState(defaultContactDetails)
 
   const contactFormEndpoint = process.env.NEXT_PUBLIC_CONTACT_FORM_ENDPOINT || ''
+  const mapSrc = useMemo(() => extractMapSrc(contactDetails.mapIframeHtml), [contactDetails.mapIframeHtml])
+
+  useEffect(() => {
+    let isMounted = true
+
+    const loadContactDetails = async () => {
+      try {
+        const response = await fetch('/api/contact-details')
+        const data = await response.json()
+
+        if (!isMounted || !response.ok || !data?.item) {
+          return
+        }
+
+        const item = data.item
+        setContactDetails(normalizeContactDetails(item))
+      } catch {
+        // Keep default details if API fails.
+      }
+    }
+
+    loadContactDetails()
+
+    return () => {
+      isMounted = false
+    }
+  }, [])
 
   const handleSubmit = async event => {
     event.preventDefault()
@@ -68,7 +114,7 @@ export default function ContactWidget() {
         <div className="contact-widget-map">
           <iframe
             title="Villa Hillcrest location"
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3968.024143187852!2d80.4297093!3d5.9914122!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae16b18fd149cf5%3A0x51e8715a6bd36414!2sVilla%20Hillcrest!5e0!3m2!1sen!2slk!4v1779045768360!5m2!1sen!2slk"
+            src={mapSrc}
             allowFullScreen=""
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
@@ -76,14 +122,24 @@ export default function ContactWidget() {
           <div className="contact-card-row">
             <div className="contact-card">
               <h3>Address</h3>
-              <p>Villa Hillcrest</p>
-              <p>Galkaduwahena, Palalla,</p>
-              <p>Weligama 81700</p>
-              <p>Sri Lanka</p>
+              {String(contactDetails.addressText || '')
+                .split('\n')
+                .filter(line => line.trim().length > 0)
+                .map((line, index) => <p key={index}>{line}</p>)}
             </div>
             <div className="contact-card">
               <h3>Phone</h3>
-              <p>+94 77 796 5733</p>
+              {contactDetails.phoneNumbers.map((phone, index) => (
+                <p key={index}>{phone}</p>
+              ))}
+              <p>
+                <a href={`mailto:${contactDetails.email}`}>{contactDetails.email}</a>
+              </p>
+              <p>
+                <a href={toWhatsAppHref(contactDetails.whatsappNumber)} target="_blank" rel="noreferrer">
+                  WhatsApp: {contactDetails.whatsappNumber}
+                </a>
+              </p>
             </div>
           </div>
         </div>

@@ -1,4 +1,6 @@
-const rooms = [
+import { useEffect, useState } from 'react'
+
+const fallbackRooms = [
   {
     title: 'Garden Studio',
     price: 'USD 120 / night',
@@ -49,7 +51,61 @@ const rooms = [
   }
 ]
 
+function formatPrice(room) {
+  if (room?.priceUsd) {
+    return `USD ${Number(room.priceUsd).toLocaleString()} / night`
+  }
+
+  if (room?.priceLkr) {
+    return `LKR ${Number(room.priceLkr).toLocaleString()} / night`
+  }
+
+  return 'Contact us for rate'
+}
+
 export default function RoomsWidget() {
+  const [rooms, setRooms] = useState([])
+
+  useEffect(() => {
+    let active = true
+
+    const loadRooms = async () => {
+      try {
+        const res = await fetch('/api/rooms')
+        const data = await res.json()
+        if (!active) {
+          return
+        }
+
+        if (res.ok && Array.isArray(data.items)) {
+          setRooms(data.items)
+        }
+      } catch {
+        // Keep fallback cards when API fails.
+      }
+    }
+
+    loadRooms()
+
+    return () => {
+      active = false
+    }
+  }, [])
+
+  const displayRooms = rooms.length > 0
+    ? rooms.map((room) => ({
+      title: room.name,
+      price: formatPrice(room),
+      image: Array.isArray(room.images) && room.images.length > 0 ? room.images[0] : '',
+      key: room.id,
+      meta: `${room.maxGuests || 0} guests • ${room.bedSize || 'Standard bed'}`,
+    }))
+    : fallbackRooms.map((room) => ({
+      ...room,
+      key: room.title,
+      meta: '',
+    }))
+
   return (
     <section className="hc-rooms hc-reveal" aria-labelledby="rooms-heading">
       <div className="container">
@@ -58,12 +114,13 @@ export default function RoomsWidget() {
           <a href="/availability">See all availability</a>
         </div>
         <div className="hc-card-grid hc-four">
-          {rooms.map(room => (
-            <article className="hc-room-card" key={room.title}>
+          {displayRooms.map(room => (
+            <article className="hc-room-card" key={room.key}>
               <img src={room.image} alt={`${room.title} at Villa Hillcrest`} />
               <div className="hc-room-content">
                 <h3>{room.title}</h3>
                 <p>{room.price}</p>
+                {room.meta && <p>{room.meta}</p>}
                 <a href="/bookings">Book now</a>
               </div>
             </article>
