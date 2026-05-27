@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import Layout from '../components/Layout'
+import BeSearchForm from '../components/be-forms/BeSearchForm'
 
 const menuSections = [
   {
@@ -157,6 +158,8 @@ export default function FoodsPage() {
             <h1>Our food menu</h1>
           </div>
         </section>
+
+        <BeSearchForm />
 
         <section className="intro foods-intro" aria-labelledby="foods-heading">
           <div className="container">

@@ -1,3 +1,5 @@
+import Link from 'next/link'
+
 export default function HeroWidget() {
   return (
     <section className="hc-hero hc-reveal" id="hero" aria-labelledby="hero-heading">
@@ -18,7 +20,7 @@ export default function HeroWidget() {
             Crafted for soulful stays with ocean mornings, tropical gardens,
             and serene island living.
           </p>
-          <a href="/bookings" className="hc-btn hc-btn-light">Book Your Stay</a>
+          <Link href="/booking" className="hc-btn hc-btn-light">Book Your Stay</Link>
         </div>
       </div>
     </section>

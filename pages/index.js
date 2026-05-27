@@ -16,6 +16,7 @@ import MapWidget from '../components/home/MapWidget'
 import useHomeReveal from '../components/home/useHomeReveal'
 import Services from '../components/Services'
 import OfferPopup from '../components/home/OfferPopup'
+import BeSearchForm from '../components/be-forms/BeSearchForm'
 
 export default function Home() {
   useHomeReveal()
@@ -41,7 +42,7 @@ export default function Home() {
   return (
     <Layout>
       <Head>
-        <title>Villa Hillcrest | Luxury Boutique Villa in Sri Lanka</title>
+        <title>Villa Hill Crest, Weligama - Official Website | Luxury Boutique Villa in Sri Lanka</title>
         <meta name="description" content="Villa Hillcrest is a luxury boutique villa in Sri Lanka with panoramic views, elegant rooms, wellness activities, and curated dining. Book your stay for an unforgettable tropical escape." />
         <meta name="theme-color" content="#2d7a3e" />
         <link rel="canonical" href="https://villahillcrest.com/" />
@@ -56,6 +57,7 @@ export default function Home() {
       <main className="hc-home">
         <OfferPopup />
         <HeroWidget />
+        <BeSearchForm />
         {/* <IntroWidget /> */}
         <Services/>
         <GalleryIntroWidget />

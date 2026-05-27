@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import Layout from '../components/Layout'
+import BeSearchForm from '../components/be-forms/BeSearchForm'
 
 const exploreItems = [
   {
@@ -122,6 +123,8 @@ export default function ExplorePage() {
           </div>
         </section>
 
+        <BeSearchForm />
+
         <section className="explore-list" aria-label="Explore activities and places">
           <div className="container">
             {exploreItems.map((item, index) => (
@@ -151,6 +154,6 @@ export default function ExplorePage() {
                   <a href="/dining" aria-label="Dining experiences" style={{ margin: '0 10px', color: '#2d7a3e', textDecoration: 'underline' }}>Dining</a>
                   <a href="/yoga" aria-label="Yoga retreats" style={{ margin: '0 10px', color: '#2d7a3e', textDecoration: 'underline' }}>Yoga</a>
                   <a href="/foods" aria-label="Foods and menu" style={{ margin: '0 10px', color: '#2d7a3e', textDecoration: 'underline' }}>Foods</a>
-                  <a href="/bookings" aria-label="Book your stay" style={{ margin: '0 10px', color: '#2d7a3e', textDecoration: 'underline' }}>Bookings</a>
+                  <a href="/packages" aria-label="Packages" style={{ margin: '0 10px', color: '#2d7a3e', textDecoration: 'underline' }}>Packages</a>
                   <a href="/contact-us" aria-label="Contact us" style={{ margin: '0 10px', color: '#2d7a3e', textDecoration: 'underline' }}>Contact Us</a>
                 </nav>

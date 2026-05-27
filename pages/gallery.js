@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import { useEffect, useMemo, useState } from 'react'
 import Layout from '../components/Layout'
+import BeSearchForm from '../components/be-forms/BeSearchForm'
 
 export default function GalleryPage() {
   const [galleryAlbums, setGalleryAlbums] = useState([])
@@ -140,6 +141,8 @@ export default function GalleryPage() {
             <h1>Gallery</h1>
           </div>
         </section>
+
+        <BeSearchForm />
 
         <section className="intro gallery-intro" aria-labelledby="gallery-heading">
           <div className="container">

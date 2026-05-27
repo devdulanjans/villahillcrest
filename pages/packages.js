@@ -7,6 +7,7 @@ import Availability from '../components/Availability'
 import Services from '../components/Services'
 import FeatureSections from '../components/FeatureSections'
 import PackageList from '../components/PackageList'
+import BeSearchForm from '../components/be-forms/BeSearchForm'
 
 export default function AboutUs() {
   useEffect(() => {
@@ -66,32 +67,32 @@ export default function AboutUs() {
   return (
     <Layout>
       <Head>
-        <title>Villa Hillcrest | Bookings</title>
+        <title>Villa Hillcrest | Packages</title>
         <meta name="description" content="Book your stay at Villa Hillcrest, Sri Lanka. Secure your luxury villa experience now." />
         <meta name="theme-color" content="#2d7a3e" />
-        <link rel="canonical" href="https://villahillcrest.com/bookings" />
+        <link rel="canonical" href="https://villahillcrest.com/packages" />
         <meta name="robots" content="index, follow" />
         {/* Open Graph tags */}
-        <meta property="og:title" content="Villa Hillcrest | Bookings" />
+        <meta property="og:title" content="Villa Hillcrest | Packages" />
         <meta property="og:description" content="Book your stay at Villa Hillcrest, Sri Lanka. Secure your luxury villa experience now." />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://villahillcrest.com/bookings" />
+        <meta property="og:url" content="https://villahillcrest.com/packages" />
         <meta property="og:image" content="https://villahillcrest.com/images/logo/logo-og.jpg" />
         <meta property="og:site_name" content="Villa Hillcrest" />
         {/* Twitter Card tags */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Villa Hillcrest | Bookings" />
+        <meta name="twitter:title" content="Villa Hillcrest | Packages" />
         <meta name="twitter:description" content="Book your stay at Villa Hillcrest, Sri Lanka. Secure your luxury villa experience now." />
         <meta name="twitter:image" content="https://villahillcrest.com/images/logo/logo-og.jpg" />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "WebPage",
-          "name": "Bookings - Villa Hillcrest",
+          "name": "Packages - Villa Hillcrest",
           "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "https://villahillcrest.com/bookings"
+            "@id": "https://villahillcrest.com/packages"
           },
-          "url": "https://villahillcrest.com/bookings"
+          "url": "https://villahillcrest.com/packages"
         }) }} />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
@@ -100,6 +101,7 @@ export default function AboutUs() {
 
       <main>
         <Hero />
+        <BeSearchForm />
         <Intro />
         <PackageList />
         {/* <Availability />
