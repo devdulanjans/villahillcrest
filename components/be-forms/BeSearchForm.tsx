@@ -1,8 +1,9 @@
 import { usePathname } from 'next/navigation'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 export default function BeSearchForm() {
     const pathname = usePathname();
+    const [showUnavailable, setShowUnavailable] = useState(false);
 
     const loadSearchForm = (w) => {
         // @ts-ignore
@@ -22,7 +23,21 @@ export default function BeSearchForm() {
     }
 
   useEffect(() => {
+      setShowUnavailable(false);
       loadSearchForm(window);
+
+      const timeoutId = window.setTimeout(() => {
+          const container = document.getElementById('be-search-form');
+          const hasWidget = Boolean(container && container.childElementCount > 1);
+
+          if (!hasWidget) {
+              setShowUnavailable(true);
+          }
+      }, 9000);
+
+      return () => {
+          window.clearTimeout(timeoutId);
+      };
   }, [pathname]);
 
   return (
@@ -30,6 +45,18 @@ export default function BeSearchForm() {
           <div id="be-search-form" className="be-container">
               <a href="https://exely.com/" rel="nofollow" target="_blank">Hotel management software</a>
           </div>
+          {showUnavailable && (
+              <div style={{ marginTop: 16, padding: 14, border: '1px solid #e6d8b8', background: '#fff8ea', color: '#5b4a1a' }}>
+                  <strong>Live availability is temporarily unavailable.</strong>
+                  <p style={{ marginTop: 8, marginBottom: 0 }}>
+                      Please refresh shortly, or contact us via
+                      {' '}
+                      <a href="/contact-us">Contact Us</a>
+                      {' '}
+                      for direct booking support.
+                  </p>
+              </div>
+          )}
       </div>
   );
 }

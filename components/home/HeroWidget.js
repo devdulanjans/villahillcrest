@@ -1,4 +1,13 @@
+import { useEffect, useState } from 'react';
 import Link from 'next/link'
+
+const defaultSlides = [
+  {
+    imageUrl:
+      'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1600&auto=format&fit=crop',
+    wording: 'Villa Hillcrest',
+  },
+];
 
 export default function HeroWidget() {
   const [sliders, setSliders] = useState(defaultSlides);

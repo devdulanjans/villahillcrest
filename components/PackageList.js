@@ -1,4 +1,43 @@
+import { useEffect, useMemo, useState } from 'react'
 import Link from "next/link";
+
+const fallbackPackages = [
+  {
+    title: 'Garden Studio',
+    price: '120',
+    description: 'Comfortable garden-facing room ideal for couples and solo travelers.',
+    image: 'https://images.unsplash.com/photo-1496417263034-38ec4f0b665a?auto=format&fit=crop&w=800&q=80',
+    features: ['2 Guests', 'Queen Bed', '280 sqft'],
+  },
+  {
+    title: 'Pool View Suite',
+    price: '150',
+    description: 'Spacious suite with a private balcony and tropical pool views.',
+    image: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=800&q=80',
+    features: ['3 Guests', 'King Bed', '360 sqft'],
+  },
+  {
+    title: 'Ocean Terrace',
+    price: '190',
+    description: 'Premium terrace room designed for sunset views and serene stays.',
+    image: 'https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?auto=format&fit=crop&w=800&q=80',
+    features: ['4 Guests', 'King Bed', '420 sqft'],
+  },
+]
+
+function formatRoomPrice(room) {
+  const usd = Number(room?.priceUsd)
+  if (Number.isFinite(usd) && usd > 0) {
+    return usd.toLocaleString()
+  }
+
+  const lkr = Number(room?.priceLkr)
+  if (Number.isFinite(lkr) && lkr > 0) {
+    return `LKR ${lkr.toLocaleString()}`
+  }
+
+  return 'Contact us'
+}
 
 export default function PackageList() {
   const [rooms, setRooms] = useState([])

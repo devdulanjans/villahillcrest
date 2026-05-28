@@ -1,51 +1,42 @@
 import Head from 'next/head'
+import { useEffect, useState } from 'react'
 import Layout from '../components/Layout'
 import BeSearchForm from '../components/be-forms/BeSearchForm'
 
 const villaRooms = [
-  {
-    title: 'Ocean View Suite',
-    price: 'From $295 per night',
-    image: 'https://images.unsplash.com/photo-1566665797739-1674de7a421a?q=80&w=1200&auto=format&fit=crop',
-    features: ['King-size bed', 'Private balcony', 'Rain shower bathroom'],
-    beRoomType: ''
-  },
-  {
-    title: 'Garden Studio',
-    price: 'From $210 per night',
-    image: 'https://images.unsplash.com/photo-1616594039964-3f6cb60a9f7d?q=80&w=1200&auto=format&fit=crop',
-    features: ['Queen-size bed', 'Garden-facing terrace', 'Work & lounge corner'],
-    beRoomType: ''
-  },
-  {
-    title: 'Family Loft',
-    price: 'From $340 per night',
-    image: 'https://images.unsplash.com/photo-1611892440504-42a792e24d32?q=80&w=1200&auto=format&fit=crop',
-    features: ['Two bedrooms', 'Shared lounge area', 'Ideal for 4 guests'],
-    beRoomType: ''
-  },
-  {
-    title: 'Poolside Villa Room',
-    price: 'From $260 per night',
-    image: 'https://images.unsplash.com/photo-1590490360182-c33d57733427?q=80&w=1200&auto=format&fit=crop',
-    features: ['Direct pool access', 'Indoor-outdoor shower', 'Private sit-out'],
-    beRoomType: ''
-  },
-  {
-    title: 'Hillside Retreat',
-    price: 'From $280 per night',
-    image: 'https://images.unsplash.com/photo-1582719508461-905c673771fd?q=80&w=1200&auto=format&fit=crop',
-    features: ['Panoramic valley views', 'Sunrise deck', 'Quiet corner location'],
-    beRoomType: ''
-  },
-  {
-    title: 'Signature Pavilion',
-    price: 'From $390 per night',
-    image: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=80&w=1200&auto=format&fit=crop',
-    features: ['Premium king room', 'Outdoor lounge', 'Curated welcome set'],
-    beRoomType: ''
-  }
 ]
+
+function normalizeVillaRoom(room) {
+  const firstImage = Array.isArray(room?.images) && room.images.length > 0
+    ? room.images.find((item) => String(item || '').trim().length > 0)
+    : ''
+
+  const image = firstImage
+    ? (/^https?:\/\//i.test(firstImage) || String(firstImage).startsWith('/')
+      ? firstImage
+      : `/images/rooms/${firstImage}`)
+    : 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=80&w=1200&auto=format&fit=crop'
+
+  let price = 'Contact us for rates'
+  if (Number(room?.priceUsd) > 0) {
+    price = `From USD ${Number(room.priceUsd).toLocaleString()} per night`
+  } else if (Number(room?.priceLkr) > 0) {
+    price = `From LKR ${Number(room.priceLkr).toLocaleString()} per night`
+  }
+
+  return {
+    id: room?.id,
+    title: room?.name || 'Villa Room',
+    price,
+    image,
+    features: [
+      room?.bedSize || 'Comfort bed',
+      `${Number(room?.maxGuests || 2)} guests`,
+      Number(room?.roomSizeSqft) > 0 ? `${Number(room.roomSizeSqft)} sqft` : 'Ensuite bathroom',
+    ].filter(Boolean),
+    beRoomType: room?.beRoomType || room?.name || '',
+  }
+}
 
 export default function VillaPage() {
   const [rooms, setRooms] = useState([]);

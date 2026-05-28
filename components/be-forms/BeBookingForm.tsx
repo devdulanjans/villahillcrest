@@ -1,8 +1,9 @@
 import { usePathname } from 'next/navigation'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 export default function BeBookingForm() {
     const pathname = usePathname();
+    const [showUnavailable, setShowUnavailable] = useState(false);
 
     const loadBookingForm = (w) => {
         // @ts-ignore
@@ -22,10 +23,38 @@ export default function BeBookingForm() {
     }
 
   useEffect(() => {
+        setShowUnavailable(false);
     loadBookingForm(window);
+
+        const timeoutId = window.setTimeout(() => {
+            const container = document.getElementById('be-booking-form');
+            const hasWidget = Boolean(container && container.childElementCount > 0);
+
+            if (!hasWidget) {
+                setShowUnavailable(true);
+            }
+        }, 9000);
+
+        return () => {
+            window.clearTimeout(timeoutId);
+        };
   }, [pathname]);
 
   return (
-      <div id="be-booking-form" />
+            <>
+                <div id="be-booking-form" />
+                {showUnavailable && (
+                    <div style={{ marginTop: 16, padding: 14, border: '1px solid #e6d8b8', background: '#fff8ea', color: '#5b4a1a' }}>
+                        <strong>Online booking is temporarily unavailable.</strong>
+                        <p style={{ marginTop: 8, marginBottom: 0 }}>
+                            Please try again in a few minutes, or contact us directly via
+                            {' '}
+                            <a href="/contact-us">Contact Us</a>
+                            {' '}
+                            for immediate assistance.
+                        </p>
+                    </div>
+                )}
+            </>
   );
 }

@@ -8,7 +8,8 @@ import {
   SiTripadvisor
 } from 'react-icons/si'
 import { FaHotel, FaRoute } from 'react-icons/fa'
-import { usePathname } from 'next/navigation'
+import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react'
 
 const iconMap = {
   facebook: SiFacebook,
@@ -23,7 +24,50 @@ const iconMap = {
 }
 
 export default function Footer() {
-  const pathname = usePathname();
+  const router = useRouter();
+  const pathname = router.pathname;
+  const [socialLinks, setSocialLinks] = useState([]);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    const loadSocialLinks = async () => {
+      try {
+        const response = await fetch('/api/social-links');
+        if (!response.ok) return;
+
+        const data = await response.json();
+        const items = Array.isArray(data?.items) ? data.items : [];
+
+        const normalized = items
+          .map((item) => {
+            const iconKey = String(item?.iconKey || '').toLowerCase();
+            const Icon = iconMap[iconKey];
+            if (!Icon) return null;
+
+            return {
+              label: String(item?.label || iconKey || 'Social').trim(),
+              href: String(item?.url || '').trim(),
+              Icon,
+            };
+          })
+          .filter((item) => item && item.href);
+
+        if (!cancelled) {
+          setSocialLinks(normalized);
+        }
+      } catch {
+        if (!cancelled) {
+          setSocialLinks([]);
+        }
+      }
+    };
+
+    loadSocialLinks();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   return (
     <footer className="site-footer">
@@ -33,7 +77,7 @@ export default function Footer() {
           Sri Lanka
         </h2>
 
-        {pathname !== '/booking' &&
+        {pathname !== '/booking' && socialLinks.length > 0 &&
         <div className="socials">
           {socialLinks.map(({ label, href, Icon }) => (
             <a
