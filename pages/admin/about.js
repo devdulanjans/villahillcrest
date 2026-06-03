@@ -29,7 +29,7 @@ export default function AdminAboutPage() {
       setError('');
 
       try {
-        const authRes = await fetch('/api/admin/me');
+        const authRes = await fetch('/api/admin/me', { credentials: 'same-origin' });
         const authData = await authRes.json();
 
         if (!authRes.ok || !authData.user) {
@@ -245,7 +245,9 @@ export default function AdminAboutPage() {
               {isImageUploading && <p className={styles.uploadLoader}>Uploading image...</p>}
 
               <div className={styles.formActions}>
-                <button type="submit" disabled={busy || loading}>{busy ? 'Saving...' : 'Save About Content'}</button>
+                <button type="submit" disabled={busy || loading || isImageUploading}>
+                  {isImageUploading ? 'Uploading image...' : busy ? 'Saving...' : 'Save About Content'}
+                </button>
               </div>
             </form>
 

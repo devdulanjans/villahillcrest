@@ -6,8 +6,24 @@ const defaultSlides = [
     imageUrl:
       'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1600&auto=format&fit=crop',
     wording: 'Villa Hillcrest',
+    heading: 'Villa Hillcrest Sri Lanka',
+    description:
+      'Crafted for soulful stays with ocean mornings, tropical gardens, and serene island living.',
+    ctaLabel: 'Book Your Stay',
+    ctaHref: '/booking',
   },
 ];
+
+function normalizeSlide(slide) {
+  return {
+    imageUrl: slide?.imageUrl || slide?.image || defaultSlides[0].imageUrl,
+    wording: slide?.wording || slide?.title || defaultSlides[0].wording,
+    heading: slide?.heading || defaultSlides[0].heading,
+    description: slide?.description || defaultSlides[0].description,
+    ctaLabel: slide?.ctaLabel || defaultSlides[0].ctaLabel,
+    ctaHref: slide?.ctaHref || defaultSlides[0].ctaHref,
+  };
+}
 
 export default function HeroWidget() {
   const [sliders, setSliders] = useState(defaultSlides);
@@ -29,7 +45,7 @@ export default function HeroWidget() {
             : [];
 
         if (incomingSlides.length > 0) {
-          setSliders(incomingSlides);
+          setSliders(incomingSlides.map(normalizeSlide));
           setCurrent(0);
         }
       } catch {
@@ -48,46 +64,50 @@ export default function HeroWidget() {
     return () => clearInterval(timer);
   }, [sliders]);
 
-  const slider = sliders[current] || defaultSlides[0];
+  const slider = normalizeSlide(sliders[current]);
+  const shouldSwapLayout = sliders.length > 1 && current % 2 === 1;
 
   return (
     <section className="hc-hero hc-reveal" id="hero" aria-labelledby="hero-heading">
-      <div className="hc-hero-grid">
+      <div className={`hc-hero-grid ${shouldSwapLayout ? 'is-swapped' : ''}`.trim()}>
         <div
           className="hc-hero-image"
           role="img"
           aria-label={slider.wording}
-          style={{
-            backgroundImage: `url('${slider.imageUrl}')`,
-            transition: 'background-image 0.5s',
-          }}
-        ></div>
+        >
+          <div className="hc-hero-media" aria-hidden="true">
+            {sliders.map((item, index) => {
+              const mapped = normalizeSlide(item);
+              return (
+                <div
+                  key={`${mapped.imageUrl}-${index}`}
+                  className={`hc-hero-slide ${current === index ? 'is-active' : ''}`.trim()}
+                  style={{ backgroundImage: `url('${mapped.imageUrl}')` }}
+                ></div>
+              );
+            })}
+          </div>
+        </div>
         <div className="hc-hero-content">
-          <p className="hc-overline">{slider.wording}</p>
-          <h1 id="hero-heading">Villa Hillcrest Sri Lanka</h1>
-          <p>
-            Crafted for soulful stays with ocean mornings, tropical gardens,
-            and serene island living.
-          </p>
-          <Link href="/booking" className="hc-btn hc-btn-light">Book Your Stay</Link>
+          <div key={`${slider.imageUrl}-${current}`} className="hc-hero-textswap">
+            <p className="hc-overline">{slider.wording}</p>
+            <h1 id="hero-heading">{slider.heading}</h1>
+            <p>{slider.description}</p>
+            <Link href={slider.ctaHref} className="hc-btn hc-btn-light">{slider.ctaLabel}</Link>
+          </div>
         </div>
       </div>
       {sliders.length > 1 && (
-        <div style={{ textAlign: 'center', marginTop: 8 }}>
+        <div className="hc-hero-dots" role="tablist" aria-label="Hero slides">
           {sliders.map((_, i) => (
             <button
               key={i}
               onClick={() => setCurrent(i)}
-              style={{
-                width: 10,
-                height: 10,
-                borderRadius: '50%',
-                margin: 2,
-                background: i === current ? '#333' : '#ccc',
-                border: 'none',
-                cursor: 'pointer',
-                display: 'inline-block',
-              }}
+              className={`hc-hero-dot ${i === current ? 'is-active' : ''}`.trim()}
+              type="button"
+              role="tab"
+              aria-selected={i === current}
+              aria-current={i === current}
               aria-label={`Go to slide ${i + 1}`}
             />
           ))}

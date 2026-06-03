@@ -1,6 +1,8 @@
 import Head from 'next/head'
 import Layout from '../components/Layout'
 import BeSearchForm from '../components/be-forms/BeSearchForm'
+import ImageShowWidget from '../components/ImageShowWidget'
+import PageHero from '../components/PageHero'
 
 const diningGallery = [
   {
@@ -96,11 +98,7 @@ export default function DiningPage() {
       </Head>
 
       <main className="dining-page">
-        <section className="dining-hero" aria-label="Dining hero">
-          <div className="dining-hero-overlay">
-            <h1>Our Cafe in Weligama</h1>
-          </div>
-        </section>
+        <PageHero title="Our Cafe in Weligama" className="dining-hero" ariaLabel="Dining hero" />
 
         <BeSearchForm />
 
@@ -123,13 +121,7 @@ export default function DiningPage() {
 
         <section className="dining-gallery-wrap" aria-label="Dining gallery">
           <div className="container">
-            <div className="dining-gallery">
-              {diningGallery.map((item, index) => (
-                <figure key={`${item.src}-${index}`} className="dining-tile">
-                  <img src={item.src} alt={item.alt} loading="lazy" />
-                </figure>
-              ))}
-            </div>
+            <ImageShowWidget images={diningGallery} />
           </div>
         </section>
       </main>

@@ -1,9 +1,8 @@
-export default function handler(req, res) {
-  const cookie = req.headers.cookie || '';
-  const isAuth = cookie.includes('admin_auth=1');
+import { getAdminUsername, isAdminAuthenticated } from '../../../lib/admin-auth';
 
-  const userMatch = cookie.match(/(?:^|;\s*)admin_user=([^;]+)/);
-  const username = userMatch ? decodeURIComponent(userMatch[1]) : 'admin';
+export default function handler(req, res) {
+  const isAuth = isAdminAuthenticated(req);
+  const username = getAdminUsername(req);
 
   if (isAuth) {
     return res.status(200).json({ user: { username } });

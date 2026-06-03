@@ -1,29 +1,8 @@
 import { useEffect, useMemo, useState } from 'react'
 import Link from "next/link";
+import { getRoomSlug } from '../lib/room-slug';
 
-const fallbackPackages = [
-  {
-    title: 'Garden Studio',
-    price: '120',
-    description: 'Comfortable garden-facing room ideal for couples and solo travelers.',
-    image: 'https://images.unsplash.com/photo-1496417263034-38ec4f0b665a?auto=format&fit=crop&w=800&q=80',
-    features: ['2 Guests', 'Queen Bed', '280 sqft'],
-  },
-  {
-    title: 'Pool View Suite',
-    price: '150',
-    description: 'Spacious suite with a private balcony and tropical pool views.',
-    image: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=800&q=80',
-    features: ['3 Guests', 'King Bed', '360 sqft'],
-  },
-  {
-    title: 'Ocean Terrace',
-    price: '190',
-    description: 'Premium terrace room designed for sunset views and serene stays.',
-    image: 'https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?auto=format&fit=crop&w=800&q=80',
-    features: ['4 Guests', 'King Bed', '420 sqft'],
-  },
-]
+const fallbackPackages = []
 
 function formatRoomPrice(room) {
   const usd = Number(room?.priceUsd)
@@ -104,6 +83,7 @@ export default function PackageList() {
 
         return {
           title: room.name,
+          pageSlug: getRoomSlug(room.pageSlug, room.name, room.id ? `room-${room.id}` : 'room'),
           price: formatRoomPrice(room),
           description: room.shortDescription || room.descriptionText || 'Luxury room at Villa Hillcrest.',
           image,
@@ -140,7 +120,7 @@ export default function PackageList() {
                   <li key={idx}>{feature}</li>
                 ))}
               </ul>
-              <button className="show-details-btn">Show More Details</button>
+              <Link href={pkg.pageSlug ? `/rooms/${pkg.pageSlug}` : '/villa'} className="show-details-btn">Show More Details</Link>
               <Link href="/booking" className="book-now-btn">Book This Package</Link>
               {/*<button className="book-now-btn">Book This Package</button>*/}
             </article>

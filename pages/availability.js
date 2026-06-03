@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import { useEffect } from 'react'
 import Layout from '../components/Layout'
-import Hero from '../components/Hero'
+import PageHero from '../components/PageHero'
 import Intro from '../components/Intro'
 import Availability from '../components/Availability'
 import AvailabilityWidget from '../components/AvailabilityWidget'
@@ -101,7 +101,11 @@ export default function AboutUs() {
       </Head>
 
       <main>
-        <Hero />
+        <PageHero
+          title="Availability"
+          imageUrl="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?q=80&w=1800&auto=format&fit=crop"
+          ariaLabel="Availability hero"
+        />
         <BeSearchForm />
         {/* <Intro /> */}
         {/* <PackageList /> */}

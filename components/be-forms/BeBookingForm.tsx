@@ -1,9 +1,8 @@
-import { usePathname } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 export default function BeBookingForm() {
-    const pathname = usePathname();
     const [showUnavailable, setShowUnavailable] = useState(false);
+    const initializedRef = useRef(false);
 
     const loadBookingForm = (w) => {
         // @ts-ignore
@@ -23,8 +22,13 @@ export default function BeBookingForm() {
     }
 
   useEffect(() => {
+        if (initializedRef.current) {
+            return undefined;
+        }
+        initializedRef.current = true;
+
         setShowUnavailable(false);
-    loadBookingForm(window);
+        loadBookingForm(window);
 
         const timeoutId = window.setTimeout(() => {
             const container = document.getElementById('be-booking-form');
@@ -38,7 +42,7 @@ export default function BeBookingForm() {
         return () => {
             window.clearTimeout(timeoutId);
         };
-  }, [pathname]);
+    }, []);
 
   return (
             <>

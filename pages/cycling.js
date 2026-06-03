@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import Layout from '../components/Layout'
 import BeSearchForm from '../components/be-forms/BeSearchForm'
+import PageHero from '../components/PageHero'
 
 const cyclingFuelSections = [
   {
@@ -150,11 +151,7 @@ export default function CyclingPage() {
       </Head>
 
       <main className="cycling-page">
-        <section className="cycling-hero" aria-label="Cycling hero">
-          <div className="cycling-hero-overlay">
-            <h1>Cycling in Weligama</h1>
-          </div>
-        </section>
+        <PageHero title="Cycling in Weligama" className="cycling-hero" ariaLabel="Cycling hero" />
 
         <BeSearchForm />
 

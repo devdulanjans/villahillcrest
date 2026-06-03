@@ -48,7 +48,7 @@ export default function AdminContactDetailsPage() {
       setError('');
 
       try {
-        const authRes = await fetch('/api/admin/me');
+        const authRes = await fetch('/api/admin/me', { credentials: 'same-origin' });
         const authData = await authRes.json();
 
         if (!authRes.ok || !authData.user) {

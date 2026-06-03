@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import Layout from '../components/Layout'
 import BeSearchForm from "../components/be-forms/BeSearchForm";
+import PageHero from '../components/PageHero'
 
 export default function YogaPage() {
   return (
@@ -45,19 +46,19 @@ export default function YogaPage() {
       </Head>
 
       <main className="yoga-page">
-        <section className="yoga-hero" aria-label="Yoga retreat hero" />
+        <PageHero title="Yoga Retreat" className="yoga-hero" ariaLabel="Yoga retreat hero" />
 
         <BeSearchForm />
 
           {/* Internal links for SEO and navigation */}
-          <nav aria-label="Related links" style={{ margin: '32px 0', textAlign: 'center' }}>
-            <span style={{ fontWeight: 600, marginRight: 8 }}>Explore more:</span>
-            <a href="/villa" aria-label="Villa rooms and amenities" style={{ margin: '0 10px', color: '#2d7a3e', textDecoration: 'underline' }}>Villa</a>
-            <a href="/dining" aria-label="Dining experiences" style={{ margin: '0 10px', color: '#2d7a3e', textDecoration: 'underline' }}>Dining</a>
-            <a href="/foods" aria-label="Foods and menu" style={{ margin: '0 10px', color: '#2d7a3e', textDecoration: 'underline' }}>Foods</a>
-            <a href="/explore" aria-label="Explore local experiences" style={{ margin: '0 10px', color: '#2d7a3e', textDecoration: 'underline' }}>Explore</a>
-            <a href="/packages" aria-label="Packages" style={{ margin: '0 10px', color: '#2d7a3e', textDecoration: 'underline' }}>Packages</a>
-            <a href="/contact-us" aria-label="Contact us" style={{ margin: '0 10px', color: '#2d7a3e', textDecoration: 'underline' }}>Contact Us</a>
+          <nav aria-label="Related links" className="villa-related-nav">
+            <span>Explore more:</span>
+            <a href="/villa" aria-label="Villa rooms and amenities">Villa</a>
+            <a href="/dining" aria-label="Dining experiences">Dining</a>
+            <a href="/foods" aria-label="Foods and menu">Foods</a>
+            <a href="/explore" aria-label="Explore local experiences">Explore</a>
+            <a href="/packages" aria-label="Packages">Packages</a>
+            <a href="/contact-us" aria-label="Contact us">Contact Us</a>
           </nav>
 
         <section className="intro yoga-intro" aria-labelledby="yoga-heading">

@@ -38,7 +38,7 @@ export default function AdminSocialLinksPage() {
     setError('');
 
     try {
-      const authRes = await fetch('/api/admin/me');
+      const authRes = await fetch('/api/admin/me', { credentials: 'same-origin' });
       const authData = await authRes.json();
       if (!authRes.ok || !authData.user) {
         router.push('/admin/login');

@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import { useEffect } from 'react'
 import Layout from '../components/Layout'
-import Hero from '../components/Hero'
+import PageHero from '../components/PageHero'
 import ContactUsIntro from '../components/ContactUsIntro'
 import ContactWidget from '../components/ContactWidget'
 import Availability from '../components/Availability'
@@ -98,7 +98,11 @@ export default function ContactUs() {
       </Head>
 
       <main>
-        <Hero />
+        <PageHero
+          title="Contact Us"
+          imageUrl="https://images.unsplash.com/photo-1493558103817-58b2924bce98?q=80&w=1800&auto=format&fit=crop"
+          ariaLabel="Contact us hero"
+        />
         <BeSearchForm />
         <ContactUsIntro />
         <ContactWidget />

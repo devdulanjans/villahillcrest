@@ -21,7 +21,7 @@ export default function AdminOffersPage() {
     setError('');
 
     try {
-      const authRes = await fetch('/api/admin/me');
+      const authRes = await fetch('/api/admin/me', { credentials: 'same-origin' });
       const authData = await authRes.json();
       if (!authRes.ok || !authData.user) {
         router.push('/admin/login');
@@ -251,7 +251,9 @@ export default function AdminOffersPage() {
               />
 
               <div className={styles.formActions}>
-                <button type="submit" disabled={busy}>{busy ? 'Saving...' : form.id ? 'Update Offer' : 'Save Offer'}</button>
+                <button type="submit" disabled={busy || isImageUploading}>
+                  {isImageUploading ? 'Uploading image...' : busy ? 'Saving...' : form.id ? 'Update Offer' : 'Save Offer'}
+                </button>
                 {form.id && (
                   <button type="button" className={styles.secondary} onClick={resetForm}>Cancel Edit</button>
                 )}

@@ -8,6 +8,7 @@ import styles from '../../styles/AdminRooms.module.css';
 const defaultForm = {
   id: null,
   name: '',
+  pageSlug: '',
   category: 'Deluxe',
   shortDescription: '',
   descriptionText: '',
@@ -19,6 +20,8 @@ const defaultForm = {
   priceLkr: '',
   amenitiesText: '',
   images: [],
+  videoUrl: '',
+  bookingUrl: '',
   isEnabled: true,
   sortOrder: 0,
 };
@@ -36,12 +39,20 @@ function toAmenityText(list) {
 export default function AdminRoomsPage() {
   const router = useRouter();
   const [rooms, setRooms] = useState([]);
+  const [roomSearch, setRoomSearch] = useState('');
   const [loading, setLoading] = useState(true);
   const [busy, setBusy] = useState(false);
   const [isImageUploading, setIsImageUploading] = useState(false);
+  const [isVideoUploading, setIsVideoUploading] = useState(false);
   const [error, setError] = useState('');
   const [message, setMessage] = useState('');
   const [form, setForm] = useState(defaultForm);
+
+  const filteredRooms = useMemo(() => {
+    const q = roomSearch.trim().toLowerCase();
+    if (!q) return rooms;
+    return rooms.filter((r) => r.name?.toLowerCase().includes(q));
+  }, [rooms, roomSearch]);
 
   const parsedAmenities = useMemo(
     () => form.amenitiesText.split(',').map((item) => item.trim()).filter((item) => item.length > 0),
@@ -53,7 +64,7 @@ export default function AdminRoomsPage() {
     setError('');
 
     try {
-      const authRes = await fetch('/api/admin/me');
+      const authRes = await fetch('/api/admin/me', { credentials: 'same-origin' });
       const authData = await authRes.json();
       if (!authRes.ok || !authData.user) {
         router.push('/admin/login');
@@ -102,6 +113,45 @@ export default function AdminRoomsPage() {
     return data.imageUrl;
   };
 
+  const uploadRoomVideo = async (file) => {
+    const body = new FormData();
+    body.append('video', file);
+
+    const res = await fetch('/api/admin/rooms/upload-video', {
+      method: 'POST',
+      body,
+    });
+
+    const data = await res.json();
+    if (!res.ok) {
+      throw new Error(data.message || 'Video upload failed');
+    }
+
+    return data.videoUrl;
+  };
+
+  const handleVideoFile = async (event) => {
+    const file = event.target.files?.[0];
+    if (!file) {
+      return;
+    }
+
+    setIsVideoUploading(true);
+    setError('');
+    setMessage('');
+
+    try {
+      const videoUrl = await uploadRoomVideo(file);
+      setForm((prev) => ({ ...prev, videoUrl }));
+      setMessage('Room video uploaded successfully');
+    } catch (uploadError) {
+      setError(uploadError.message || 'Video upload failed');
+    } finally {
+      setIsVideoUploading(false);
+      event.target.value = '';
+    }
+  };
+
   const handleImageFiles = async (event) => {
     const files = Array.from(event.target.files || []);
     if (files.length === 0) {
@@ -145,6 +195,7 @@ export default function AdminRoomsPage() {
     setForm({
       id: room.id,
       name: room.name || '',
+      pageSlug: room.pageSlug || '',
       category: room.category || 'Deluxe',
       shortDescription: room.shortDescription || '',
       descriptionText: room.descriptionText || '',
@@ -156,6 +207,8 @@ export default function AdminRoomsPage() {
       priceLkr: room.priceLkr ?? '',
       amenitiesText: toAmenityText(room.amenities),
       images: Array.isArray(room.images) ? room.images : [],
+      videoUrl: room.videoUrl || '',
+      bookingUrl: room.bookingUrl || '',
       isEnabled: Boolean(room.isEnabled),
       sortOrder: room.sortOrder || 0,
     });
@@ -192,6 +245,7 @@ export default function AdminRoomsPage() {
 
       const payload = {
         name: form.name,
+        pageSlug: form.pageSlug,
         category: form.category,
         shortDescription: form.shortDescription,
         descriptionText: form.descriptionText,
@@ -203,6 +257,8 @@ export default function AdminRoomsPage() {
         priceLkr: form.priceLkr,
         amenities: parsedAmenities,
         images: form.images,
+        videoUrl: form.videoUrl,
+        bookingUrl: form.bookingUrl,
         isEnabled: form.isEnabled,
         sortOrder: Number(form.sortOrder || 0),
       };
@@ -280,6 +336,15 @@ export default function AdminRoomsPage() {
                   onChange={(e) => setForm((prev) => ({ ...prev, name: e.target.value }))}
                   required
                 />
+                <input
+                  type="text"
+                  placeholder="Page field name (optional, e.g. ocean-suite)"
+                  value={form.pageSlug}
+                  onChange={(e) => setForm((prev) => ({ ...prev, pageSlug: e.target.value }))}
+                />
+              </div>
+
+              <div className={styles.rowTwo}>
                 <select
                   value={form.category}
                   onChange={(e) => setForm((prev) => ({ ...prev, category: e.target.value }))}
@@ -304,6 +369,30 @@ export default function AdminRoomsPage() {
                 onChange={(e) => setForm((prev) => ({ ...prev, descriptionText: e.target.value }))}
                 rows={4}
               />
+
+              <div className={styles.rowThree}>
+                <input
+                  type="url"
+                  placeholder="Booking button URL (optional)"
+                  value={form.bookingUrl}
+                  onChange={(e) => setForm((prev) => ({ ...prev, bookingUrl: e.target.value }))}
+                />
+                <input
+                  type="url"
+                  placeholder="YouTube or external video URL"
+                  value={form.videoUrl}
+                  onChange={(e) => setForm((prev) => ({ ...prev, videoUrl: e.target.value }))}
+                />
+              </div>
+
+              <div className={styles.uploadRow}>
+                <label className={styles.uploadBtn}>
+                  Upload room video
+                  <input type="file" accept="video/*" onChange={handleVideoFile} disabled={isVideoUploading} />
+                </label>
+              </div>
+
+              {isVideoUploading && <p className={styles.uploadLoader}>Uploading room video...</p>}
 
               <div className={styles.rowFour}>
                 <input
@@ -409,8 +498,8 @@ export default function AdminRoomsPage() {
               </div>
 
               <div className={styles.formActions}>
-                <button type="submit" disabled={busy}>
-                  {busy ? 'Saving...' : form.id ? 'Update Room' : 'Save Room'}
+                <button type="submit" disabled={busy || isImageUploading}>
+                  {isImageUploading ? 'Uploading images...' : busy ? 'Saving...' : form.id ? 'Update Room' : 'Save Room'}
                 </button>
                 {form.id && (
                   <button type="button" className={styles.secondary} onClick={resetForm}>
@@ -425,23 +514,39 @@ export default function AdminRoomsPage() {
           {message && <p className={styles.message}>{message}</p>}
 
           <section className={styles.panel}>
-            <h3>Saved Rooms</h3>
+            <div className={styles.listHeader}>
+              <h3>Saved Rooms</h3>
+              <input
+                type="text"
+                className={styles.searchInput}
+                placeholder="Search by room name..."
+                value={roomSearch}
+                onChange={(e) => setRoomSearch(e.target.value)}
+              />
+            </div>
             {loading ? (
               <p>Loading rooms...</p>
-            ) : rooms.length === 0 ? (
-              <p>No rooms available yet.</p>
+            ) : filteredRooms.length === 0 ? (
+              <p>{rooms.length === 0 ? 'No rooms available yet.' : 'No rooms match your search.'}</p>
             ) : (
               <div className={styles.roomGrid}>
-                {rooms.map((room) => (
+                {filteredRooms.map((room) => (
                   <article className={styles.roomCard} key={room.id}>
                     <img
                       src={Array.isArray(room.images) && room.images.length > 0 ? room.images[0] : '/images/logo.png'}
                       alt={room.name}
                     />
                     <h4>{room.name}</h4>
+                    <p><strong>URL:</strong> /rooms/{room.pageSlug || room.name}</p>
                     <p>{room.category}</p>
                     <p>{room.shortDescription}</p>
                     <p>{room.maxGuests} guests • {room.bedSize} • {room.bathrooms} bath</p>
+                    {room.bookingUrl && (
+                      <p><strong>Booking URL:</strong> {room.bookingUrl}</p>
+                    )}
+                    {room.videoUrl && (
+                      <p><strong>Video:</strong> {room.videoUrl}</p>
+                    )}
                     <div className={styles.roomActions}>
                       <button type="button" onClick={() => beginEdit(room)}>Edit</button>
                       <button type="button" className={styles.deleteBtn} onClick={() => removeRoom(room.id)}>

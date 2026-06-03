@@ -1,12 +1,12 @@
 .sidebar {
-  background: linear-gradient(180deg, #0f1340 0%, #080a24 100%);
+  background: linear-gradient(180deg, var(--admin-sidebar-from) 0%, var(--admin-sidebar-to) 100%);
   color: #c8cee6;
   padding: 24px 16px;
 }
 
 .brand {
   font-size: 32px;
-  color: #48a5ff;
+  color: var(--admin-primary);
   margin: 0 0 18px;
 }
 
@@ -31,7 +31,7 @@
 }
 
 .menuItemActive {
-  background: linear-gradient(90deg, rgba(83, 111, 255, 0.35), rgba(135, 150, 255, 0.15));
+  background: linear-gradient(90deg, rgba(from var(--admin-primary) r g b / 0.40), rgba(from var(--admin-primary) r g b / 0.15));
 }
 
 .menuLink,

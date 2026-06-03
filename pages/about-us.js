@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import { useEffect } from 'react'
 import Layout from '../components/Layout'
-import Hero from '../components/Hero'
+import PageHero from '../components/PageHero'
 import Intro from '../components/Intro'
 import Availability from '../components/Availability'
 import Services from '../components/Services'
@@ -46,17 +46,6 @@ export default function AboutUs() {
       mobileSurfSubmenu && mobileSurfSubmenu.setAttribute('aria-hidden', String(isExpanded))
     })
 
-        {/* Internal links for SEO and navigation */}
-        <nav aria-label="Related links" style={{ margin: '32px 0', textAlign: 'center' }}>
-          <span style={{ fontWeight: 600, marginRight: 8 }}>Explore more:</span>
-          <a href="/villa" aria-label="Villa rooms and amenities" style={{ margin: '0 10px', color: '#2d7a3e', textDecoration: 'underline' }}>Villa</a>
-          <a href="/dining" aria-label="Dining experiences" style={{ margin: '0 10px', color: '#2d7a3e', textDecoration: 'underline' }}>Dining</a>
-          <a href="/yoga" aria-label="Yoga retreats" style={{ margin: '0 10px', color: '#2d7a3e', textDecoration: 'underline' }}>Yoga</a>
-          <a href="/foods" aria-label="Foods and menu" style={{ margin: '0 10px', color: '#2d7a3e', textDecoration: 'underline' }}>Foods</a>
-          <a href="/explore" aria-label="Explore local experiences" style={{ margin: '0 10px', color: '#2d7a3e', textDecoration: 'underline' }}>Explore</a>
-          <a href="/packages" aria-label="Packages" style={{ margin: '0 10px', color: '#2d7a3e', textDecoration: 'underline' }}>Packages</a>
-          <a href="/contact-us" aria-label="Contact us" style={{ margin: '0 10px', color: '#2d7a3e', textDecoration: 'underline' }}>Contact Us</a>
-        </nav>
     document.querySelectorAll('.mobile-nav-link:not(.mobile-nav-parent)').forEach(link => {
       link.addEventListener('click', () => {
         mobileMenu && mobileMenu.classList.remove('active')
@@ -110,12 +99,16 @@ export default function AboutUs() {
       </Head>
 
       <main>
-        <Hero />
+        <PageHero
+          title="About Us"
+          imageUrl="https://images.unsplash.com/photo-1469474968028-56623f02e42e?q=80&w=1800&auto=format&fit=crop"
+          ariaLabel="About us hero"
+        />
         <BeSearchForm />
         <Intro />
-        {/* <Availability />
-        <Services />
-        <FeatureSections /> */}
+        {/* <Services /> */}
+        <FeatureSections />
+        <Availability /> 
       </main>
     </Layout>
   )

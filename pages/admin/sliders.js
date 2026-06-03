@@ -164,7 +164,9 @@ export default function AdminSlidersPage() {
                 <input name="enabled" type="checkbox" checked={!!form.enabled} onChange={handleChange} /> Enabled
               </label>
               <div className={styles.formActions}>
-                <button type="submit" disabled={loading}>{editingId ? 'Update' : 'Create'} Slider</button>
+                <button type="submit" disabled={loading || isImageUploading}>
+                  {isImageUploading ? 'Uploading image...' : editingId ? 'Update' : 'Create'} Slider
+                </button>
                 {editingId && <button type="button" className={styles.secondary} onClick={() => { setEditingId(null); setForm({ imageUrl: '', wording: '', sortOrder: 0, enabled: 1 }); }}>Cancel</button>}
               </div>
               {error && <div className={styles.error}>{error}</div>}

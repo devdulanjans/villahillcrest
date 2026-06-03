@@ -2,6 +2,7 @@ import Head from 'next/head'
 import { useEffect, useMemo, useState } from 'react'
 import Layout from '../components/Layout'
 import BeSearchForm from '../components/be-forms/BeSearchForm'
+import PageHero from '../components/PageHero'
 
 export default function OffersPage() {
   const [offers, setOffers] = useState([])
@@ -102,7 +103,7 @@ export default function OffersPage() {
       </Head>
 
       <main className="offers-page">
-        <section className="offers-hero" aria-label="Offers hero" />
+        <PageHero title="Offers" className="offers-hero" ariaLabel="Offers hero" />
 
         <BeSearchForm />
 

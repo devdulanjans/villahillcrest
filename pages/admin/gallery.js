@@ -56,7 +56,7 @@ export default function GalleryAdminPage() {
 
     const init = async () => {
       try {
-        const authRes = await fetch('/api/admin/me');
+        const authRes = await fetch('/api/admin/me', { credentials: 'same-origin' });
         const authData = await authRes.json();
 
         if (!isMounted) {

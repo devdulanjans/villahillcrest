@@ -7,7 +7,7 @@
 }
 
 .sidebar {
-  background: linear-gradient(180deg, #0f1340 0%, #080a24 100%);
+  background: linear-gradient(180deg, var(--admin-sidebar-from) 0%, var(--admin-sidebar-to) 100%);
   color: #c8cee6;
   padding: 28px 20px;
   border-right: 1px solid rgba(255, 255, 255, 0.06);
@@ -178,7 +178,7 @@
 .adminWidgetLink {
   text-decoration: none;
   color: #fff;
-  background: #4f66f5;
+  background: var(--admin-primary);
 }
 
 .adminWidgetDisabled {
@@ -508,7 +508,7 @@
 
 .locationTrack div {
   height: 100%;
-  background: linear-gradient(90deg, #4f66f5, #5b87ff);
+  background: linear-gradient(90deg, var(--admin-primary), #5b87ff);
 }
 
 .logoutBtn {
@@ -572,7 +572,7 @@
   border-radius: 6px;
   min-height: 38px;
   padding: 0 14px;
-  background: #4f66f5;
+  background: var(--admin-primary);
   color: #fff;
   font-weight: 600;
   cursor: pointer;
@@ -648,7 +648,7 @@
   gap: 6px;
   cursor: pointer;
   color: #fff;
-  background: #4f66f5;
+  background: var(--admin-primary);
 }
 
 .galleryDeleteBtn {

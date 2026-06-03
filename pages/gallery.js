@@ -2,6 +2,7 @@ import Head from 'next/head'
 import { useEffect, useMemo, useState } from 'react'
 import Layout from '../components/Layout'
 import BeSearchForm from '../components/be-forms/BeSearchForm'
+import PageHero from '../components/PageHero'
 
 export default function GalleryPage() {
   const [galleryAlbums, setGalleryAlbums] = useState([])
@@ -136,11 +137,7 @@ export default function GalleryPage() {
       </Head>
 
       <main className="gallery-page">
-        <section className="gallery-hero" aria-label="Gallery hero">
-          <div className="gallery-hero-overlay">
-            <h1>Gallery</h1>
-          </div>
-        </section>
+        <PageHero title="Gallery" className="gallery-hero" ariaLabel="Gallery hero" />
 
         <BeSearchForm />
 

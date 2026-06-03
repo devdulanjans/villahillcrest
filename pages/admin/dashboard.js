@@ -6,7 +6,9 @@ import AdminSidebar, { adminMenuItems } from '../../components/admin/AdminSideba
 import styles from '../../styles/AdminDashboard.module.css';
 
 const defaultCounts = {
+  featureSections: 0,
   offers: 0,
+  blogs: 0,
   rooms: 0,
   galleryImages: 0,
   sliders: 0,
@@ -33,16 +35,20 @@ export default function AdminDashboard() {
 
     const loadCounts = async () => {
       try {
-        const [offersRes, roomsRes, galleryRes, slidersRes, socialRes] = await Promise.all([
+        const [featureSectionsRes, offersRes, blogsRes, roomsRes, galleryRes, slidersRes, socialRes] = await Promise.all([
+          fetch('/api/admin/feature-sections'),
           fetch('/api/admin/offers'),
+          fetch('/api/admin/blogs'),
           fetch('/api/admin/rooms'),
           fetch('/api/admin/gallery'),
           fetch('/api/admin/sliders'),
           fetch('/api/admin/social-links'),
         ]);
 
-        const [offersData, roomsData, galleryData, slidersData, socialData] = await Promise.all([
+        const [featureSectionsData, offersData, blogsData, roomsData, galleryData, slidersData, socialData] = await Promise.all([
+          safeJson(featureSectionsRes),
           safeJson(offersRes),
+          safeJson(blogsRes),
           safeJson(roomsRes),
           safeJson(galleryRes),
           safeJson(slidersRes),
@@ -52,7 +58,9 @@ export default function AdminDashboard() {
         if (!isMounted) return;
 
         setCounts({
+          featureSections: Array.isArray(featureSectionsData?.items) ? featureSectionsData.items.length : 0,
           offers: Array.isArray(offersData?.items) ? offersData.items.length : 0,
+          blogs: Array.isArray(blogsData?.items) ? blogsData.items.length : 0,
           rooms: Array.isArray(roomsData?.items) ? roomsData.items.length : 0,
           galleryImages: Array.isArray(galleryData?.items) ? galleryData.items.length : 0,
           sliders: Array.isArray(slidersData?.sliders) ? slidersData.sliders.length : 0,
@@ -66,7 +74,7 @@ export default function AdminDashboard() {
 
     const loadUser = async () => {
       try {
-        const res = await fetch('/api/admin/me');
+        const res = await fetch('/api/admin/me', { credentials: 'same-origin' });
         const text = await res.text();
         const data = text ? JSON.parse(text) : {};
 
@@ -100,7 +108,9 @@ export default function AdminDashboard() {
     : 'Admin User';
 
   const summaryCards = [
+    { label: 'Feature Sections', value: counts.featureSections },
     { label: 'Offers', value: counts.offers },
+    { label: 'Blogs', value: counts.blogs },
     { label: 'Rooms', value: counts.rooms },
     { label: 'Gallery Images', value: counts.galleryImages },
     { label: 'Sliders', value: counts.sliders },

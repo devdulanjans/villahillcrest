@@ -12,9 +12,14 @@ import styles from '../../styles/AdminSidebar.module.css';
 
 export const adminMenuItems = [
   { icon: <MdSpaceDashboard />, label: 'Dashnoard', href: '/admin/dashboard' },
+  { icon: <IoMdApps />, label: 'FeatureSections', href: '/admin/feature-sections' },
   { icon: <FaFile />, label: 'About', href: '/admin/about' },
+  { icon: <FaFile />, label: 'Page Hero Images', href: '/admin/page-hero-images' },
+  { icon: <FaFile />, label: 'Terms & Conditions', href: '/admin/terms-and-conditions' },
+  { icon: <FaFile />, label: 'Privacy Policy', href: '/admin/privacy-policy' },
   { icon: <FaFolder />, label: 'Gallery', href: '/admin/gallery' },
   { icon: <FaMoneyBillWave />, label: 'Offers', href: '/admin/offers' },
+  { icon: <FaFile />, label: 'Blogs', href: '/admin/blogs' },
   { icon: <FaBed />, label: 'Add Room', href: '/admin/rooms' },
   { icon: <FaFile />, label: 'Sliders', href: '/admin/sliders' },
   { icon: <FaMapMarkerAlt />, label: 'Contact Details', href: '/admin/contact-details' },

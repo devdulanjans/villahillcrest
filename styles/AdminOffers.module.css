@@ -7,7 +7,7 @@
 }
 
 .sidebar {
-  background: linear-gradient(180deg, #0f1340 0%, #080a24 100%);
+  background: linear-gradient(180deg, var(--admin-sidebar-from) 0%, var(--admin-sidebar-to) 100%);
   color: #c8cee6;
   padding: 24px 16px;
 }
@@ -111,7 +111,7 @@
   justify-content: center;
   padding: 0 14px;
   border-radius: 6px;
-  background: #4f66f5;
+  background: var(--admin-primary);
   color: #fff;
   cursor: pointer;
 }
@@ -152,7 +152,7 @@
   border-radius: 6px;
   border: none;
   padding: 0 14px;
-  background: #4f66f5;
+  background: var(--admin-primary);
   color: #fff;
   cursor: pointer;
 }
@@ -174,7 +174,7 @@
 
 .uploadLoader {
   margin: 4px 0 0;
-  color: #4f66f5;
+  color: var(--admin-primary);
   font-weight: 600;
   font-size: 13px;
 }
@@ -214,7 +214,7 @@
   min-height: 34px;
   border-radius: 6px;
   border: none;
-  background: #4f66f5;
+  background: var(--admin-primary);
   color: #fff;
   cursor: pointer;
 }

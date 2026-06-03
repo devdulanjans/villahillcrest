@@ -17,6 +17,11 @@ import useHomeReveal from '../components/home/useHomeReveal'
 import Services from '../components/Services'
 import OfferPopup from '../components/home/OfferPopup'
 import BeSearchForm from '../components/be-forms/BeSearchForm'
+import HeroFadeSlider from '../components/HeroFadeSlider'
+import LandingImageSliderWidget from '../components/new-index/LandingImageSliderWidget'
+import IntroSectionWidget from '../components/new-index/IntroSectionWidget'
+import HighlightsWidget from '../components/new-index/HighlightsWidget'
+import FeatureSections from '../components/FeatureSections'
 
 export default function Home() {
   useHomeReveal()
@@ -49,28 +54,37 @@ export default function Home() {
         <meta name="robots" content="index, follow" />
         <meta property="og:site_name" content="Villa Hillcrest" />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        {/* <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
-        <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500&family=Montserrat:wght@300;400;500&family=Cormorant+Garamond:wght@300;400;500&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500&family=Montserrat:wght@300;400;500&family=Cormorant+Garamond:wght@300;400;500&display=swap" rel="stylesheet" /> */}
+
       </Head>
 
       <main className="hc-home">
         <OfferPopup />
-        <HeroWidget />
+        {/* <HeroWidget /> */}
+        <LandingImageSliderWidget />
+        {/* <HeroFadeSlider
+          autoMs={4500}
+          altPrefix="Villa Hill Crest scenic view"
+        /> */}
         <BeSearchForm />
         {/* <IntroWidget /> */}
-        <Services/>
+        <IntroSectionWidget />
+        {/* <Services/> */}
         <GalleryIntroWidget />
+        <HighlightsWidget />
+        {/* <FeatureSections /> */}
         {/* <AwardsWidget /> */}
-        <StoryWidget />
-        <ExperiencesWidget />
+        {/* <StoryWidget /> */}
+        {/* <ExperiencesWidget />
         <CafeWidget />
         <PhilosophyWidget />
         <RoomsWidget />
         <CommunityWidget />
         <JourneyWidget />
         <ActivitiesWidget />
-        <MapWidget />
+        <MapWidget /> */}
       </main>
     </Layout>
   )

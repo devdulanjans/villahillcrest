@@ -7,7 +7,7 @@
 }
 
 .sidebar {
-  background: linear-gradient(180deg, #0f1340 0%, #080a24 100%);
+  background: linear-gradient(180deg, var(--admin-sidebar-from) 0%, var(--admin-sidebar-to) 100%);
   color: #c8cee6;
   padding: 24px 16px;
 }
@@ -140,7 +140,7 @@
 .albumUpdateForm button,
 .editForm button {
   border: none;
-  background: #4f66f5;
+  background: var(--admin-primary);
   color: #fff;
   font-weight: 600;
   cursor: pointer;
@@ -169,7 +169,7 @@
 
 .uploadLoader {
   margin-top: 8px;
-  color: #4f66f5;
+  color: var(--admin-primary);
   font-weight: 600;
   font-size: 13px;
 }
@@ -254,7 +254,7 @@
   min-height: 34px;
   border-radius: 6px;
   border: none;
-  background: #4f66f5;
+  background: var(--admin-primary);
   color: #fff;
   cursor: pointer;
 }

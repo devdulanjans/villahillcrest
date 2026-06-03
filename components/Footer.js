@@ -8,6 +8,7 @@ import {
   SiTripadvisor
 } from 'react-icons/si'
 import { FaHotel, FaRoute } from 'react-icons/fa'
+import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 
@@ -94,9 +95,9 @@ export default function Footer() {
         </div>}
 
         <div className="footer-links">
-          <a href="/#philosophy">Our Philosophy</a>
-          <a href="#">Terms & Conditions</a>
-          <a href="#">Privacy Policy</a>
+          <Link href="/our-philosophy">Our Philosophy</Link>
+          <Link href="/terms-and-conditions">Terms & Conditions</Link>
+          <Link href="/privacy-policy">Privacy Policy</Link>
         </div>
 
         <p className="copyright">Copyright © 2026 Villa Hillcrest. All rights reserved. </p>

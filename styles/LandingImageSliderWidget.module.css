@@ -1,0 +1,133 @@
+.landingSlider {
+  position: relative;
+  width: calc(100vw);
+  max-width: none;
+  margin: 0 calc(50% - 50vw);
+  overflow: hidden;
+}
+
+.viewport {
+  position: relative;
+  width: 100%;
+  min-height: 560px;
+  overflow: hidden;
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+.slideActive {
+  opacity: 1;
+  z-index: 1;
+}
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.textOverlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 64px 24px 0;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.textInner {
+  max-width: 760px;
+  width: 100%;
+  text-align: center;
+  color: #ffffff;
+  animation: slideTextDown 0.8s ease;
+}
+
+.subtitle {
+  margin: 0 0 14px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.textInner h2 {
+  margin: 0;
+  font-size: clamp(32px, 4.8vw, 64px);
+  line-height: 1.02;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+.dots {
+  position: absolute;
+  left: 50%;
+  bottom: 24px;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  z-index: 2;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.dotActive {
+  background: #ffffff;
+  transform: scale(1.2);
+}
+
+@keyframes slideTextDown {
+  from {
+    transform: translateY(-24px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@media (max-width: 980px) {
+  .viewport {
+    min-height: 420px;
+  }
+
+  .textOverlay {
+    padding: 42px 18px 0;
+  }
+
+  .textInner h2 {
+    font-size: clamp(28px, 7vw, 40px);
+  }
+}
+
+@media (max-width: 640px) {
+  .viewport {
+    min-height: 320px;
+  }
+
+  .textOverlay {
+    padding: 28px 16px 0;
+  }
+
+  .textInner h2 {
+    font-size: clamp(24px, 10vw, 32px);
+  }
+}

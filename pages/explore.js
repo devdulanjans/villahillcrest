@@ -1,69 +1,78 @@
 import Head from 'next/head'
 import Layout from '../components/Layout'
 import BeSearchForm from '../components/be-forms/BeSearchForm'
+import ExploreTopicWidget from '../components/explore/ExploreTopicWidget'
+import PageHero from '../components/PageHero'
 
 const exploreItems = [
   {
-    title: 'Surf',
-    text: 'Weligama is one of Sri Lanka\'s top destinations for surfers. We offer warm-water sessions for all levels and guided access to nearby reef and beach breaks.',
+    title: 'Surf Echo',
+    text: 'Weligama is one of Sri Lanka\'s top destinations for surfers, with warm-water sessions for beginners and guided access to nearby reef and beach breaks.',
     cta: 'Learn to surf in Sri Lanka',
-    image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1600&auto=format&fit=crop',
-    href: '/villa'
+    image: '/images/uploads/surf-camp-weligama-bay-sri-lanka.png',
+    href: '/cycling'
   },
   {
-    title: 'Yoga',
-    text: 'Energize body and mind with daily yoga classes for beginners and intermediate practitioners in a peaceful tropical setting.',
-    cta: 'Yoga classes in Weligama',
-    image: 'https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=1600&auto=format&fit=crop',
-    href: '/yoga'
-  },
-  {
-    title: 'Beaches',
-    text: 'From quiet palm-lined coves to lively sunset spots, the southern coastline offers a beach for every mood and pace.',
-    cta: 'Take me to the beaches',
-    image: 'https://images.unsplash.com/photo-1509233725247-49e657c54213?q=80&w=1600&auto=format&fit=crop',
+    title: 'Whale Watching',
+    text: 'Head to Mirissa for unforgettable whale and dolphin watching tours during the season with experienced local crews.',
+    cta: 'Plan a whale watching trip',
+    image: '/images/uploads/whale-watching.jpg',
     href: '/contact-us'
   },
   {
-    title: 'Batik Workshop',
-    text: 'Create your own hand-dyed textile and discover the local craft tradition with artists from nearby villages.',
-    cta: 'Book workshop',
-    image: 'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?q=80&w=1600&auto=format&fit=crop',
+    title: 'Beach Hopping',
+    text: 'Explore palm-lined beaches along the south coast, from lively surfing bays to quiet sunset coves.',
+    cta: 'Take me to the beaches',
+    image: '/images/uploads/beach-hopping.jpg',
+    href: '/contact-us'
+  },
+  {
+    title: 'Galle Fort Walk',
+    text: 'Stroll through UNESCO-listed Galle Fort, discover colonial lanes, boutique stores, and oceanfront ramparts.',
+    cta: 'Explore Galle Fort',
+    image: '/images/uploads/galle-fort-walk.jpg',
     href: '/contact-us'
   },
   {
     title: 'Cooking Class',
-    text: 'Learn authentic Sri Lankan recipes, spice balancing, and tropical menu preparation with our kitchen team.',
-    cta: 'Sri Lanka cooking class',
-    image: 'https://images.unsplash.com/photo-1556911220-bff31c812dba?q=80&w=1600&auto=format&fit=crop',
+    text: 'Learn authentic Sri Lankan recipes, spice balancing, and tropical menu preparation with local chefs.',
+    cta: 'Join a cooking class',
+    image: '/images/uploads/cooking-class.jpg',
     href: '/foods'
   },
   {
     title: 'Tea Estate Day',
-    text: 'Visit scenic tea gardens in the highlands and learn how leaf processing shapes the flavor in your final cup.',
-    cta: 'Discover hills',
-    image: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1600&auto=format&fit=crop',
+    text: 'Visit scenic tea gardens in Sri Lanka\'s hill country and learn how each processing step shapes flavor.',
+    cta: 'Discover the tea highlands',
+    image: '/images/uploads/tea-estate-day.jpg',
     href: '/contact-us'
   },
   {
-    title: 'Temples',
-    text: 'Explore cultural landmarks and sacred sites that reflect the deep spiritual heritage of southern Sri Lanka.',
-    cta: 'Temples in Weligama',
-    image: 'https://images.unsplash.com/photo-1534237710431-e2fc698436d0?q=80&w=1600&auto=format&fit=crop',
+    title: 'Temple Visits',
+    text: 'Explore sacred temples and cultural landmarks that reflect Sri Lanka\'s deep spiritual heritage.',
+    cta: 'Visit nearby temples',
+    image: '/images/uploads/temple-visits.jpg',
     href: '/contact-us'
   },
   {
-    title: 'Safaris',
-    text: 'Take day trips to national parks and witness elephants, birds, and rich biodiversity in their natural habitat.',
-    cta: 'Discover more',
-    image: 'https://images.unsplash.com/photo-1549366021-9f761d450615?q=80&w=1600&auto=format&fit=crop',
+    title: 'Yala Safari',
+    text: 'Take a day trip to Yala National Park and spot leopards, elephants, birds, and rich biodiversity.',
+    cta: 'Book a safari day',
+    image: '/images/uploads/yala-safari.jpg',
     href: '/contact-us'
   },
   {
     title: 'Snorkeling & Diving',
     text: 'Discover reef life and clear-water snorkeling points with trusted local guides and easy coastal access.',
     cta: 'Take me diving',
-    image: 'https://images.unsplash.com/photo-1682685797226-15b048f16f95?q=80&w=1600&auto=format&fit=crop',
+    image: '/images/uploads/snorkeling-diving.jpg',
+    href: '/contact-us'
+  },
+  {
+    title: 'Scenic Train Ride',
+    text: 'Enjoy one of the world\'s most scenic rail journeys through misty hills, tea plantations, and mountain views.',
+    cta: 'Plan a train experience',
+    image: '/images/uploads/scenic-train-ride.jpg',
     href: '/contact-us'
   }
 ]
@@ -111,22 +120,14 @@ export default function ExplorePage() {
       </Head>
 
       <main className="explore-page">
-        <section className="explore-hero" aria-label="Explore the south coast">
-          <div className="explore-hero-overlay">
-            <h1>Explore the south coast</h1>
-            <p>
-              Discover the perfect blend of ocean, culture, and tropical nature.
-              From surf and wellness to temples and wildlife, every day offers a
-              different journey around Villa Hillcrest.
-            </p>
-            <a href="/contact-us" className="explore-hero-btn" aria-label="Read our blog about exploring the south coast">Take me to the blog</a>
-          </div>
-        </section>
+        <PageHero title="Explore The South Coast" className="explore-hero" ariaLabel="Explore the south coast" />
 
         <BeSearchForm />
 
         <section className="explore-list" aria-label="Explore activities and places">
           <div className="container">
+            <ExploreTopicWidget />
+            
             {exploreItems.map((item, index) => (
               <article
                 className={`explore-row ${index % 2 === 1 ? 'is-reverse' : ''}`}

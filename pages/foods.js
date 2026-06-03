@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import Layout from '../components/Layout'
 import BeSearchForm from '../components/be-forms/BeSearchForm'
+import PageHero from '../components/PageHero'
 
 const menuSections = [
   {
@@ -153,11 +154,7 @@ export default function FoodsPage() {
       </Head>
 
       <main className="foods-page">
-        <section className="foods-hero" aria-label="Foods hero">
-          <div className="foods-hero-overlay">
-            <h1>Our food menu</h1>
-          </div>
-        </section>
+        <PageHero title="Our Food Menu" className="foods-hero" ariaLabel="Foods hero" />
 
         <BeSearchForm />
 

@@ -1,5 +1,6 @@
 import bcrypt from 'bcryptjs';
 import { findAdminByUsername } from '../../../lib/mysql';
+import { buildAdminLoginCookies } from '../../../lib/admin-auth';
 
 // Admin login backed by MySQL table: admin_users(id, username, password).
 export default async function handler(req, res) {
@@ -34,15 +35,7 @@ export default async function handler(req, res) {
       return res.status(401).json({ success: false, message: 'Invalid credentials' });
     }
 
-    const cookieParts = ['Path=/', 'HttpOnly', 'SameSite=Lax'];
-    if (process.env.NODE_ENV === 'production') {
-      cookieParts.push('Secure');
-    }
-
-    res.setHeader('Set-Cookie', [
-      `admin_auth=1; ${cookieParts.join('; ')}`,
-      `admin_user=${encodeURIComponent(adminUser.username)}; ${cookieParts.join('; ')}`,
-    ]);
+    res.setHeader('Set-Cookie', buildAdminLoginCookies(req, adminUser.username));
 
     return res.status(200).json({ success: true });
   } catch (error) {

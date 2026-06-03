@@ -2,6 +2,7 @@ import Head from 'next/head'
 import Layout from '../components/Layout'
 import BeBookingForm from '../components/be-forms/BeBookingForm'
 import {useEffect} from "react";
+import PageHero from '../components/PageHero'
 
 export default function BookingPage() {
     useEffect(() => {
@@ -88,7 +89,7 @@ export default function BookingPage() {
       </Head>
 
       <main className="booking-page">
-        <section className="booking-hero" aria-label="Booking hero" />
+        <PageHero title="Booking" className="booking-hero" ariaLabel="Booking hero" />
 
         <section className="intro booking-intro" aria-labelledby="booking-heading">
           <div className="container">

@@ -31,7 +31,7 @@ export default function OfferPopup() {
   useEffect(() => {
     const timerId = setTimeout(() => {
       setIsOpen(true)
-    }, 5000)
+    }, 3000)
 
     return () => clearTimeout(timerId)
   }, [])

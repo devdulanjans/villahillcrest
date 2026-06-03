@@ -23,6 +23,7 @@ function normalizeArray(value) {
 function validateRoomBody(body = {}) {
   const payload = {
     name: String(body.name || '').trim(),
+    pageSlug: String(body.pageSlug || '').trim(),
     category: String(body.category || '').trim(),
     shortDescription: String(body.shortDescription || '').trim(),
     descriptionText: String(body.descriptionText || '').trim(),
@@ -34,6 +35,8 @@ function validateRoomBody(body = {}) {
     priceLkr: body.priceLkr,
     amenities: normalizeArray(body.amenities),
     images: normalizeArray(body.images),
+    videoUrl: String(body.videoUrl || '').trim(),
+    bookingUrl: String(body.bookingUrl || '').trim(),
     isEnabled: Boolean(body.isEnabled),
     sortOrder: Number(body.sortOrder || 0),
   };
