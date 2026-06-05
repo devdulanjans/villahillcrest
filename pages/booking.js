@@ -54,8 +54,8 @@ export default function BookingPage() {
   return (
     <Layout>
       <Head>
-        <title>Villa Hill Crest, Weligama - Official Website | Booking</title>
-        <meta name="description" content="Book your stay at Villa Hillcrest, Sri Lanka. Secure your luxury villa experience now." />
+        <title>Villa HillCrest, Weligama - Official Website | Booking</title>
+        <meta name="description" content="Book your stay at Villa HillCrest, Sri Lanka. Secure your luxury villa experience now." />
         <meta name="theme-color" content="#2d7a3e" />
         <link rel="canonical" href="https://villahillcrest.com/booking" />
         <meta name="robots" content="index, follow" />

@@ -228,6 +228,10 @@
     grid-template-columns: 1fr;
   }
 
+  .topBar {
+    padding-left: 62px;
+  }
+
   .imageRow {
     grid-template-columns: 1fr;
   }

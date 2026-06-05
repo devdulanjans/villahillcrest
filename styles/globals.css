@@ -87,7 +87,7 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 28px 0;
+  padding: 14px 0;
   position: relative;
   flex-wrap: nowrap;
 }
@@ -95,7 +95,7 @@ header {
 .nav-left,
 .nav-right {
   display: flex;
-  gap: 28px;
+  gap: 16px;
   align-items: center;
   flex-wrap: nowrap;
 }
@@ -126,7 +126,7 @@ header {
 }
 
 .logo-img {
-  max-width: 150px;
+  max-width: 160px;
   width: 100%;
   height: auto;
   display: block;
@@ -159,7 +159,7 @@ header {
 
 .mobile-menu .mobile-nav-link {
   font-family: 'Montserrat', sans-serif;
-  font-size: 22px;
+  font-size: 17px;
   letter-spacing: 2px;
   text-transform: uppercase;
   margin: 18px 0;
@@ -235,7 +235,7 @@ header {
 
 .nav-link {
   font-family: 'Montserrat', sans-serif;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 600;
   letter-spacing: 0.5px;
   color: #222;
@@ -421,7 +421,17 @@ header {
   line-height: 1.5;
   /* font-size: 18px; */
   color: #555;
-  text-align: justify;
+  text-align: center;
+}
+
+.intro p.intro-hook {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #2c2c2c;
+  font-style: italic;
+  letter-spacing: 0.02em;
+  text-align: center;
+  padding-bottom: 20px;
 }
 
 .availability-section {
@@ -1458,7 +1468,7 @@ p {
   }
 
   .logo-img {
-    max-width: 120px;
+    max-width: 130px;
   }
 
   .navbar {
@@ -4176,7 +4186,7 @@ p {
   font-family: 'Oswald', sans-serif;
   text-transform: uppercase;
   letter-spacing: 1px;
-  font-size: clamp(36px, 4vw, 58px);
+  font-size: clamp(36px, 4vw, 40px);
   line-height: 1.05;
   margin-bottom: 8px;
 }

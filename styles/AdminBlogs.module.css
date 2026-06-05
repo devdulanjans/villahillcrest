@@ -250,3 +250,31 @@
     color: #fff;
     cursor: pointer;
   }
+
+@media (max-width: 980px) {
+  .page {
+    grid-template-columns: 1fr;
+  }
+
+  .topBar {
+    padding-left: 62px;
+  }
+
+  .blogListItem {
+    flex-wrap: wrap;
+  }
+
+  .blogListActions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+
+  .detailImageItem {
+    grid-template-columns: 1fr;
+  }
+
+  .detailImageItem img {
+    width: 100%;
+    height: 160px;
+  }
+}

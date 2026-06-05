@@ -104,17 +104,15 @@ export default function DiningPage() {
 
         <section className="intro dining-intro" aria-labelledby="dining-heading">
           <div className="container">
-            <h2 id="dining-heading">All day kitchen, coffee and cocktails</h2>
+            <h2 id="dining-heading">PINE YARD RESTAURANT & BAR</h2>
             <p>
-              Villa Hillcrest dining celebrates fresh local produce, wholesome
-              breakfast plates, and coastal-inspired flavors served all day.
-              Whether you are after a post-surf coffee or a relaxed sunset meal,
-              our kitchen is open to everyone.
+              From morning coffee to evening cocktails, Pine Yard is a place where conversations flow, laughter is shared, and memories are made.
             </p>
             <p>
-              Our menus are built around Sri Lankan ingredients with modern,
-              colorful presentation. Guests can enjoy nourishing bowls, signature
-              mains, and handcrafted drinks with warm, attentive service.
+              Enjoy thoughtfully prepared dishes inspired by local ingredients while our team guides you through flavours, stories, and recommendations that make every meal feel personal.
+            </p>
+            <p>
+              Because the best dining experiences are never just about the food—they're about the people you share them with.
             </p>
           </div>
         </section>

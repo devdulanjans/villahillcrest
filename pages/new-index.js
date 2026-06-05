@@ -38,7 +38,7 @@ const highlights = [
   },
   {
     title: 'About Us',
-    text: 'Villa Hill Crest blends contemporary comfort with nature-inspired living. Every corner is crafted to feel calm, airy, and deeply connected to its landscape.',
+    text: 'Villa HillCrest blends contemporary comfort with nature-inspired living. Every corner is crafted to feel calm, airy, and deeply connected to its landscape.',
     image: '/images/gallery/property-view/1779902296271-45522-9.jpg',
     reverse: true
   }
@@ -48,7 +48,7 @@ export default function NewIndexPage() {
   return (
     <>
       <Head>
-        <title>Villa Hill Crest | New Index</title>
+        <title>Villa HillCrest | New Index</title>
         <meta name="description" content="A refined landing page inspired by Malabar Hill style with elegant typography, immersive imagery, and alternating highlight sections." />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
@@ -57,7 +57,7 @@ export default function NewIndexPage() {
 
       <main className={styles.newIndexPage}>
         <header className={styles.topHeader}>
-          <div className={styles.brand}>VILLA HILL CREST</div>
+          <div className={styles.brand}>VILLA HILLCREST</div>
           <nav className={styles.navLinks}>
             <a href="/about-us">About</a>
             <a href="/villa">Villa</a>
@@ -84,7 +84,7 @@ export default function NewIndexPage() {
         <section className={styles.heroSection}>
           <HeroFadeSlider
             autoMs={4500}
-            altPrefix="Villa Hill Crest scenic view"
+            altPrefix="Villa Hillcrest scenic view"
           />
         </section>
 
@@ -95,7 +95,7 @@ export default function NewIndexPage() {
         <section className={styles.quoteStrip}>
           <p>
             Using architectural details from tropical modernism,
-            Villa Hill Crest creates an evocative retreat at the forest edge.
+            Villa Hillcrest creates an evocative retreat at the forest edge.
           </p>
         </section>
 

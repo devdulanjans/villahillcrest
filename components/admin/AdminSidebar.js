@@ -1,5 +1,9 @@
+import { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import Link from 'next/link';
 import {
+  FaBars,
+  FaTimes,
   FaBed,
   FaFile,
   FaFolder,
@@ -26,10 +30,17 @@ export const adminMenuItems = [
   { icon: <IoMdApps />, label: 'Social Media', href: '/admin/social-links' },
 ];
 
-export default function AdminSidebar({ activeLabel }) {
+function MenuItems({ activeLabel, onClose }) {
   return (
-    <aside className={styles.sidebar}>
-      <h1 className={styles.brand}>Avlis</h1>
+    <>
+      <div className={styles.sidebarTop}>
+        <h1 className={styles.brand}>Avlis</h1>
+        {onClose && (
+          <button className={styles.closeBtn} onClick={onClose} aria-label="Close menu">
+            <FaTimes />
+          </button>
+        )}
+      </div>
       <h2 className={styles.menuTitle}>Site Menu</h2>
       <ul className={styles.menuList}>
         {adminMenuItems.map((item) => (
@@ -38,7 +49,7 @@ export default function AdminSidebar({ activeLabel }) {
             className={activeLabel === item.label ? styles.menuItemActive : styles.menuItem}
           >
             {item.href ? (
-              <Link href={item.href} className={styles.menuLink}>
+              <Link href={item.href} className={styles.menuLink} onClick={onClose || undefined}>
                 <span className={styles.menuIcon}>{item.icon}</span>
                 <span>{item.label}</span>
               </Link>
@@ -51,6 +62,59 @@ export default function AdminSidebar({ activeLabel }) {
           </li>
         ))}
       </ul>
-    </aside>
+    </>
+  );
+}
+
+export default function AdminSidebar({ activeLabel }) {
+  const [open, setOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  // Only run portal logic after hydration (document.body is available)
+  useEffect(() => { setMounted(true); }, []);
+
+  useEffect(() => {
+    if (!open) return;
+    const handleKey = (e) => { if (e.key === 'Escape') setOpen(false); };
+    document.addEventListener('keydown', handleKey);
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.removeEventListener('keydown', handleKey);
+      document.body.style.overflow = '';
+    };
+  }, [open]);
+
+  const close = () => setOpen(false);
+
+  return (
+    <>
+      {/* Desktop sidebar — stays in the grid layout */}
+      <aside className={styles.sidebar}>
+        <MenuItems activeLabel={activeLabel} onClose={null} />
+      </aside>
+
+      {/* Mobile: hamburger + drawer portal (rendered after hydration) */}
+      {mounted && (
+        <>
+          <button
+            className={styles.hamburger}
+            onClick={() => setOpen(true)}
+            aria-label="Open menu"
+          >
+            <FaBars />
+          </button>
+
+          {open && createPortal(
+            <>
+              <div className={styles.overlay} onClick={close} aria-hidden="true" />
+              <aside className={styles.mobileSidebar}>
+                <MenuItems activeLabel={activeLabel} onClose={close} />
+              </aside>
+            </>,
+            document.body
+          )}
+        </>
+      )}
+    </>
   );
 }

@@ -75,7 +75,7 @@ export default function PageHero({ title, imageUrl, className = '', ariaLabel, p
   return (
     <section className={`page-hero ${className}`.trim()} style={heroStyle} aria-label={ariaLabel || `${title} hero`}>
       <div className="container page-hero-overlay">
-        <h1>{title}</h1>
+        {/* <h1>{title}</h1> */}
       </div>
     </section>
   )

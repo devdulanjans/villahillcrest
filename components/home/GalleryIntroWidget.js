@@ -2,11 +2,9 @@ export default function GalleryIntroWidget() {
   return (
     <section className="hc-gallery-intro hc-reveal" aria-labelledby="welcome-heading">
       <div className="container">
-        <h2 id="welcome-heading">Escape to Paradise</h2>
-        <p>
-          Find quiet corners, warm hospitality, and tropical architecture
-          inspired by nature. Villa Hillcrest is designed for travelers who
-          want comfort without losing the feeling of discovery.
+        <h2 id="welcome-heading">Experience the Art of Island Living</h2>
+        <p style={{ textAlign: 'center' }}>
+          Wake to birdsong, spend lazy afternoons beside the infinity pool, and watch the sun disappear into the Indian Ocean. Villa Hillcrest invites you to embrace a slower, more meaningful way of travel.
         </p>
         <div className="hc-strip-grid">
           <img

@@ -6,7 +6,6 @@ import PageHero from '../components/PageHero'
 
 export default function GalleryPage() {
   const [galleryAlbums, setGalleryAlbums] = useState([])
-  const [selectedAlbumId, setSelectedAlbumId] = useState(null)
   const [lightboxIndex, setLightboxIndex] = useState(null)
   const [loadingAlbums, setLoadingAlbums] = useState(true)
   const [albumsError, setAlbumsError] = useState('')
@@ -25,26 +24,15 @@ export default function GalleryPage() {
         if (!isMounted) return
 
         if (!res.ok) {
-          setAlbumsError(data.message || 'Failed to load gallery albums')
+          setAlbumsError(data.message || 'Failed to load gallery images')
           setGalleryAlbums([])
           return
         }
 
-        const nextAlbums = Array.isArray(data.albums) ? data.albums : []
-        setGalleryAlbums(nextAlbums)
-
-        setSelectedAlbumId(prev => {
-          if (!prev) return prev
-          const stillExists = nextAlbums.some(album => album.id === prev)
-          if (!stillExists) {
-            setLightboxIndex(null)
-            return null
-          }
-          return prev
-        })
+        setGalleryAlbums(Array.isArray(data.albums) ? data.albums : [])
       } catch {
         if (!isMounted) return
-        setAlbumsError('Failed to load gallery albums')
+        setAlbumsError('Failed to load gallery images')
         setGalleryAlbums([])
       } finally {
         if (isMounted) {
@@ -60,23 +48,23 @@ export default function GalleryPage() {
     }
   }, [])
 
-  const selectedAlbum = useMemo(
-    () => galleryAlbums.find(album => album.id === selectedAlbumId) || null,
-    [selectedAlbumId]
+  const allImages = useMemo(
+    () => galleryAlbums.flatMap(album => album.images),
+    [galleryAlbums]
   )
 
-  const hasLightboxOpen = selectedAlbum && lightboxIndex !== null
+  const hasLightboxOpen = lightboxIndex !== null
 
   const closeLightbox = () => setLightboxIndex(null)
 
   const showNextImage = () => {
-    if (!selectedAlbum || lightboxIndex === null) return
-    setLightboxIndex(prev => (prev + 1) % selectedAlbum.images.length)
+    if (lightboxIndex === null) return
+    setLightboxIndex(prev => (prev + 1) % allImages.length)
   }
 
   const showPrevImage = () => {
-    if (!selectedAlbum || lightboxIndex === null) return
-    setLightboxIndex(prev => (prev - 1 + selectedAlbum.images.length) % selectedAlbum.images.length)
+    if (lightboxIndex === null) return
+    setLightboxIndex(prev => (prev - 1 + allImages.length) % allImages.length)
   }
 
   useEffect(() => {
@@ -90,7 +78,7 @@ export default function GalleryPage() {
 
     window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [hasLightboxOpen, lightboxIndex, selectedAlbum])
+  }, [hasLightboxOpen, lightboxIndex, allImages])
 
   return (
     <Layout>
@@ -143,75 +131,36 @@ export default function GalleryPage() {
 
         <section className="intro gallery-intro" aria-labelledby="gallery-heading">
           <div className="container">
-            <h2 id="gallery-heading">Albums from Villa Hillcrest</h2>
+            <h2 id="gallery-heading">Gallery</h2>
             <p>
-              Start with our album collection and open any specific album to view all related photos.
-              From cycling rides and villa stays to dining and local adventures, each album captures
-              a different part of the experience.
+              Explore our full collection of photos from Villa Hillcrest — from villa stays and
+              dining to cycling rides and local adventures.
             </p>
           </div>
         </section>
 
-        <section className="gallery-albums" aria-labelledby="albums-heading">
+        <section className="gallery-images" aria-labelledby="gallery-images-heading">
           <div className="container">
-            <h2 id="albums-heading">Albums</h2>
-            {loadingAlbums && <p>Loading albums...</p>}
+            <h2 id="gallery-images-heading" className="sr-only">All Photos</h2>
+            {loadingAlbums && <p>Loading images...</p>}
             {!loadingAlbums && albumsError && <p>{albumsError}</p>}
-            {!loadingAlbums && !albumsError && galleryAlbums.length === 0 && <p>No gallery albums available right now.</p>}
-            <div className="gallery-albums-grid">
-              {galleryAlbums.map(album => (
-                <button
-                  type="button"
-                  className={`gallery-album-card${selectedAlbumId === album.id ? ' is-active' : ''}`}
-                  key={album.id}
-                  onClick={() => setSelectedAlbumId(album.id)}
-                  aria-label={`Open ${album.title} album`}
-                >
-                  <img src={album.cover} alt={`${album.title} cover`} loading="lazy" />
-                  <div className="gallery-album-copy">
-                    <h3>{album.title}</h3>
-                    <p>{album.subtitle}</p>
-                  </div>
-                </button>
+            {!loadingAlbums && !albumsError && allImages.length === 0 && <p>No gallery images available right now.</p>}
+            <div className="gallery-images-grid">
+              {allImages.map((image, index) => (
+                <figure className="gallery-image-card" key={index}>
+                  <button
+                    type="button"
+                    className="gallery-image-open-btn"
+                    onClick={() => setLightboxIndex(index)}
+                    aria-label={`Open image ${index + 1}`}
+                  >
+                    <img src={image} alt={`Villa Hillcrest image ${index + 1}`} loading="lazy" />
+                  </button>
+                </figure>
               ))}
             </div>
           </div>
         </section>
-
-        {selectedAlbum && (
-          <section className="gallery-images" aria-labelledby="selected-album-heading">
-            <div className="container">
-              <div className="gallery-images-head">
-                <h2 id="selected-album-heading">{selectedAlbum.title}</h2>
-                <button
-                  type="button"
-                  className="gallery-back-btn"
-                  onClick={() => {
-                    setSelectedAlbumId(null)
-                    closeLightbox()
-                  }}
-                  aria-label="Back to albums"
-                >
-                  Back to Albums
-                </button>
-              </div>
-              <div className="gallery-images-grid">
-                {selectedAlbum.images.map((image, index) => (
-                  <figure className="gallery-image-card" key={`${selectedAlbum.id}-${index}`}>
-                    <button
-                      type="button"
-                      className="gallery-image-open-btn"
-                      onClick={() => setLightboxIndex(index)}
-                      aria-label={`Open image ${index + 1} from ${selectedAlbum.title}`}
-                    >
-                      <img src={image} alt={`${selectedAlbum.title} image ${index + 1}`} loading="lazy" />
-                    </button>
-                  </figure>
-                ))}
-              </div>
-            </div>
-          </section>
-        )}
 
         {hasLightboxOpen && (
           <section className="gallery-lightbox" aria-label="Enlarged gallery image viewer">
@@ -243,11 +192,11 @@ export default function GalleryPage() {
 
               <figure className="gallery-lightbox-figure">
                 <img
-                  src={selectedAlbum.images[lightboxIndex]}
-                  alt={`${selectedAlbum.title} enlarged image ${lightboxIndex + 1}`}
+                  src={allImages[lightboxIndex]}
+                  alt={`Villa Hillcrest enlarged image ${lightboxIndex + 1}`}
                 />
                 <figcaption>
-                  {selectedAlbum.title} | {lightboxIndex + 1} / {selectedAlbum.images.length}
+                  {lightboxIndex + 1} / {allImages.length}
                 </figcaption>
               </figure>
 

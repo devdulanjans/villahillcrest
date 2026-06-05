@@ -2,11 +2,14 @@ export default function Intro() {
   return (
     <section className="intro hc-gallery-intro fade-in" id="about" aria-labelledby="about-heading">
       <div className="container">
-        <h2 id="about-heading">Villa Hillcrest is a luxury hilltop retreat surrounded by nature and elegance.</h2>
-        <p>Villa Hillcrest is a luxury boutique villa nestled in the hills of Sri Lanka. Enjoy panoramic views, elegant rooms, and a tranquil escape surrounded by nature. Discover a unique blend of comfort, style, and authentic Sri Lankan hospitality.</p>
-        <p>Our villa offers a serene environment perfect for relaxation, whether you are seeking a romantic getaway, a family holiday, or a peaceful retreat. Each room is thoughtfully designed to provide the utmost comfort and privacy, with modern amenities and breathtaking views.</p>
-        <p>At Villa Hillcrest, you can indulge in delicious local cuisine, unwind by the pool, or explore the vibrant culture and natural beauty of the surrounding area. Our dedicated staff is committed to making your stay memorable, offering personalized service and attention to every detail.</p>
-        <p>Experience the magic of Sri Lanka from the comfort of Villa Hillcrest, where every moment is crafted to inspire relaxation and rejuvenation. We look forward to welcoming you to your home away from home.</p>
+        <h2 id="about-heading">OUR STORY</h2>
+        <p className="intro-hook">Do you know how it all started?</p>
+        <p>Back in 2019, Villa Hillcrest was nothing more than a dream.</p>
+        <p>After spending years in the hospitality industry, Kasun, the owner, believed that travelers deserved more than just a place to sleep. He wanted to create a retreat where every guest would feel genuinely welcomed, cared for, and experience the true warmth of Sri Lankan hospitality.</p>
+        <p>With dedication, patience, and countless hours of hard work, that vision slowly became reality.</p>
+        <p>Today, Villa Hillcrest stands as one of the area's most distinctive boutique retreats. Yet one thing has never changed — Kasun remains actively involved, working alongside his team and personally ensuring that every guest leaves with memories to cherish.</p>
+        <p>For us, Villa Hillcrest is more than a resort.</p>
+        <p>It's a dream built with passion, and a story we're proud to share with every guest who walks through our doors.</p>
       </div>
     </section>
   )

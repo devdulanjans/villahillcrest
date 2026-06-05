@@ -69,7 +69,7 @@ export default function OfferPopup() {
         </div>
 
         <div className="hc-offer-content">
-          <h2 id="offer-title">{offer?.title || 'Save EUR 100 every week this May'}</h2>
+          <h2 id="offer-title">{offer?.title || 'Villa Hillcrest'}</h2>
           {offer?.descriptionHtml ? (
             <div dangerouslySetInnerHTML={{ __html: offer.descriptionHtml }} />
           ) : (
@@ -87,7 +87,7 @@ export default function OfferPopup() {
             </>
           )}
 
-          <a href="/availability" className="hc-offer-btn">View Packages</a>
+          <a href="/offers" className="hc-offer-btn">View Packages</a>
         </div>
       </div>
     </div>

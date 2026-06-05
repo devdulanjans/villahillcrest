@@ -184,7 +184,16 @@
     grid-template-columns: 1fr;
   }
 
+  .topBar {
+    padding-left: 62px;
+  }
+
   .twoCols {
     grid-template-columns: 1fr;
+  }
+
+  .imageRow {
+    flex-direction: column;
+    align-items: flex-start;
   }
 }
