@@ -105,8 +105,8 @@ export default function ContactUs() {
           ariaLabel="Contact us hero"
         />
         <BeSearchForm />
-        <ContactUsIntro />
         <GettingHere />
+        <ContactUsIntro />
         <ContactWidget />
         <Availability />
 
