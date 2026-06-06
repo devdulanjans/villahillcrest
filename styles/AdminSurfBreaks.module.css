@@ -1,0 +1,409 @@
+.page {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  background: #eef1f8;
+  color: #2f3450;
+}
+
+.main {
+  padding: 14px;
+}
+
+.topBar {
+  background: #fff;
+  border: 1px solid #dfe3f1;
+  border-radius: 9px;
+  padding: 12px 16px;
+}
+
+.topBar h2 {
+  margin: 0;
+}
+
+.panel {
+  margin-top: 12px;
+  background: #fff;
+  border: 1px solid #dfe3f1;
+  border-radius: 9px;
+  padding: 14px;
+}
+
+.panel h3 {
+  margin: 0 0 12px;
+}
+
+.form {
+  display: grid;
+  gap: 10px;
+}
+
+.row2 {
+  display: grid;
+  grid-template-columns: 1fr 120px;
+  gap: 10px;
+  align-items: end;
+}
+
+.fieldLabel {
+  font-size: 13px;
+  font-weight: 600;
+  color: #2f3450;
+  margin-bottom: -4px;
+}
+
+.form input,
+.form textarea,
+.form select {
+  min-height: 40px;
+  border: 1px solid #d2d8ea;
+  border-radius: 6px;
+  padding: 0 10px;
+  font-size: 14px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.form textarea {
+  padding: 10px;
+  resize: vertical;
+}
+
+.switchRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.switchRow input[type='checkbox'] {
+  width: 16px;
+  min-height: 16px;
+}
+
+/* ── Dynamic sub-list (breaks / photos) ───────────────────────────────────── */
+
+.subSection {
+  border: 1px solid #e0e6f4;
+  border-radius: 8px;
+  padding: 12px;
+  display: grid;
+  gap: 10px;
+}
+
+.subSectionHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2px;
+}
+
+.subSectionHeader h4 {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 700;
+  color: #2f3450;
+}
+
+.addRowBtn {
+  min-height: 32px;
+  padding: 0 12px;
+  border: 1px dashed var(--admin-primary);
+  background: transparent;
+  color: var(--admin-primary);
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.addRowBtn:hover {
+  background: #f0f5f0;
+}
+
+.subRow {
+  display: grid;
+  gap: 6px;
+  padding: 10px;
+  border: 1px solid #e8ecf8;
+  border-radius: 7px;
+  background: #f8f9fd;
+  position: relative;
+}
+
+.breakRow {
+  grid-template-columns: 1fr 140px 1fr auto;
+  align-items: end;
+}
+
+.photoRow {
+  grid-template-columns: 2fr 1fr 1fr 140px auto;
+  align-items: start;
+}
+
+/* Photo src column — stacks preview + url input + upload button */
+.photoSrcCol {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.photoSrcCol input {
+  width: 100%;
+}
+
+.photoPreview {
+  width: 100%;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 5px;
+  border: 1px solid #d2d8ea;
+  display: block;
+}
+
+.uploadBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 34px;
+  padding: 0 12px;
+  border-radius: 6px;
+  background: var(--admin-primary);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  user-select: none;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.uploadBtn input[type='file'] {
+  display: none;
+}
+
+.uploadBtnBusy {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.subRow input,
+.subRow select {
+  min-height: 36px;
+  border: 1px solid #d2d8ea;
+  border-radius: 6px;
+  padding: 0 8px;
+  font-size: 13px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.subRowLabel {
+  font-size: 11px;
+  font-weight: 600;
+  color: #8a93b5;
+  margin-bottom: 3px;
+}
+
+.removeBtn {
+  min-height: 36px;
+  min-width: 36px;
+  border: none;
+  border-radius: 6px;
+  background: #fdeaea;
+  color: #d64462;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.removeBtn:hover {
+  background: #f8c0cc;
+}
+
+/* ── Form actions ─────────────────────────────────────────────────────────── */
+
+.formActions {
+  display: flex;
+  gap: 8px;
+}
+
+.formActions button {
+  min-height: 40px;
+  border-radius: 6px;
+  border: none;
+  padding: 0 16px;
+  background: var(--admin-primary);
+  color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.secondary {
+  background: #e7ebf9 !important;
+  color: #5f6a95 !important;
+}
+
+.error {
+  margin-top: 12px;
+  color: #c62828;
+  font-size: 13px;
+}
+
+.message {
+  margin-top: 12px;
+  color: #2e7d32;
+  font-size: 13px;
+}
+
+/* ── Locations list ───────────────────────────────────────────────────────── */
+
+.locationList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 6px;
+}
+
+.locationItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px 14px;
+  border: 1px solid #e0e6f4;
+  border-radius: 7px;
+  background: #f8f9fd;
+}
+
+.locationItemBody {
+  flex: 1;
+  min-width: 0;
+}
+
+.locationItemName {
+  font-size: 14px;
+  font-weight: 700;
+  color: #2f3450;
+}
+
+.locationItemTagline {
+  font-size: 12px;
+  color: #7a82a0;
+  margin-top: 2px;
+}
+
+.locationItemMeta {
+  font-size: 11px;
+  color: #aab0c8;
+  margin-top: 4px;
+}
+
+.badgeEnabled {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 20px;
+  background: #e6f4ea;
+  color: #2e7d32;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.badgeDisabled {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 20px;
+  background: #f3f4f8;
+  color: #7a82a0;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.locationActions {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+  align-items: flex-start;
+}
+
+.locationActions button {
+  min-height: 30px;
+  border-radius: 6px;
+  border: none;
+  padding: 0 12px;
+  font-size: 13px;
+  background: var(--admin-primary);
+  color: #fff;
+  cursor: pointer;
+}
+
+.deleteBtn {
+  background: #d64462 !important;
+}
+
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.seedBtn {
+  min-height: 40px;
+  padding: 0 18px;
+  border: 1px dashed var(--admin-primary);
+  background: #f4f8f4;
+  color: var(--admin-primary);
+  border-radius: 7px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.seedBtn:hover {
+  background: #eaf2ea;
+}
+
+.seedBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+@media (max-width: 980px) {
+  .page {
+    grid-template-columns: 1fr;
+  }
+
+  .topBar {
+    padding-left: 62px;
+  }
+
+  .breakRow {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .photoRow {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .photoPreview {
+    height: 120px;
+  }
+
+  .locationItem {
+    flex-wrap: wrap;
+  }
+
+  .locationActions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+
+  .row2 {
+    grid-template-columns: 1fr;
+  }
+}

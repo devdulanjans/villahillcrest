@@ -24,6 +24,7 @@ export const adminMenuItems = [
   { icon: <FaFolder />, label: 'Gallery', href: '/admin/gallery' },
   { icon: <FaMoneyBillWave />, label: 'Offers', href: '/admin/offers' },
   { icon: <FaFile />, label: 'Blogs', href: '/admin/blogs' },
+  { icon: <FaMapMarkerAlt />, label: 'Surf Breaks', href: '/admin/surf-breaks' },
   { icon: <FaBed />, label: 'Add Room', href: '/admin/rooms' },
   { icon: <FaFile />, label: 'Sliders', href: '/admin/sliders' },
   { icon: <FaMapMarkerAlt />, label: 'Contact Details', href: '/admin/contact-details' },

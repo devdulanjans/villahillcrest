@@ -235,7 +235,7 @@ header {
 
 .nav-link {
   font-family: 'Montserrat', sans-serif;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 600;
   letter-spacing: 0.5px;
   color: #222;
@@ -3996,6 +3996,14 @@ p {
   align-items: end;
 }
 
+.experience-hero {
+  min-height: 520px;
+  background-image: linear-gradient(rgba(10, 28, 32, 0.35), rgba(10, 28, 32, 0.35)),
+    url('https://images.unsplash.com/photo-1559827291-72ee739d0d9a?q=80&w=1800&auto=format&fit=crop');
+  background-size: cover;
+  background-position: center;
+}
+
 .explore-hero-overlay {
   padding: 26px 24px;
   text-align: center;
@@ -4258,5 +4266,1937 @@ p {
 @media (max-width: 640px) {
   .page-hero {
     min-height: 220px;
+  }
+}
+
+/* ─── Surf Retreat page (/surf-retreat) ──────────────────────────────────── */
+
+.surf-retreat-page {
+  background: #f7f4f0;
+}
+
+.surf-retreat-hero {
+  min-height: 520px;
+  background-image: linear-gradient(rgba(20, 27, 34, 0.25), rgba(20, 27, 34, 0.25)),
+    url('https://images.unsplash.com/photo-1502680390469-be75c86b636f?q=80&w=1800&auto=format&fit=crop');
+  background-size: cover;
+  background-position: center;
+}
+
+/* Shared eyebrow label */
+.srt-eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: #b0862a;
+  margin-bottom: 12px;
+}
+
+/* ── Private Coaching ─────────────────────────────────────────────────────── */
+
+.srt-coaching {
+  padding: 64px 0;
+  background: #f9f6f1;
+}
+
+.srt-coaching-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 52px;
+  align-items: center;
+}
+
+.srt-coaching-img img {
+  width: 100%;
+  height: 440px;
+  object-fit: cover;
+  border-radius: 3px;
+  display: block;
+}
+
+.srt-coaching-content h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 36px;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0.01em;
+  color: #1a1a1a;
+  line-height: 1.22;
+  margin-bottom: 26px;
+}
+
+.srt-coaching-features {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 20px;
+  list-style: none;
+  margin-bottom: 30px;
+}
+
+.srt-coaching-feature {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: #333;
+  line-height: 1.4;
+}
+
+.srt-coaching-feature svg {
+  flex-shrink: 0;
+  margin-top: 1px;
+  color: #2d7a3e;
+}
+
+.srt-coaching-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 26px;
+  background: #1a1a1a;
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border-radius: 2px;
+  transition: background 0.2s;
+  text-decoration: none;
+}
+
+.srt-coaching-btn:hover {
+  background: #333;
+  color: #fff;
+}
+
+/* ── Surf Break Guide ─────────────────────────────────────────────────────── */
+
+.srt-breaks {
+  padding: 64px 0;
+  background: #ffffff;
+}
+
+.srt-breaks-header {
+  text-align: center;
+  margin-bottom: 44px;
+}
+
+.srt-breaks-header h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 40px;
+  font-weight: 400;
+  text-transform: none;
+  color: #1a1a1a;
+  margin-bottom: 14px;
+}
+
+.srt-breaks-header p {
+  font-size: 13.5px;
+  color: #555;
+  max-width: 560px;
+  margin: 0 auto;
+  line-height: 1.75;
+}
+
+.srt-location-block {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 24px;
+  align-items: start;
+  border: 1px solid #e4e0da;
+  border-radius: 4px;
+  padding: 24px;
+  margin-bottom: 16px;
+  background: #fdfcfb;
+}
+
+.srt-location-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+
+.srt-location-pin {
+  color: #2d7a3e;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.srt-location-name {
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #1a1a1a;
+}
+
+.srt-location-tagline {
+  font-size: 11.5px;
+  color: #666;
+  margin-bottom: 12px;
+  padding-left: 24px;
+  font-style: italic;
+}
+
+.srt-break-list {
+  list-style: none;
+  padding-left: 24px;
+}
+
+.srt-break-list li {
+  font-size: 12px;
+  color: #333;
+  margin-bottom: 5px;
+  line-height: 1.5;
+}
+
+.srt-break-list li strong {
+  font-weight: 600;
+}
+
+.srt-break-level {
+  color: #888;
+}
+
+.srt-break-note {
+  font-size: 11px;
+  color: #aaa;
+}
+
+.srt-photos-grid {
+  display: flex;
+  gap: 8px;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+}
+
+.srt-photo-item {
+  flex: 1;
+  min-width: 0;
+}
+
+.srt-photo-item img {
+  width: 100%;
+  height: 128px;
+  object-fit: cover;
+  border-radius: 3px;
+  display: block;
+}
+
+.srt-photo-item p {
+  font-size: 11px;
+  font-weight: 600;
+  color: #222;
+  margin-top: 5px;
+  line-height: 1.3;
+}
+
+.srt-photo-item span {
+  font-size: 10.5px;
+  color: #999;
+}
+
+/* ── Surfboard Rentals ────────────────────────────────────────────────────── */
+
+.srt-rentals {
+  padding: 64px 0;
+  background: #f4f0eb;
+}
+
+.srt-rentals-inner {
+  display: grid;
+  grid-template-columns: 280px 1fr 1fr;
+  gap: 44px;
+  align-items: center;
+}
+
+.srt-rentals-boards-img img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  border-radius: 4px;
+  display: block;
+}
+
+.srt-rentals-features h3 {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #1a1a1a;
+  margin-bottom: 20px;
+}
+
+.srt-rentals-features ul {
+  list-style: none;
+}
+
+.srt-rentals-feature-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 13px;
+}
+
+.srt-rentals-feature-item svg {
+  color: #2d7a3e;
+  flex-shrink: 0;
+}
+
+.srt-board-types-label {
+  margin-bottom: 14px;
+}
+
+.srt-board-types-grid {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.srt-board-type {
+  flex: 1;
+  min-width: 60px;
+  text-align: center;
+}
+
+.srt-board-type img {
+  width: 100%;
+  height: 96px;
+  object-fit: cover;
+  border-radius: 3px;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.srt-board-type p {
+  font-size: 10px;
+  font-weight: 600;
+  color: #444;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  line-height: 1.3;
+}
+
+/* ── CTA Banner ───────────────────────────────────────────────────────────── */
+
+.srt-cta-banner {
+  background: #1e3a2f;
+  padding: 26px 0;
+}
+
+.srt-cta-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.srt-cta-inner > p {
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  margin: 0;
+}
+
+.srt-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 22px;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  color: #ffffff;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  border-radius: 2px;
+  transition: background 0.2s;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.srt-cta-btn:hover {
+  background: rgba(255, 255, 255, 0.14);
+  color: #fff;
+}
+
+/* ── Build Your Own Surf Retreat ──────────────────────────────────────────── */
+
+.srt-build {
+  position: relative;
+  background-image:
+    linear-gradient(to right, rgba(10, 22, 16, 0.38) 45%, rgba(10, 22, 16, 0.82) 45%),
+    url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1800&auto=format&fit=crop');
+  background-size: cover;
+  background-position: center;
+  padding: 70px 0;
+}
+
+.srt-build-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: center;
+}
+
+.srt-build-spacer {
+  /* left column — background image shows through */
+}
+
+.srt-build-content {
+  color: #fff;
+}
+
+.srt-build-content .srt-eyebrow {
+  color: #c89b30;
+}
+
+.srt-build-content h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 48px;
+  font-weight: 400;
+  text-transform: none;
+  color: #fff;
+  line-height: 1.15;
+  margin-bottom: 22px;
+}
+
+.srt-build-choose {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.75);
+  margin-bottom: 14px;
+}
+
+.srt-build-options-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 24px;
+  margin-bottom: 30px;
+}
+
+.srt-build-options-grid ul {
+  list-style: none;
+}
+
+.srt-build-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12.5px;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 9px;
+}
+
+.srt-build-option svg {
+  flex-shrink: 0;
+  color: #c89b30;
+}
+
+.srt-build-btn {
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+/* ── Stats Bar ────────────────────────────────────────────────────────────── */
+
+.srt-stats-bar {
+  background: #0e1a14;
+  padding: 30px 0;
+}
+
+.srt-stats-inner {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+}
+
+.srt-stat-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.srt-stat-icon {
+  flex-shrink: 0;
+  color: rgba(255, 255, 255, 0.65);
+  padding-top: 2px;
+}
+
+.srt-stat-text h4 {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: #ffffff;
+  margin-bottom: 4px;
+}
+
+.srt-stat-text p {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.5);
+  line-height: 1.5;
+}
+
+/* ── Surf Retreat Responsive ──────────────────────────────────────────────── */
+
+@media (max-width: 1100px) {
+  .srt-stats-inner {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+}
+
+@media (max-width: 980px) {
+  .surf-retreat-hero {
+    min-height: 420px;
+  }
+
+  .srt-coaching-inner {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .srt-coaching-img img {
+    height: 320px;
+  }
+
+  .srt-location-block {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .srt-rentals-inner {
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+  }
+
+  .srt-rentals-boards-img {
+    grid-column: span 2;
+  }
+
+  .srt-rentals-boards-img img {
+    height: 220px;
+  }
+
+  .srt-build-inner {
+    grid-template-columns: 1fr;
+  }
+
+  .srt-build-spacer {
+    display: none;
+  }
+
+  .srt-build {
+    background-image:
+      linear-gradient(rgba(10, 22, 16, 0.72), rgba(10, 22, 16, 0.72)),
+      url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1800&auto=format&fit=crop');
+  }
+
+  .srt-cta-inner {
+    flex-direction: column;
+    text-align: center;
+    gap: 16px;
+  }
+
+  .srt-stats-inner {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+}
+
+@media (max-width: 640px) {
+  .surf-retreat-hero {
+    min-height: 300px;
+  }
+
+  .srt-coaching {
+    padding: 44px 0;
+  }
+
+  .srt-coaching-img img {
+    height: 240px;
+  }
+
+  .srt-coaching-features {
+    grid-template-columns: 1fr;
+  }
+
+  .srt-breaks {
+    padding: 44px 0;
+  }
+
+  .srt-breaks-header h2 {
+    font-size: 30px;
+  }
+
+  .srt-photos-grid {
+    flex-wrap: wrap;
+  }
+
+  .srt-photo-item {
+    flex: 0 0 calc(50% - 4px);
+  }
+
+  .srt-photo-item img {
+    height: 100px;
+  }
+
+  .srt-rentals {
+    padding: 44px 0;
+  }
+
+  .srt-rentals-inner {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .srt-rentals-boards-img {
+    grid-column: span 1;
+  }
+
+  .srt-board-type img {
+    height: 70px;
+  }
+
+  .srt-build {
+    padding: 50px 0;
+  }
+
+  .srt-build-content h2 {
+    font-size: 34px;
+  }
+
+  .srt-build-options-grid {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .srt-stats-bar {
+    padding: 24px 0;
+  }
+
+  .srt-stats-inner {
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   NEW SURF RETREAT SECTIONS
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ── Intro Banner ─────────────────────────────────────────────────────────── */
+
+.srt-intro-banner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 500px;
+}
+
+.srt-intro-content {
+  background: #1e3a2f;
+  padding: 72px 64px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.srt-intro-content .srt-eyebrow {
+  color: #c8921d;
+}
+
+.srt-intro-content h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(42px, 4vw, 60px);
+  font-weight: 400;
+  font-style: italic;
+  color: #ffffff;
+  line-height: 1.1;
+  letter-spacing: 0.02em;
+  margin-bottom: 20px;
+  text-transform: none;
+}
+
+.srt-intro-content > p {
+  font-size: 13.5px;
+  color: rgba(255, 255, 255, 0.78);
+  line-height: 1.85;
+  margin-bottom: 34px;
+  max-width: 440px;
+}
+
+.srt-intro-image {
+  overflow: hidden;
+}
+
+.srt-intro-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ── Location Section ─────────────────────────────────────────────────────── */
+
+.srt-location-section {
+  padding: 72px 0;
+  background: #f9f6f1;
+}
+
+.srt-location-inner {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  gap: 64px;
+  align-items: center;
+}
+
+.srt-location-text h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(28px, 3vw, 40px);
+  font-weight: 400;
+  color: #1a1a1a;
+  line-height: 1.28;
+  margin-bottom: 30px;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.srt-location-pins {
+  list-style: none;
+  margin-bottom: 34px;
+}
+
+.srt-location-pins li {
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+  margin-bottom: 18px;
+}
+
+.srt-pin-icon {
+  color: #2d7a3e;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.srt-location-pins li strong {
+  display: block;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #1a1a1a;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+}
+
+.srt-location-pins li span {
+  display: block;
+  font-size: 12px;
+  color: #777;
+  margin-top: 3px;
+  line-height: 1.5;
+}
+
+.srt-outline-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 26px;
+  border: 1.5px solid #1a1a1a;
+  color: #1a1a1a;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border-radius: 2px;
+  text-decoration: none;
+  transition: background 0.22s, color 0.22s;
+}
+
+.srt-outline-btn:hover {
+  background: #1a1a1a;
+  color: #fff;
+}
+
+.srt-location-map {
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* ── Skill Levels ─────────────────────────────────────────────────────────── */
+
+.srt-skill-levels {
+  padding: 72px 0;
+  background: #ffffff;
+}
+
+.srt-section-header {
+  text-align: center;
+  margin-bottom: 46px;
+}
+
+.srt-section-header .srt-eyebrow {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.srt-section-header h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(30px, 3.5vw, 42px);
+  font-weight: 400;
+  color: #1a1a1a;
+  text-transform: none;
+  letter-spacing: 0.01em;
+}
+
+.srt-level-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.srt-level-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 4px;
+  aspect-ratio: 3 / 4;
+  cursor: pointer;
+}
+
+.srt-level-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.45s ease;
+}
+
+.srt-level-card:hover img {
+  transform: scale(1.05);
+}
+
+.srt-level-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.72) 0%, rgba(0, 0, 0, 0.08) 55%, transparent 100%);
+  display: flex;
+  align-items: flex-end;
+  padding: 26px;
+}
+
+.srt-level-overlay span {
+  font-family: 'Oswald', sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+.srt-level-cta {
+  text-align: center;
+  margin-top: 36px;
+}
+
+/* ── Coaching Process + Video Analysis ───────────────────────────────────── */
+
+.srt-process-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.srt-process-left {
+  background: #1e3a2f;
+  padding: 72px 0;
+}
+
+.srt-process-left-inner {
+  padding: 0 56px;
+}
+
+.srt-eyebrow-light {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: #c8921d;
+  margin-bottom: 12px;
+}
+
+.srt-process-left h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(28px, 2.5vw, 36px);
+  font-weight: 400;
+  color: #ffffff;
+  line-height: 1.28;
+  margin-bottom: 36px;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.srt-steps-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px 32px;
+  margin-bottom: 42px;
+}
+
+.srt-step-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.srt-step-num {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(200, 146, 29, 0.65);
+  color: #c8921d;
+  font-size: 14px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.srt-step-item span {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+  letter-spacing: 0.5px;
+}
+
+.srt-outline-btn-light {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 26px;
+  border: 1.5px solid rgba(255, 255, 255, 0.55);
+  color: #ffffff;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border-radius: 2px;
+  text-decoration: none;
+  transition: background 0.22s;
+}
+
+.srt-outline-btn-light:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+.srt-process-right {
+  background: #f9f6f1;
+  padding: 72px 0;
+}
+
+.srt-process-right-inner {
+  padding: 0 56px;
+}
+
+.srt-process-right h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(28px, 2.5vw, 36px);
+  font-weight: 400;
+  color: #1a1a1a;
+  line-height: 1.28;
+  margin-bottom: 26px;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.srt-video-img {
+  margin-bottom: 24px;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.srt-video-img img {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  display: block;
+}
+
+.srt-video-points {
+  list-style: none;
+  margin-bottom: 30px;
+}
+
+.srt-video-points li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: #333;
+  margin-bottom: 11px;
+}
+
+.srt-video-points li svg {
+  color: #2d7a3e;
+  flex-shrink: 0;
+}
+
+/* ── Retreat Packages ─────────────────────────────────────────────────────── */
+
+.srt-packages-section {
+  padding: 72px 0;
+  background: #ffffff;
+}
+
+.srt-packages-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.srt-package-card {
+  border: 1px solid #e4e0da;
+  border-radius: 6px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background: var(--pkg-bg, #fff);
+}
+
+.srt-pkg-header {
+  padding: 24px 24px 16px;
+  border-bottom: 3px solid var(--pkg-accent, #2d7a3e);
+  background: var(--pkg-bg, #fff);
+}
+
+.srt-pkg-header h3 {
+  font-family: 'Oswald', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #1a1a1a;
+  margin-bottom: 6px;
+}
+
+.srt-pkg-subtitle {
+  font-size: 12.5px;
+  color: #666;
+  font-style: italic;
+  line-height: 1.4;
+}
+
+.srt-pkg-desc {
+  font-size: 12.5px;
+  color: #555;
+  line-height: 1.75;
+  padding: 16px 24px 8px;
+  flex-shrink: 0;
+}
+
+.srt-pkg-features {
+  list-style: none;
+  padding: 0 24px 16px;
+  flex: 1;
+}
+
+.srt-pkg-features li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.srt-pkg-features li svg {
+  color: var(--pkg-accent, #2d7a3e);
+  flex-shrink: 0;
+}
+
+.srt-pkg-img img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  display: block;
+}
+
+.srt-pkg-caption {
+  font-size: 10.5px;
+  color: #999;
+  text-align: center;
+  padding: 7px;
+  background: #f0eeea;
+}
+
+.srt-pkg-cta {
+  display: block;
+  text-align: center;
+  padding: 13px;
+  margin: 14px;
+  border: 1.5px solid var(--pkg-accent, #2d7a3e);
+  color: var(--pkg-accent, #2d7a3e);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  border-radius: 2px;
+  text-decoration: none;
+  transition: background 0.22s, color 0.22s;
+}
+
+.srt-pkg-cta:hover {
+  background: var(--pkg-accent, #2d7a3e);
+  color: #fff;
+}
+
+/* ── Build Your Own — Icon Grid ───────────────────────────────────────────── */
+
+.srt-build-icons-section {
+  padding: 72px 0;
+  background: #f9f6f1;
+}
+
+.srt-build-icons-inner {
+  text-align: center;
+}
+
+.srt-build-icons-inner .srt-eyebrow {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.srt-build-icons-inner h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(30px, 3.5vw, 42px);
+  font-weight: 400;
+  color: #1a1a1a;
+  text-transform: none;
+  letter-spacing: 0.01em;
+  margin-bottom: 48px;
+}
+
+.srt-icons-grid {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  gap: 20px;
+  margin-bottom: 44px;
+}
+
+.srt-icon-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 13px;
+}
+
+.srt-icon-circle {
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  border: 1.5px solid #d0c8b8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #2d7a3e;
+  background: #ffffff;
+  transition: background 0.25s, color 0.25s, border-color 0.25s;
+  cursor: default;
+}
+
+.srt-icon-item:hover .srt-icon-circle {
+  background: #2d7a3e;
+  color: #ffffff;
+  border-color: #2d7a3e;
+}
+
+.srt-icon-item p {
+  font-size: 10px;
+  font-weight: 700;
+  color: #444;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  line-height: 1.45;
+}
+
+.srt-build-icons-cta {
+  margin-top: 8px;
+}
+
+/* ── Booking Inquiry Form ─────────────────────────────────────────────────── */
+
+.srt-booking-section {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+}
+
+.srt-booking-left {
+  background: #1e3a2f;
+  padding: 72px 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.srt-eyebrow-gold {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: #c8921d;
+  margin-bottom: 12px;
+}
+
+.srt-booking-left h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(28px, 3vw, 40px);
+  font-weight: 400;
+  color: #ffffff;
+  line-height: 1.25;
+  margin-bottom: 18px;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.srt-booking-left > p {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.72);
+  line-height: 1.85;
+  margin-bottom: 34px;
+  max-width: 380px;
+}
+
+.srt-booking-right {
+  background: #ffffff;
+  padding: 60px 56px;
+}
+
+.srt-booking-right > .srt-eyebrow {
+  display: block;
+  margin-bottom: 26px;
+}
+
+.srt-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 13px;
+  margin-bottom: 13px;
+}
+
+.srt-form-grid > div > label,
+.srt-form-notes > label {
+  display: block;
+  font-size: 10.5px;
+  font-weight: 700;
+  color: #666;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+}
+
+.srt-form-grid input,
+.srt-form-grid select,
+.srt-form-notes textarea {
+  width: 100%;
+  box-sizing: border-box;
+  height: 42px;
+  border: 1px solid #d8d3cb;
+  border-radius: 3px;
+  padding: 0 13px;
+  font-size: 13px;
+  color: #333;
+  background: #faf9f7;
+  transition: border-color 0.15s;
+  font-family: inherit;
+}
+
+.srt-form-grid input:focus,
+.srt-form-grid select:focus,
+.srt-form-notes textarea:focus {
+  outline: none;
+  border-color: #2d7a3e;
+}
+
+.srt-form-notes {
+  margin-bottom: 18px;
+}
+
+.srt-form-notes textarea {
+  height: auto;
+  padding: 10px 13px;
+  resize: vertical;
+}
+
+.srt-form-submit {
+  width: 100%;
+  padding: 16px;
+  background: #c8921d;
+  color: #ffffff;
+  border: none;
+  border-radius: 3px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.22s;
+  font-family: inherit;
+}
+
+.srt-form-submit:hover {
+  background: #a87318;
+}
+
+.srt-form-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.srt-form-error {
+  font-size: 12px;
+  color: #c62828;
+  margin-bottom: 12px;
+}
+
+.srt-form-success {
+  text-align: center;
+  padding: 48px 20px;
+}
+
+.srt-form-success h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 34px;
+  font-weight: 400;
+  color: #2d7a3e;
+  margin-bottom: 14px;
+}
+
+.srt-form-success p {
+  font-size: 13.5px;
+  color: #555;
+  line-height: 1.8;
+  margin-bottom: 26px;
+}
+
+.srt-form-success button {
+  padding: 12px 26px;
+  background: transparent;
+  border: 1.5px solid #1a1a1a;
+  color: #1a1a1a;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  border-radius: 2px;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.22s, color 0.22s;
+}
+
+.srt-form-success button:hover {
+  background: #1a1a1a;
+  color: #fff;
+}
+
+/* ── New sections responsive ─────────────────────────────────────────────── */
+
+@media (max-width: 1200px) {
+  .srt-icons-grid {
+    grid-template-columns: repeat(5, 1fr);
+    gap: 24px 16px;
+  }
+}
+
+@media (max-width: 980px) {
+  .srt-intro-banner {
+    grid-template-columns: 1fr;
+  }
+
+  .srt-intro-content {
+    padding: 56px 32px;
+  }
+
+  .srt-intro-image {
+    height: 340px;
+  }
+
+  .srt-location-inner {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+
+  .srt-location-map iframe {
+    height: 300px;
+  }
+
+  .srt-level-cards {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .srt-level-card:last-child {
+    grid-column: span 2;
+    aspect-ratio: 16 / 7;
+  }
+
+  .srt-process-section {
+    grid-template-columns: 1fr;
+  }
+
+  .srt-process-left-inner,
+  .srt-process-right-inner {
+    padding: 0 32px;
+  }
+
+  .srt-packages-grid {
+    grid-template-columns: 1fr;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  .srt-icons-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .srt-booking-section {
+    grid-template-columns: 1fr;
+  }
+
+  .srt-booking-left {
+    padding: 56px 32px;
+  }
+
+  .srt-booking-right {
+    padding: 48px 32px;
+  }
+}
+
+@media (max-width: 640px) {
+  .srt-intro-content {
+    padding: 48px 20px;
+  }
+
+  .srt-location-section {
+    padding: 48px 0;
+  }
+
+  .srt-location-text h2 {
+    font-size: 26px;
+  }
+
+  .srt-skill-levels {
+    padding: 48px 0;
+  }
+
+  .srt-level-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .srt-level-card:last-child {
+    grid-column: span 1;
+    aspect-ratio: 3 / 4;
+  }
+
+  .srt-process-left,
+  .srt-process-right {
+    padding: 48px 0;
+  }
+
+  .srt-process-left-inner,
+  .srt-process-right-inner {
+    padding: 0 20px;
+  }
+
+  .srt-steps-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .srt-packages-section {
+    padding: 48px 0;
+  }
+
+  .srt-packages-grid {
+    max-width: 100%;
+  }
+
+  .srt-build-icons-section {
+    padding: 48px 0;
+  }
+
+  .srt-icons-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px 12px;
+  }
+
+  .srt-icon-circle {
+    width: 60px;
+    height: 60px;
+  }
+
+  .srt-booking-section {
+    grid-template-columns: 1fr;
+  }
+
+  .srt-booking-left {
+    padding: 48px 20px;
+  }
+
+  .srt-booking-right {
+    padding: 40px 20px;
+  }
+
+  .srt-form-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ─── Getting Here / Travel Info (contact-us page) ──────────────────────── */
+
+/* ── Hero split ─────────────────────────────────────────────────────────── */
+.gi-hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 480px;
+  background: #1a2c1f;
+}
+
+.gi-hero-content {
+  padding: 72px 56px 72px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0;
+}
+
+.gi-eyebrow {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: #c8921d;
+  margin-bottom: 14px;
+}
+
+.gi-hero-content h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(34px, 3.8vw, 54px);
+  font-weight: 400;
+  color: #f0ede8;
+  line-height: 1.12;
+  letter-spacing: 0.01em;
+  text-transform: none;
+  margin-bottom: 0;
+}
+
+.gi-hero-rule {
+  width: 52px;
+  height: 2px;
+  background: #c8921d;
+  margin: 22px 0 22px;
+  flex-shrink: 0;
+}
+
+.gi-hero-desc {
+  font-size: 14px;
+  line-height: 1.8;
+  color: #bfc8be;
+  max-width: 480px;
+  margin-bottom: 28px;
+}
+
+.gi-hero-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  align-self: flex-start;
+  padding: 13px 22px;
+  background: #c8921d;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 10.5px;
+  font-weight: 700;
+  border: none;
+  transition: background 0.2s;
+}
+
+.gi-hero-btn:hover {
+  background: #a87318;
+  color: #fff;
+}
+
+.gi-hero-image {
+  position: relative;
+  overflow: hidden;
+}
+
+.gi-hero-image img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ── Info rows — experience-page tile pattern ────────────────────────────── */
+.gi-info-sections {
+  background: #ffffff;
+  padding: 72px 0 80px;
+}
+
+.gi-info-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: center;
+  margin-bottom: 64px;
+}
+
+.gi-info-row:last-child {
+  margin-bottom: 0;
+}
+
+.gi-info-left {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Reverse: push image to the left via order */
+.gi-info-row--reverse .gi-info-right {
+  order: -1;
+}
+
+.gi-info-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 1px solid #dcd8d2;
+  display: grid;
+  place-items: center;
+  color: #222222;
+  margin-bottom: 14px;
+  flex-shrink: 0;
+}
+
+.gi-info-rule {
+  width: 32px;
+  height: 2px;
+  background: #c8921d;
+  margin-bottom: 18px;
+  flex-shrink: 0;
+}
+
+.gi-info-left h3 {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 300;
+  font-size: clamp(26px, 2.6vw, 38px);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #1a1a1a;
+  margin-bottom: 12px;
+}
+
+.gi-info-left p {
+  font-size: 14px;
+  line-height: 1.75;
+  color: #626262;
+  margin-bottom: 10px;
+}
+
+.gi-info-left p:last-child {
+  margin-bottom: 0;
+}
+
+.gi-transfer-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: #333;
+  margin-top: 8px;
+  margin-bottom: 12px !important;
+}
+
+.gi-transfer-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px 20px;
+  margin-bottom: 14px;
+}
+
+.gi-transfer-grid ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.gi-transfer-grid li {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 13px;
+  color: #444;
+  line-height: 1.45;
+}
+
+.gi-transfer-grid li svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: #222222;
+}
+
+.gi-transfer-outro {
+  font-size: 13px;
+  font-style: italic;
+  color: #777;
+  margin-top: 4px;
+}
+
+.gi-info-right {
+  overflow: hidden;
+}
+
+.gi-info-right img {
+  width: 100%;
+  height: 360px;
+  object-fit: cover;
+  display: block;
+}
+
+/* ── Why Weligama grid ──────────────────────────────────────────────────── */
+.gi-why-section {
+  background: #f7f4f0;
+  padding: 72px 0 80px;
+}
+
+.gi-why-inner {
+  text-align: center;
+}
+
+.gi-why-section h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(32px, 4vw, 50px);
+  font-weight: 400;
+  color: #1a1a1a;
+  text-transform: none;
+  letter-spacing: 0.01em;
+  margin-bottom: 0;
+}
+
+.gi-why-rule {
+  width: 52px;
+  height: 2px;
+  background: #c8921d;
+  margin: 20px auto 40px;
+}
+
+.gi-why-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px 20px;
+}
+
+.gi-why-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  text-align: center;
+}
+
+.gi-why-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 1.5px solid #c4d6c8;
+  display: grid;
+  place-items: center;
+  color: #2d7a3e;
+  margin-bottom: 14px;
+  flex-shrink: 0;
+}
+
+.gi-why-item h4 {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: #1a1a1a;
+  margin-bottom: 8px;
+}
+
+.gi-why-item p {
+  font-size: 13px;
+  line-height: 1.7;
+  color: #666;
+  margin-bottom: 0;
+}
+
+/* ── Help CTA banner ────────────────────────────────────────────────────── */
+.gi-help-banner {
+  background: #1a2c1f;
+  padding: 36px 0;
+}
+
+.gi-help-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.gi-help-left {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.gi-help-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: rgba(200, 146, 29, 0.18);
+  border: 1px solid rgba(200, 146, 29, 0.5);
+  display: grid;
+  place-items: center;
+  color: #c8921d;
+  flex-shrink: 0;
+}
+
+.gi-help-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(18px, 2.2vw, 26px);
+  font-weight: 400;
+  color: #f0ede8;
+  margin-bottom: 3px;
+}
+
+.gi-help-sub {
+  font-size: 12.5px;
+  color: #9aac9e;
+  margin-bottom: 0;
+}
+
+.gi-help-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 13px 22px;
+  background: #25d366;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 1.8px;
+  font-size: 10.5px;
+  font-weight: 700;
+  border: none;
+  white-space: nowrap;
+  transition: background 0.2s;
+}
+
+.gi-help-btn:hover {
+  background: #1da851;
+  color: #fff;
+}
+
+/* ── Getting Here responsive ─────────────────────────────────────────────── */
+@media (max-width: 1100px) {
+  .gi-hero-content {
+    padding: 56px 40px 56px 32px;
+  }
+
+  .gi-info-row {
+    gap: 32px;
+  }
+
+  .gi-why-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px 16px;
+  }
+}
+
+@media (max-width: 860px) {
+  .gi-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .gi-hero-image {
+    height: 300px;
+    position: relative;
+  }
+
+  .gi-hero-image img {
+    position: static;
+    width: 100%;
+    height: 100%;
+  }
+
+  .gi-hero-content {
+    padding: 52px 28px;
+  }
+
+  .gi-info-row {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-bottom: 44px;
+  }
+
+  .gi-info-row--reverse .gi-info-right {
+    order: unset;
+  }
+
+  .gi-info-right img {
+    height: 240px;
+  }
+
+  .gi-why-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .gi-hero-content {
+    padding: 44px 20px;
+  }
+
+  .gi-transfer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .gi-why-section {
+    padding: 52px 0 60px;
+  }
+
+  .gi-why-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .gi-help-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .gi-help-btn {
+    align-self: flex-start;
   }
 }

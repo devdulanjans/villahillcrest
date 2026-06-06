@@ -24,7 +24,6 @@ export default function ContactWidget() {
   const [submitStatus, setSubmitStatus] = useState('idle')
   const [contactDetails, setContactDetails] = useState(defaultContactDetails)
 
-  const contactFormEndpoint = process.env.NEXT_PUBLIC_CONTACT_FORM_ENDPOINT || ''
   const mapSrc = useMemo(() => extractMapSrc(contactDetails.mapIframeHtml), [contactDetails.mapIframeHtml])
 
   useEffect(() => {
@@ -57,44 +56,23 @@ export default function ContactWidget() {
     event.preventDefault()
     setSubmitMessage('')
 
-    if (!contactFormEndpoint) {
-      setSubmitStatus('error')
-      setSubmitMessage('Form is not configured yet. Please set NEXT_PUBLIC_CONTACT_FORM_ENDPOINT and rebuild.')
-      return
-    }
-
     const form = event.currentTarget
     const formData = new FormData(form)
-    const isFormSubmit = /formsubmit\.co/i.test(contactFormEndpoint)
+    const payload = Object.fromEntries(formData.entries())
 
     try {
       setIsSubmitting(true)
 
-      const payload = Object.fromEntries(formData.entries())
-      const requestOptions = {
+      const response = await fetch('/api/contact', {
         method: 'POST',
-        headers: {
-          Accept: 'application/json'
-        }
-      }
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(payload),
+      })
 
-      if (isFormSubmit) {
-        requestOptions.headers['Content-Type'] = 'application/json'
-        requestOptions.body = JSON.stringify({
-          ...payload,
-          name: `${payload.firstName || ''} ${payload.lastName || ''}`.trim(),
-          _subject: 'New Contact Form Submission - Villa Hillcrest',
-          _template: 'table',
-          _captcha: 'false'
-        })
-      } else {
-        requestOptions.body = formData
-      }
-
-      const response = await fetch(contactFormEndpoint, requestOptions)
+      const data = await response.json()
 
       if (!response.ok) {
-        throw new Error('Failed to submit form')
+        throw new Error(data.message || 'Failed to submit form')
       }
 
       form.reset()
@@ -102,7 +80,7 @@ export default function ContactWidget() {
       setSubmitMessage('Thank you. Your message has been sent successfully.')
     } catch (error) {
       setSubmitStatus('error')
-      setSubmitMessage('Sorry, we could not send your message. Please try again.')
+      setSubmitMessage(error.message || 'Sorry, we could not send your message. Please try again.')
     } finally {
       setIsSubmitting(false)
     }

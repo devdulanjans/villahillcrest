@@ -6,6 +6,7 @@ import ContactUsIntro from '../components/ContactUsIntro'
 import ContactWidget from '../components/ContactWidget'
 import Availability from '../components/Availability'
 import BeSearchForm from '../components/be-forms/BeSearchForm'
+import GettingHere from '../components/GettingHere'
 
 export default function ContactUs() {
   useEffect(() => {
@@ -105,6 +106,7 @@ export default function ContactUs() {
         />
         <BeSearchForm />
         <ContactUsIntro />
+        <GettingHere />
         <ContactWidget />
         <Availability />
 
